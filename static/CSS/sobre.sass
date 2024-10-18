@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+   
+}
+body{
+    background-color: #010d11;
+}
+.banner {
+    width: 100%;
+    display: block;
+}
+
+img, p{
+    z-index: 2;
+}
+
+/* Sobre */
+ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #010d11;
+    list-style: none;
+    margin-top: 0;
+    height: 600px;
+    position: relative;
+    z-index: 1; 
+    overflow: hidden; /* Impede que os círculos saiam dos limites da div */
+}
+
+li {
+    margin: 50px;
+}
+
+.mmms, .senai {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+.img-mmms {
+    margin-bottom: 95px;
+}
+
+p {
+    font-size: 25px;
+    font-family: "Quicksand";
+}
+
+.linha-vertical {
+    width: 20px; 
+    height: 90%; 
+    background: linear-gradient(to bottom, #010d11, #404648, #4d5558, #404648, #010d11); 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Corrige o alinhamento da linha */
+}
+
+.container-sobre-nos {
+    position: relative;
+    overflow: hidden; 
+    margin-bottom: 50px;
+}
+
+.circulo {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: #4d555871;
+    position: absolute;
+    z-index: 0; /* Garante que os círculos fiquem atrás do conteúdo */
+}
+
+#circulo-1 {
+    top: 60%;
+    left: -150px; /* Posiciona o primeiro círculo à esquerda */
+}
+
+#circulo-2 {
+    top: -20%;
+    right: -150px; /* Posiciona o segundo círculo à direita */
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.mmms, .senai {
+    margin-left: 50px;
+}
+
+/* ___________________________________________ */
+/* Accordion */
+.secao-accordion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #010d11;
+}
+
+.container-accordion{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 500px;
+}
+
+.accordion{
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.accordion-header span{
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.accordion-body{
+    color: #262626;
+    font-size: 14px;
+    padding: 5px 0px;
+    opacity: 0;
+    height: 0;
+}
+
+.accordion-body.active{
+    height: 100%;
+    opacity: 1;
+}
+
+.arrow{
+    transition: transform .2s linear;
+}
+/* Só funciona no elemento que tem a class active) */
+.accordion:has(.active) .arrow{
+    transform: rotate(100deg);
+}

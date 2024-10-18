@@ -1,0 +1,1 @@
+# Para as colunas do banco de dados , mais tarde

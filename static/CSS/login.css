@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;  
+    overflow: hidden;
+    
+}
+/*  Alerta de erro */
+
+.alerta {
+    width: 23vw;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px 30px;
+
+}
+.alert.error {
+    color: red;
+    font-weight: bold;
+    font-family: "Quicksand";
+    font-size: 20px;
+    text-align: center;
+}
+
+
+/* Imagem Logo */
+.header{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 10;
+    margin: 10;
+    width: 95vw;
+    top: 0%;
+}
+
+/* Link para entrar sem login */
+a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "Quicksand";
+    font-size: 17px;
+}
+/* Particulas */
+
+#particles-js{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background: #000101; 
+    /* Tema escuro */
+    /* background-color: #fff;  */
+    /* Tema claro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.particles-js-canvas-el{
+    justify-content: start;
+    color: #fff;
+}
+
+/*  Tela do login */
+
+#form_fundo{
+    width: 500px;
+    margin: 7%;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(4.2px);
+    -webkit-backdrop-filter: blur(6.7px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+#form_frente{
+    padding: 50px;
+}
+
+/* Texto */
+
+h1{
+    padding-top: 15px;
+    color: white;
+    font-family: "Quicksand";
+    font-weight: 400;
+}
+.campo{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+
+label{
+    color: #fff;
+    font-size: 30px;
+    padding-bottom: 10px;
+    font-family: "Quicksand";
+}
+
+input{
+    font-size: 30px;
+    background-color: #4A4747;
+    border: none;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: white;
+    border-radius: 8px;
+    font-family: "Quicksand";
+    
+}
+
+input::placeholder{
+    padding-left:10px;
+    font-size: 20px;
+    font-family: "Quicksand";
+   
+}
+
+input:focus{
+    background-color: #4A4747;
+    
+}
+
+/* Botão */
+
+button{
+    font-size: 20px;
+    background-color: #4A4747;
+    color: white;
+    width: 190px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-family: "Quicksand";
+    transition: 0.75s;
+}
+
+span{
+    color: #fff;
+}
+
+span:hover{
+    color: #000;
+    cursor: pointer;
+}
+
+button:hover{
+    color: #4A4747;
+    background-color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
