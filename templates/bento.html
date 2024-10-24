@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout</title>
+    <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/CSS/bento.css">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        function selecionarUnico(checkbox) {
+            var checkboxes = document.getElementsByName('opcao');
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false;
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="voltar">
+        <a href="../templates/home.html"><i class="fa-solid fa-door-open"></i></a>
+    </div>
+    <div class="container">
+              <!-- Nome da Máquina -->
+        <div class="grid">
+            <div class="grid-item salmon">
+                <div class="Nome">
+                    <ul>
+                        <li class="title-Salmon">Nome da Maquina</li>
+                        <li>Modelo:</li>
+                        <li>Ano de Fabricação:</li>
+                        <li>Setor:</li>
+                        <li>Categoria:</li>
+                    </ul>
+
+                    <img src="../static/assets/maquina.png" alt="">
+                </div>
+            </div>
+            <div class="grid-item broccoli">
+                <p>Broccoli</p>
+            </div>
+            <div class="grid-item tamago">
+                <p>Tamago</p>
+            </div>
+            <!-- Status -->
+            <div class="grid-item pork">
+                    <h2>Status</h2>
+                    <form>
+                        <label class="checkbox-container">
+                            Operando
+                            <input type="checkbox" name="opcao" value="opcao1" onclick="selecionarUnico(this)">
+                            <span class="checkmark"></span>
+                        </label><br>
+                
+                        <label class="checkbox-container">
+                            Parado
+                            <input type="checkbox" name="opcao" value="opcao2" onclick="selecionarUnico(this)">
+                            <span class="checkmark"></span>
+                        </label><br>
+                
+                        <label class="checkbox-container">
+                            Aguradando Manutenção
+                            <input type="checkbox" name="opcao" value="opcao3" onclick="selecionarUnico(this)">
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
+               <!-- Notas -->
+                <div class="notas">
+                <hr>
+                <h2>Notas:</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque sint tenetur eligendi commodi saepe doloremque architecto culpa earum, aut asperiores nisi.</p>
+            </div>
+                
+            </div>
+            <div class="grid-item edamame">
+                <p>Edamame</p>
+            </div>
+            <!-- Histórico de Manutenção -->
+            <div class="grid-item tomato">
+                <p>Tomato</p>
+                <button class="btn-pdf">Gerar PDF</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
