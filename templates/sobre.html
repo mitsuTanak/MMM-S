@@ -41,39 +41,43 @@
         </ul>
     </div>
 
-    <!-- Accordion -->
-     <div class="container-accordion">
-        <div class="accordion">
-            <button class="accordion-header">
-                <span>Nosso Objetivo</span>
-                <i class="fa-solid fa-chevron-down arrow"></i>
+    <!-- Tabs -->
+ 
+     <div class="container-tabs">
+        <div class="tab-buttons">
+            <button class="tab-btn active" content-id="Quem somos">
+                Quem somos
             </button>
-            <div class="accordion-body active">
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
-            </div>
-        </div>
 
-        <div class="accordion">
-            <button class="accordion-header">
-                <span>Nosso Objetivo</span>
-                <i class="fa-solid fa-chevron-down"></i>
+            <button class="tab-btn" content-id="Nosso Objetivo">
+                Nosso Objetivo
             </button>
-            <div class="accordion-body">
-                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
+        </div>
+        <div class="tabs-contents">
+            <div class="content" id="Quem somos">
+                <img src="../static/assets/undraw_cat_epte.svg" alt="">
+                <div class="infos">
+                    <h1 class="content-title">Quem somos?</h1>
+                    <p class="content-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda tempore eum harum aut odio sunt ipsa error similique distinctio modi, atque ipsam omnis quisquam tenetur dicta officia iure explicabo!
+                    </p>
+                </div>
+            </div>
+
+            <div class="content" id="Nosso Objetivo">
+                <img src="../static/assets/undraw_cat_epte.svg" alt="">
+                <div class="infos">
+                    <h1 class="content-title">Nosso Objetivo</h1>
+                    <p class="content-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda tempore eum harum aut odio sunt ipsa error similique distinctio modi, atque ipsam omnis quisquam tenetur dicta officia iure explicabo!
+                    </p>
+                </div>
             </div>
         </div>
-        
-        <div class="accordion">
-            <button class="accordion-header">
-                <span>Nosso Objetivo</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </button>
-            <div class="accordion-body">
-                <p class="texto_accordion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
-            </div>
-        </div>
-    </div>
+     </div>
+
+
     
-    <script src="../static/JS/accordion.js"></script>
+    <script src="../static/JS/tabs.js"></script>
 </body>
 </html>
