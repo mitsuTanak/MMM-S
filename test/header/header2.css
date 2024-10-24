@@ -1,0 +1,48 @@
+*{
+  font-family: "Fahkwang", sans-serif;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
+  align-items: center;
+  text-align: center;
+  padding: 25px 50px;
+}
+
+ul{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  text-decoration: none;
+  list-style-type: none;
+  align-items: center;
+}
+
+li a{
+  text-decoration: none;
+  color: white;
+  padding: 0px 20px;
+  font-weight: bold;
+
+}
+
+li a:hover{
+  background-color: #ff523b;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.search-txt{
+
+  width: 300px;
+   border-radius: 20px;
+   height: 35px;
+   width: 500px;
+   padding-right: 10px ;
+
+}
+
