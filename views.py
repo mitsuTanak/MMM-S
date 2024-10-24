@@ -10,6 +10,11 @@ def home():
 def sobre():
     return render_template("sobre.html")
 
+@app.route("/bento") 
+def bento():
+    return render_template("bento.html")
+
+
 @app.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

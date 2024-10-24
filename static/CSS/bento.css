@@ -1,0 +1,158 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: "Quicksand";
+    
+}
+/* Seta */
+.voltar{
+    background-color: #101010;
+   
+}
+i {
+    color: #f4f4f4;
+    margin-left: 35px;
+    margin-top: 15px;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #101010;
+}
+
+.grid {
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 16px;
+
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.item {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ______________________________________________________________________________ */
+/* Nome das Maquina e Foto */
+
+.salmon {
+    grid-column: span 2;
+    grid-row: span 1;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+.Nome{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.title-Salmon{
+    color: #B71129;
+    font-weight: bold;
+    font-family: "Quicksand";
+}
+
+ul{
+    color: #B71129;
+    list-style: none;
+    gap: 5px;
+}
+
+/* __________________________________________________________________ */
+
+.broccoli {
+    grid-column: span 1;
+    grid-row: span 3;
+    background-color: rgba(173, 255, 47, 0.5);
+}
+
+
+/* __________________________________________________________________ */
+
+.tamago {
+    grid-column: span 1;
+    grid-row: span 3;
+    background-color: rgba(255, 255, 224, 0.5);
+}
+
+/* __________________________________________________________________ */
+/* Staus */
+.pork {
+    grid-column: span 1;
+    grid-row: span 2;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #B71129;
+}
+
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column; /* Alinha os checkboxes verticalmente */
+    align-items: center; /* Centraliza os checkboxes horizontalmente */
+}
+
+/* Notas */
+.notas h3{
+    padding-bottom: 0;
+}
+
+
+/* __________________________________________________________________ */
+.edamame {
+    grid-column: span 1;
+    grid-row: span 2;
+    background-color: rgba(144, 238, 144, 0.5);
+}
+
+/* __________________________________________________________________ */
+/* Histórico de Manutenção */
+.tomato {
+    grid-column: span 4;
+    grid-row: span 4;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Botão */
+.btn-pdf{
+    background-color: #B71129;
+    color: #f4f4f4;
+    font-family: 'Quicksand';
+    height: 25px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 150px;
+}
