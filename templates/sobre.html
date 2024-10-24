@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
 
     <!-- Titulo da pagina -->
     <title>Sobre Nós</title>
 
-    <link rel="stylesheet" href="../static/CSS/sobre.sass">
+    <link rel="stylesheet" href="../static/CSS/sobre.css">
 </head>
 <body>
     <!-- Header -->
@@ -43,11 +44,36 @@
     <!-- Accordion -->
      <div class="container-accordion">
         <div class="accordion">
-            <button class="accordion-header"></button>
+            <button class="accordion-header">
+                <span>Nosso Objetivo</span>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </button>
+            <div class="accordion-body active">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
+            </div>
         </div>
-     </div>
 
-
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Nosso Objetivo</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-body">
+                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
+            </div>
+        </div>
+        
+        <div class="accordion">
+            <button class="accordion-header">
+                <span>Nosso Objetivo</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="accordion-body">
+                <p class="texto_accordion"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ad voluptatibus possimus cupiditate dolor corrupti iste enim neque commodi, rerum ipsam necessitatibus architecto, delectus, tempore quod laboriosam provident magnam blanditiis!</p>
+            </div>
+        </div>
+    </div>
     
+    <script src="../static/JS/accordion.js"></script>
 </body>
 </html>

@@ -101,18 +101,16 @@ ul {
 
 /* ___________________________________________ */
 /* Accordion */
-.secao-accordion {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #010d11;
-}
 
 .container-accordion{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
-    width: 500px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px
 }
 
 .accordion{
@@ -130,7 +128,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 25px;
     cursor: pointer;
 }
 
@@ -139,6 +137,10 @@ ul {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .accordion-body{
@@ -147,6 +149,8 @@ ul {
     padding: 5px 0px;
     opacity: 0;
     height: 0;
+    overflow: hidden;
+    transition: opacity .3s;
 }
 
 .accordion-body.active{
