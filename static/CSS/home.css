@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #151515;
+  background-color: #171717;
 }
 body {
   font-family: "Fahkwang", sans-serif;
@@ -21,6 +21,7 @@ body {
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px;
 }
 
@@ -59,7 +60,7 @@ p {
 
 .header {
   /* background: radial-gradient(#fff, #ffd6d6); */
-  background-color: #151515;
+  background-color: #171717;
   font-family: "Fahkwang", sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -69,8 +70,8 @@ p {
   margin-top: 70px;
 }
 .container {
-  max-width: 1300px;
-  margin: auto;
+  /* max-width: 1300px; */
+
   padding-left: 25px;
   padding-right: 25px;
 }
@@ -142,7 +143,7 @@ p {
 /* Footer */
 
 .footer {
-  background: #151515;
+  background: #171717;
   color: #8a8a8a;
   font-size: 14px;
   padding: 60px 0 20px;
