@@ -6,12 +6,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #171717;
+ 
 }
 body {
   font-family: "Fahkwang", sans-serif;
   font-weight: 600;
   font-style: normal;
+  background-color: #171717;
 }
 
 
