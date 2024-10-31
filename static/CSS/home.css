@@ -61,8 +61,10 @@ nav {
 
   background-color: #ff523b; /* Cor de fundo vermelho */
   color: white; /* Cor do texto/branco do ícone */
-  font-size: 12px; /* Tamanho do ícone */
-  padding: 10px 12px; /* Aumenta o tamanho do botão */
+  font-size: 15px; /* Tamanho do ícone */
+  justify-content: flex;
+  align-items: center;
+  padding: 6px 10px; /* Aumenta o tamanho do botão */
   border: none; /* Remove a borda padrão */
   border-radius: 25px; /* Bordas arredondadas */
   cursor: pointer; /* Muda o cursor ao passar o mouse */
@@ -70,7 +72,7 @@ nav {
 }
 
 .search-button-header:hover{
-  background-color: darkred; /* Muda a cor ao passar o mouse */
+  background-color: darkred; 
 }
 
 
