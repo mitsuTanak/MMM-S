@@ -3,9 +3,12 @@
 /* Geral */
 
 * {
+  
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
+  font-family: 'Poppins', sans-serif;
  
 }
 body {
@@ -19,38 +22,120 @@ body {
 /* ______________________________________________________________________________ */
 /* Header */
 
-.navbar {
+nav {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 20px;
+  background-color: #171717;
+  align-items: center;
+  text-align: center;
+  padding: 25px 50px;
+
 }
 
-nav {
-  flex: 1;
-  text-align: right;
+/* header {
+  position: relative;
+} */
+
+.input-search-header{
+
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adiciona 5px de espaço entre os itens */
+
 }
-nav ul {
-  display: inline-block;
-  list-style-type: none;
+
+.input-header{
+
+  width: 300px;
+   border-radius: 20px;
+   height: 35px;
+   width: 500px;
+   padding-left: 10px;
+   background: white;
+   border: none;
+   outline: none;
 }
-nav ul li {
-  display: inline-block;
-  margin-right: 20px;
+
+.search-button-header{
+
+  background-color: #ff523b; /* Cor de fundo vermelho */
+  color: white; /* Cor do texto/branco do ícone */
+  font-size: 15px; /* Tamanho do ícone */
+  justify-content: flex;
+  align-items: center;
+  padding: 6px 10px; /* Aumenta o tamanho do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 25px; /* Bordas arredondadas */
+  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  padding-left: 10px;
 }
-nav ul li a {
+
+.search-button-header:hover{
+  background-color: darkred; 
+}
+
+
+.menu-itens{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
   text-decoration: none;
-  padding: 5px;
-  color: #fff;
+  list-style-type: none;
+  align-items: center;
 }
-nav ul li a:hover{
+
+.header-itens a{
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  font-weight: bold;
+
+}
+
+.header-itens a:hover{
   background-color: #ff523b;
-  padding: 5px;
   border-radius: 5px;
   color: #fff;
   transition: 0.5s;
 }
 
+.perfil-icon-header:hover{
+
+  filter: invert(24%) sepia(91%) saturate(7492%) hue-rotate(357deg) brightness(90%) contrast(107%);
+
+}
+
+
+/* .header {
+  /* background: radial-gradient(#fff, #ffd6d6); */
+  /* background-color: #171717; */
+  /* font-family: "Fahkwang", sans-serif; */
+  /* font-weight: 600; */
+  /* font-style: normal; */
+/* } */
+
+/* .header row { */
+  /* margin-top: 70px; */
+/* }  */
+
+/* .btn {
+  display: inline-block;
+  background: #ff0000;
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+   transition: background 0.5s, color 0.3s, opacity 1s; 
+   }
+   .btn:hover {
+    background: #563434;
+    } */ 
+    
+    
+/* ___________________________________________________________________ */
+/* Body */
+    
 a, h2, h4 {
   text-decoration: none;
   color: #fff;
@@ -59,29 +144,20 @@ p {
   color: #000;
 }
 
-.header {
-  /* background: radial-gradient(#fff, #ffd6d6); */
-  background-color: #171717;
-  font-family: "Fahkwang", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.header row {
-  margin-top: 70px;
-}
-.container {
-  /* max-width: 1300px; */
-
-  padding-left: 25px;
-  padding-right: 25px;
-}
 .row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.small-container{
+  max-width: 1080px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .col-2 {
   padding: 30px;
   flex-basis: 50%;
@@ -96,29 +172,7 @@ p {
   line-height: 60px;
   margin: 25px 0;
 }
-.btn {
-  display: inline-block;
-  background: #ff0000;
-  color: #fff;
-  padding: 8px 30px;
-  margin: 30px 0;
-  border-radius: 30px;
-  /* transition: background 0.5s, color 0.3s, opacity 1s; */
-}
-.btn:hover {
-  background: #563434;
-}
 
-
-/* ___________________________________________________________________ */
-/* Visão Geral */
-
-.small-container{
-  max-width: 1080px;
-  margin: auto;
-  padding-left: 25px;
-  padding-right: 25px;
-}
 .col-4{
   flex-basis: 25%;
   padding: 10px;
@@ -138,6 +192,127 @@ p {
 }
 .rating .fa, .fa-solid, .fa-regular{
   color: #ff523b;
+}
+
+/* ______________________________________________________________________________ */
+/* Footer */
+
+footer{
+  background-color: #000000;
+  padding: 50px 0;
+}
+.container-footer{
+  max-width: 1400px;
+  padding: 0 4%;
+  margin: auto;
+}
+.row-footer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container { 
+  width: 33%;
+  padding: 0 15px; 
+ }
+
+.container img{
+  position: relative;
+  
+  width: 50%;
+}
+
+.footer-col{
+  
+  width: 33%;
+  padding: 0 15px; 
+
+}
+.footer-col h4{
+  font-size: 22px;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col ul{
+  list-style: none;
+}
+.footer-col ul li{
+  margin: 10px 0;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: #9E1414;
+  padding-left: 10px;
+}
+.footer-col .medias-socias{
+  margin-top: 30px;
+}
+.footer-col .medias-socias a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid white;
+  transition: all 0.5s ease;
+}
+.footer-col .medias-socias a i{
+  font-size: 20px;
+}
+
+.footer-col .medias-socias a:hover{
+  color:#9E1414;
+  background-color: white;
+}
+.footer-col .form-sub input{
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid white;
+  color: white;
+  background-color: #000000;
+}
+.footer-col .form-sub input::placeholder{
+  color: white;
+}
+.footer-col .form-sub button{
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px; 
+  font-size: 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #9E1414;        
+}
+/* Responsivo */
+@media (max-width: 800px) {
+  .footer-col{
+      width: 50%;
+      margin-bottom: 30px;
+  }
+}
+@media (max-width:600px) {
+  .footer-col{
+      width: 100%;
+  }
 }
 
 /* ______________________________________________________________________________ */
