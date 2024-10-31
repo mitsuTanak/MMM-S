@@ -140,11 +140,22 @@ ul {
     background-color: #d9d9d9;
 }
 
-.content{
-    display: flex;
-    flex-wrap: wrap;
+.tabs-contents {
+    position: relative; /* Ajuste importante para sobreposição */
 }
 
+/* .content{
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.content {
+    display: none; /* Esconde os conteúdos */
+    position: absolute; /* Posiciona cada conteúdo sobreposto */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .content.show{
     display: flex;
     gap:14px;
@@ -180,3 +191,4 @@ ul {
     align-items: center;
     text-align: justify;
 }
+
