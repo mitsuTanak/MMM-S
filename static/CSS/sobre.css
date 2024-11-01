@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@font-face {
+    font-family: Istok Web;
+    src: url();
+}
 
 * {
     margin: 0;
@@ -124,40 +128,78 @@ ul {
     color: #010d11;
     background-color: #4d5558;
     border-radius: 8px 8px 0px 0px;
-    font-weight: 500;
     padding: 8px;
     cursor: pointer;
     transition: background-color .3s ease;
-    font-family: "Quicksand";
-    font-size: 20px;
-    font-weight: bold;
+    font-family: "titillium-web", sans-serif;
+    font-size: larger;
+    font-style: normal;
 }
 
 .tab-btn.active {
-    background-color: gray;
+    background-color: #d9d9d9;
 }
 
-.content{
-    display: none;
-    
+.tabs-contents {
+    position: relative; /* Ajuste importante para sobreposição */
 }
 
+/* .content{
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.content {
+    display: none; /* Esconde os conteúdos */
+    position: absolute; /* Posiciona cada conteúdo sobreposto */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .content.show{
     display: flex;
     gap:14px;
-    background-color: gray;
+    background-color: #d9d9d9;
     border-radius: 0px 0px 8px 8px;
     padding: 16px;
 }
 
-.content-img{
-    width: 50%;
-    height: 250px;
-    padding-top: 50px;
+.foto{
+    padding: 50px 30px;
+    margin-left: 75px;
+    width: 40%;
+    align-items: center;
+    text-align: center;
 }
 
-.infos{
-    padding: 50px 30px;
+ .infos{
+    padding: 40px 5px;
+    margin-left: 130px;
     text-align: center;
     align-items: center;
+    width: 40%;
+   
 }
+.content-title{
+    font-family: "titillium-web", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+.content-description{
+    margin-top: 20px;
+    align-items: center;
+    text-align: justify;
+}
+  /* Responsivo */
+  @media (max-width: 800px) {
+    .footer-col{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+  }
+  @media (max-width:600px) {
+    .footer-col{
+        width: 100%;
+    }
+  }
