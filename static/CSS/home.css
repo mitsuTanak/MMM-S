@@ -59,7 +59,7 @@ nav {
 
 .search-button-header{
 
-  background-color: #ff523b; /* Cor de fundo vermelho */
+  background-color: #005CAA; /* Cor de fundo vermelho */
   color: white; /* Cor do texto/branco do ícone */
   font-size: 15px; /* Tamanho do ícone */
   justify-content: flex;
@@ -72,7 +72,9 @@ nav {
 }
 
 .search-button-header:hover{
-  background-color: darkred; 
+  background-color: #00427b; 
+  transition: 0.3s;
+
 }
 
 
@@ -83,6 +85,7 @@ nav {
   text-decoration: none;
   list-style-type: none;
   align-items: center;
+
 }
 
 .header-itens a{
@@ -94,7 +97,7 @@ nav {
 }
 
 .header-itens a:hover{
-  background-color: #ff523b;
+  background-color: #005CAA;
   border-radius: 5px;
   color: #fff;
   transition: 0.5s;
@@ -102,7 +105,7 @@ nav {
 
 .perfil-icon-header:hover{
 
-  filter: invert(24%) sepia(91%) saturate(7492%) hue-rotate(357deg) brightness(90%) contrast(107%);
+  filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
 
 }
 
@@ -121,7 +124,7 @@ nav {
 
 /* .btn {
   display: inline-block;
-  background: #ff0000;
+  background: #005CAA;
   color: #fff;
   padding: 8px 30px;
   margin: 30px 0;
@@ -250,7 +253,7 @@ footer{
   transition: all 0.3s ease;
 }
 .footer-col ul li a:hover{
-  color: #9E1414;
+  color: #4198e4;
   padding-left: 10px;
 }
 .footer-col .medias-socias{
@@ -274,7 +277,7 @@ footer{
 }
 
 .footer-col .medias-socias a:hover{
-  color:#9E1414;
+  color: #005CAA;
   background-color: white;
 }
 .footer-col .form-sub input{
@@ -300,8 +303,17 @@ footer{
   color: white;
   border-radius: 3px;
   font-weight: bold;
-  background-color: #9E1414;        
+  background-color: #005CAA;        
 }
+
+.footer-col .form-sub button:hover{
+  background-color: #00427b; 
+  transition: 0.3s;
+  
+   
+}
+
+
 /* Responsivo */
 @media (max-width: 800px) {
   .footer-col{

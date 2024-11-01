@@ -191,4 +191,15 @@ ul {
     align-items: center;
     text-align: justify;
 }
-
+  /* Responsivo */
+  @media (max-width: 800px) {
+    .footer-col{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+  }
+  @media (max-width:600px) {
+    .footer-col{
+        width: 100%;
+    }
+  }
