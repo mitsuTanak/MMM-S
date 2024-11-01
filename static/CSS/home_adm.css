@@ -1,0 +1,421 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Geral */
+
+* {
+  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+  font-family: 'Poppins', sans-serif;
+ 
+}
+body {
+  font-family: "Fahkwang", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #E5E5E5;
+}
+
+
+/* ______________________________________________________________________________ */
+/* Header */
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #171717;
+  align-items: center;
+  text-align: center;
+  padding: 25px 50px;
+
+}
+
+/* header {
+  position: relative;
+} */
+
+.input-search-header{
+
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adiciona 5px de espaço entre os itens */
+
+}
+
+.input-header{
+
+  width: 300px;
+   border-radius: 20px;
+   height: 35px;
+   width: 500px;
+   padding-left: 10px;
+   background: white;
+   border: none;
+   outline: none;
+}
+
+.search-button-header{
+
+  background-color: #005CAA; /* Cor de fundo vermelho */
+  color: white; /* Cor do texto/branco do ícone */
+  font-size: 15px; /* Tamanho do ícone */
+  justify-content: flex;
+  align-items: center;
+  padding: 6px 10px; /* Aumenta o tamanho do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 25px; /* Bordas arredondadas */
+  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  padding-left: 10px;
+}
+
+.search-button-header:hover{
+  background-color: #00427b; 
+  transition: 0.3s;
+
+}
+
+
+.menu-itens{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  text-decoration: none;
+  list-style-type: none;
+  align-items: center;
+
+}
+
+.header-itens a{
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  font-weight: bold;
+
+}
+
+.header-itens a:hover{
+  background-color: #005CAA;
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.perfil-icon-header:hover{
+
+  filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
+
+}
+
+
+/* .header {
+  /* background: radial-gradient(#fff, #ffd6d6); */
+  /* background-color: #171717; */
+  /* font-family: "Fahkwang", sans-serif; */
+  /* font-weight: 600; */
+  /* font-style: normal; */
+/* } */
+
+/* .header row { */
+  /* margin-top: 70px; */
+/* }  */
+
+/* .btn {
+  display: inline-block;
+  background: #005CAA;
+  color: #fff;
+  padding: 8px 30px;
+  margin: 30px 0;
+  border-radius: 30px;
+   transition: background 0.5s, color 0.3s, opacity 1s; 
+   }
+   .btn:hover {
+    background: #563434;
+    } */ 
+    
+    
+/* ___________________________________________________________________ */
+/* Body */
+
+p {
+  color: #000;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.container-body{
+    margin: 30px;
+}
+
+.section-1{
+    border: 5px solid #005CAA;
+    border-radius: 15px;
+    
+    
+}
+
+.warning{
+    padding: 20px; /* Adicionei um padding para dar um espaço interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    text-align: center; /* Centraliza o texto e outros elementos inline */
+}
+
+.warning-img {
+    display: flex;
+    gap: 10px; /* Espaço entre as imagens */
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100px); /* Desloca o conteúdo para a esquerda */
+}
+
+.warning button {
+    width: 12%;
+    margin-bottom: -10px;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color: #005CAA;
+    transform: translateY(-20px); /* Desloca o conteúdo para a esquerda */
+}
+
+.warning button:hover {
+    background-color: #02317A;
+    transition: 0.5s;
+}
+
+/* Main */
+/* Section 1 */
+
+ul{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 15px ;
+}
+
+.atividade{
+    width: 15%;
+    padding: 12px;
+    background-color: #005CAA;
+    border-radius: 8px;
+    font-weight: 200;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.atividade h1{
+    color: white;
+    
+    transform: translateY(-7px);
+}
+.atividade p{
+    color: white;
+}
+
+/* ______________________________________________________________________________ */
+/* Footer */
+
+footer{
+  background-color: #000000;
+  padding: 50px 0;
+}
+.container-footer{
+  max-width: 1400px;
+  padding: 0 4%;
+  margin: auto;
+}
+.row-footer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container-footer-2 { 
+  width: 33%;
+  padding: 0 15px; 
+ }
+
+.container-footer-2 img{
+  position: relative;
+  
+  width: 50%;
+}
+
+.footer-col{
+  
+  width: 33%;
+  padding: 0 15px; 
+
+}
+.footer-col h4{
+  font-size: 22px;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col ul{
+  list-style: none;
+}
+.footer-col ul li{
+  margin: 10px 0;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: #4198e4;
+  padding-left: 10px;
+}
+.footer-col .medias-socias{
+  margin-top: 30px;
+}
+.footer-col .medias-socias a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid white;
+  transition: all 0.5s ease;
+}
+.footer-col .medias-socias a i{
+  font-size: 20px;
+}
+
+.footer-col .medias-socias a:hover{
+  color: #005CAA;
+  background-color: white;
+}
+.footer-col .form-sub input{
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid white;
+  color: white;
+  background-color: #000000;
+}
+.footer-col .form-sub input::placeholder{
+  color: white;
+}
+.footer-col .form-sub button{
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px; 
+  font-size: 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #005CAA;        
+}
+
+.footer-col .form-sub button:hover{
+  background-color: #00427b; 
+  transition: 0.3s;
+  
+   
+}
+
+
+/* Responsivo */
+@media (max-width: 800px) {
+  .footer-col{
+      width: 50%;
+      margin-bottom: 30px;
+  }
+}
+@media (max-width:600px) {
+  .footer-col{
+      width: 100%;
+  }
+}
+
+/* ______________________________________________________________________________ */
+/* Responsividade */
+
+@media screen and (max-width: 800px) {
+
+  /* Header */
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #333;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  nav ul li {
+    display: block;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  nav ul li a{
+    color: #fff;
+  }
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  /* Geral */
+  .row {
+    text-align: center;
+  }
+  .col-2, .col-3, .col-4 {
+    flex-basis: 100%;
+  }
+  /* Produto detalhado */
+  .single-product .row {
+    text-align: left;
+  }
+  .single-product .col-2 {
+    padding: 20px 0;
+  }
+  .single-product h1 {
+    font-size: 26px;
+    line-height: 32px;
+    padding-bottom: 20px;
+  }
+  /* Pagamentos */
+  .cart-info p {
+    display: none;
+  }
+
+}
