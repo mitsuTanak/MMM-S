@@ -132,20 +132,47 @@ nav {
   padding: 10px;
   margin-bottom: 20px;
 }
+.urgente button:hover{
+  background-color: #00427b;
+  color: #fff;
+}
+.urgente button a {
+  text-decoration: none;
+  color: #000;
+}
+
 
 .info_urgente{
   text-align: center;
   
 }
-
+/* ______________________________________________ */
 /* Cards */
+h2 {
+  text-align: start;
+  margin: 20px 0;
+  font-size: 30px;
+}
+.container_maquinas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.row {
+   margin: 25px 50px;
+}
+
 .card_mq{
   position: relative;
   width: 320px;
   height: 240px;
-
 }
-
+.card_mq:hover{
+  transform: translateY(-10px);
+  transition: .4s ease;
+}
 .card_mq .imBX{
   position: relative;
   width: 100%;
@@ -232,65 +259,11 @@ nav {
   font-weight: 500;
   text-decoration: none;
 } 
+
+.btn_A:hover{
+  background-color: #dedede;
+}
     
-/* ___________________________________________________________________ */
-/* Maquinas */
-
-.container_maquinas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  margin-bottom: 25px;
-}
-
-.row {
-   margin: 25px 50px;
-}
-
-
-.small-container{
-  max-width: 1080px;
-  margin: auto;
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
-.col-2 {
-  padding: 30px;
-  flex-basis: 50%;
-  min-width: 300px;
-}
-.col-2 img {
-  max-width: 100%;
-  padding: 50px 0;
-}
-.col-2 h1 {
-  font-size: 50px;
-  line-height: 60px;
-  margin: 25px 0;
-}
-
-.col-4{
-  flex-basis: 25%;
-  padding: 10px;
-  min-width: 200px;
-  margin-bottom: 50px;
-  transition: transform 0.5s;
-}
-.col-4 img{
-  width: 100%;
-}
-
-.col-4:hover{
-  transform: translateY(-5px);
-}
-.col-4 p{
-  font-size: 14px;
-}
-.rating .fa, .fa-solid, .fa-regular{
-  color: #ff523b;
-}
-
 /* ______________________________________________________________________________ */
 /* Footer */
 
