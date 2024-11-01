@@ -21,28 +21,60 @@
 
     <!-- Header -->
 
+
+
     <header class="header">
 
-        <div class="container-header">
-          <div class="navbar">
-            <div class="logo">
-              <a href="home.html"><img src="../static/assets/logo.png" alt="logo" width="125px" /></a>
-            </div>
-            <nav>
-              <ul id="MenuItems">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/sobre">Sobre Nós</a></li>
-                <li><a href="/login">Login</a>
-                  
-                <img src="../static/assets/perfil-icon.png" alt="perfil" width="30px" height="30px"></li>
-                
-              </ul>
-            </nav>
-            <!-- <a href="pagamentos.html"><img src="images/cart.png" alt="" width="30px" height="30px" /></a> -->
-            <!-- <img src="images/menu.png" alt="" class="menu-icon" onclick="menutoggle()" /> -->
+      <nav>
+  
+          <div class="logo-header">
+  
+              <a href="../../templates/home.html">
+                  <img src="../static/assets/logo_mundo_senai-removebg-preview.png" 
+                      alt="logo" 
+                      width="125px"/>
+              </a>
+  
           </div>
-        </div>
-      </header>
+  
+  
+          <div class="input-search-header">
+  
+              <input class="input-header" 
+                    type="text" 
+                    placeholder="Pesquisar" />
+  
+              <button type="submit" 
+                      class="search-button-header"> 
+                  <i class="fa fa-search" 
+                    aria-hidden="true">
+                  </i>
+              </button>
+  
+          </div>
+  
+  
+          <div class="list-header">
+  
+              <ul id="MenuItems" class="menu-itens">
+  
+                  <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
+                  <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
+  
+                  <a href="../../templates/login.html">
+                      <img src="../../static/assets/perfil-icon.png"
+                          alt="logo"
+                          width="50px"
+                          class="perfil-icon-header"/>
+                  </a>
+  
+              </ul>
+  
+          </div>
+  
+      </nav>
+    
+    </header>
 
 <body>
     
@@ -51,20 +83,24 @@
 
           <div class="item salmon">
             <ul class="especificacao">
-              <li>Marca/modelo: </li>
-              <li>Ano de Fabricação: </li>
-              <li>Status: </li>
-              <li>NI: </li>
-              <li>Equipamento: </li>
+              <li><h2>Marca/modelo:</h2> </li>
+              <li><h2>Ano de Fabricação:</h2> </li>
+              <li><h2>Status:</h2> </li>
+              <li><h2>NI:</h2> </li>
+              <li><h2>Equipamento:</h2> </li>
             </ul>
           </div>
 
           <div class="item broccoli">
-            <img src="../static/assets/maquina.png">
+            <img class="maquina" src="../static/assets/maquina.png">
           </div>
 
           <div class="item tamago">
-
+            <ul class="especificacao-black">
+              <li><h2>Valor de aquisição</h2> </li>
+              <li><h2>Localização</h2> </li>
+              <li><h2>Imobilizado:</h2> </li>
+            </ul>
           </div>
 
           <div class="item pork">
@@ -77,51 +113,88 @@
           </div>
 
           <div class="item pork">
-
+            <div class="desc-title">
+              <h1>Pontos de lubrificação:</h1>
+            </div>
+            <div class="desc">
+              <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia voluptatem vitae numquam laboriosam debitis libero expedita sunt quaerat inventore, aut pariatur atque maiores aspernatur labore officiis rerum, rem veritatis quae..</h3>
+            </div>
+            <div class="desc-title">
+              <h1>Tipo de óleo ou graxa utilizados:</h1>
+            </div>
           </div>
 
           <div class="item tamago">
-
+            <div class="desc-title-black">
+              <h1>Procedimentos ou verificações iniciais</h1>
+            </div>
             
           </div>
 
           <div class="item full">
-            <img src="../static/assets/cuidado.png">
+            <div class="desc-title">
+              <h1>Pontos de atenção e segurança</h1>
+            </div>
+            <ul class="especificacao">
+              <li><h2>Guias Lineares:</h2> </li>
+              <li><h2>Parafusos de Esfera:</h2> </li>
+              <li><h2>Motores e Eixos:</h2> </li>
+              <li><h2>Cabeçote da Fresadora:</h2> </li>
+              <li><h2>Sistema de Refrigeração:</h2> </li>
+              <li><h2>Correias e Polias:</h2> </li>
+            </ul>
+            <img class="atencao" src="../static/assets/cuidado.png">
           </div>
 
         </div>
       </div>
-      <div class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="footer-col-1">
-              <img src="../static/assets/image 7.png" alt="">
-              <h3>Informações</h3>
-              <p>Contatos</p>
-              <p>Termos de serviço</p>
-    
-              <div class="app-logo">
-                <img src="images/play-store.png" alt="">
-                <img src="images/app-store.png" alt="">
-              </div>
-            </div>
-            <div class="footer-col-2">
-              <p>Nosso propósito é tornar o prazer e os benefícios do esporte acessíveis a todos</p>
-            </div>
-            <div class="footer-col-4">
-              <h3>Entre em contato</h3>
-              <ul>
-                <li>Coloque seu e-mail para receber
-                    notificações</li>
-                    <input type="button" value="enviar">
-                    <input type="email" name="" id="" value="Digite seu e-mail..." img>
-              </ul>
-            </div>
-          </div>
-          <hr>
-          <p class="copyright">2024 all rights reserved </p>
-        </div>
+      <div class="button">
+        <button link="#" class="pdf">Gerar PDF</button>
       </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <!--container-->
+                <div class="container">
+                    <img src="../../static/assets/logo_mundo_senai-removebg-preview.png" alt="">
+                   
+                </div>
+                <!--end footer col-->
+                <!-- footer col-->
+                <div class="footer-col">
+                    <h4>Informações</h4>
+                    <ul>
+                        <li><a href="#">Contatos</a></li>
+                        <li><a href="#">Termos de Serviço</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+      
+                    </ul>
+                </div>
+                <!--end footer col-->
+                <!-- footer col-->
+                <div class="footer-col">
+                    <h4>Entre em contato</h4>
+                    <div class="form-sub">
+                        <form>
+                            <input type="email" placeholder="Digite o seu e-mail" required>
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+      
+                    <div class="medias-socias">
+                        <a href="#"> <i class="fa fa-facebook"></i> </a>
+                        <a href="#"> <i class="fa fa-instagram"></i> </a>
+                        <a href="#"> <i class="fa fa-twitter"></i> </a>
+                        <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                    </div>
+      
+                </div>
+                <!--end footer col-->
+            </div>
+        </div>
+      </footer>
   
 </body>
 </html>
