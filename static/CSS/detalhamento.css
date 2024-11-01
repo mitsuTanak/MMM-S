@@ -12,7 +12,7 @@ body {
   font-family: "Fahkwang", sans-serif;
   /* font-weight: 600; */
   font-style: normal;
-  background-color: #171717;
+  background-color:   #d9d9d9;
 }
 
 /* Header */
@@ -138,32 +138,33 @@ nav {
   .salmon {
     grid-column: span 3;
     grid-row: span 2;
-    background-color: #C60929;
+    background-color: #02317a;
   }
   
   .broccoli {
     grid-column: span 1;
     grid-row: span 2;
-    background-color: #DFDFDF;
+    /* background-color: #02317a; */
   }
   
   .tamago {
     grid-column: span 2;
     grid-row: span 4;
-    background-color: #DFDFDF;
+    background-color: #798eaf;
 }
 
   .pork {
     grid-column: span 2;
     grid-row: span 4;
-    background-color: #C60929;
+    background-color: #02317a;
   }
 
   .full {
     grid-column: span 4;
     grid-row: span 4;
-    background-color: #C60929;
+    background-color: #02317a;
     width: 100%;
+    
   }
 
   .full .atencao{
@@ -206,6 +207,10 @@ nav {
     display: flex;
     flex-direction: column;
     top: 30%;
+  }
+
+  .lubrificacao{
+    margin: 30px;
   }
   
   .especificacao {
