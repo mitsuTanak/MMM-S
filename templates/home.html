@@ -28,36 +28,29 @@
     <nav>
 
         <div class="logo-header">
-
             <a href="../../templates/home.html">
                 <img src="../static/assets/logo_mundo_senai-removebg-preview.png" 
                     alt="logo" 
                     width="125px"/>
             </a>
-
         </div>
 
 
         <div class="input-search-header">
-
             <input class="input-header" 
                   type="text" 
                   placeholder="Pesquisar" />
-
             <button type="submit" 
                     class="search-button-header"> 
                 <i class="fa fa-search" 
                   aria-hidden="true">
                 </i>
             </button>
-
         </div>
 
 
         <div class="list-header">
-
             <ul id="MenuItems" class="menu-itens">
-
                 <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
                 <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
 
@@ -67,111 +60,45 @@
                         width="50px"
                         class="perfil-icon-header"/>
                 </a>
-
             </ul>
-
         </div>
-
     </nav>
-  
   </header>
-
-
-
+  
 <!-- ____________________________________________________________________________ -->
-<!-- Body -->
+<!-- Urgente -->
 
-
-<body>
-
-  <div class="small-container">
-    <h2 class="title">Todas as Máquinas</h2>
-      <div class="row">
-        <div class="col-4">
-          <a href="produtos-detalhes.html"><img src="../static/assets/maquina.png" alt="" /></a>
-          <a href="produtos-detalhes.html"><h4>Fresadora CNC</h4></a>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-      
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-4">
-          <a href="produtos-detalhes.html"><img src="../static/assets/maquina.png" alt="" /></a>
-          <a href="produtos-detalhes.html"><h4>Fresadora CNC</h4></a>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-4">
-          <a href="produtos-detalhes.html"><img src="../static/assets/maquina.png" alt="" /></a>
-          <a href="produtos-detalhes.html"><h4>Fresadora CNC</h4></a>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-        </div>
-        <div class="col-4">
-          <img src="../static/assets/maquina.png" alt="" />
-          <h4>Fresadora CNC</h4>
-          
-      </div>
+<section class="urgente">
+  <img src="../static/assets/image 25.png" alt="">
+  <div class="info_urgente">
+    <h3>URGENTE</h3>
+    <button><a href="">Visualizar</a></button>
   </div>
-</div>
+</section>
 
-</body>
 
 <!-- ____________________________________________________________________________ -->
-<!-- Footer  -->
+<!-- Seção das máquinas-->
+
+
+
+<section class="row">
+  <h2 class="title">Todas as Máquinas</h2>
+  <div class="container_maquinas" id="card-container"></div>
+</section>
+<!-- ____________________________________________________________________________ -->
+  
 
 <footer>
   <div class="container-footer">
       <div class="row-footer">
-          <!--container-->
+         
           <div class="container">
               <img src="../../static/assets/logo_mundo_senai-removebg-preview.png" alt="">
               <img src="../static/assets/logo.png" alt="">
              
           </div>
-          <!--end footer col-->
-          <!-- footer col-->
+        
           <div class="footer-col">
               <h4>Informações</h4>
               <ul>
@@ -181,8 +108,7 @@
 
               </ul>
           </div>
-          <!--end footer col-->
-          <!-- footer col-->
+  >
           <div class="footer-col">
               <h4>Entre em contato</h4>
               <div class="form-sub">
@@ -200,15 +126,14 @@
               </div>
 
           </div>
-          <!--end footer col-->
+        
       </div>
   </div>
-</footer>
-
-<!-- ____________________________________________________________________________ -->
+</footer> 
 <!-- JS para toggle menu  -->
 
-<script src="menu.js"></script>
+<script src="../static/JS/card.js"></script>
+
 
   
 </html>
