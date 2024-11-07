@@ -252,16 +252,33 @@ nav {
     display: flex;
     margin: 50px;
     border-radius: 10px;
+    background-color: #2B3F5F;
+    color: #fff;
+
   }
 
   .button{
     align-items: center;
     justify-content: center;
-    margin-left: 540px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+
+  }
+
+  .button ul{
+    flex-direction: row;
+    display: flex;
+    gap: 	35%;
+    list-style: none;
+  }
+
+  .botao{
+    width: 15%;
   }
 
   button:hover{
-    background-color: #a9a9a9;
+    background-color: #2b3f5fe9;
     transition: 0.2s ease-in-out;
     color: #fff;
     cursor: pointer;
