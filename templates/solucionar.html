@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solucionar Problema</title>
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="../static/CSS/home.css" />
+    <link rel="stylesheet" href="../static/CSS/solucionar.css" />
+
+    <!-- Link para JS -->
+
+    <!-- Inserindo favicon -->
+    <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
+
+     <!-- Link para fontawesome (Icones) -->
+    <script src="https://kit.fontawesome.com/23655c98f8.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ____________________________________________________________________________ -->
+<!-- Header -->
+
+  <header class="header">
+
+    <nav>
+
+        <div class="logo-header">
+            <a href="../../templates/home.html">
+                <img src="../static/assets/logo_mundo_senai-removebg-preview.png" 
+                    alt="logo" 
+                    width="125px"/>
+            </a>
+        </div>
+
+
+        <div class="input-search-header">
+            <input class="input-header" 
+                  type="text" 
+                  placeholder="Pesquisar" />
+            <button type="submit" 
+                    class="search-button-header"> 
+                <i class="fa fa-search" 
+                  aria-hidden="true">
+                </i>
+            </button>
+        </div>
+
+
+        <div class="list-header">
+            <ul id="MenuItems" class="menu-itens">
+                <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
+                <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
+
+                <a href="../../templates/login.html">
+                    <img src="../../static/assets/perfil-icon.png"
+                        alt="logo"
+                        width="50px"
+                        class="perfil-icon-header"/>
+                </a>
+            </ul>
+        </div>
+    </nav>
+  </header>
+<!-- ____________________________________________________________________________ -->
+ <!-- Formulário -->
+    <div class="container">
+        <form id="anomalyForm">
+            <div class="row">
+                <label>Planta:</label>
+                <input type="text" id="planta" name="planta">
+                
+                <label>Processo:</label>
+                <input type="text" id="processo" name="processo">
+                
+                <label>Tipo:</label>
+                <input type="text" id="tipo" name="tipo">
+            </div>
+            <div class="row">
+                <label>Aberto por:</label>
+                <input type="text" id="abertoPor" name="abertoPor">
+                
+                <label>Data:</label>
+                <input type="date" id="data" name="data">
+                
+                <label>Responsável:</label>
+                <input type="text" id="responsavel" name="responsavel">
+                
+                <label>Status:</label>
+                <input type="text" id="status" name="status">
+            </div>
+            <div class="row">
+                <label>Antes:</label>
+                <input type="file" id="fotoAntes" name="fotoAntes" accept="image/*">
+            </div>
+            <div class="row">
+                <label>Descrição do problema:</label>
+                <textarea id="descricaoProblema" name="descricaoProblema"></textarea>
+            </div>
+            <div class="row">
+                <label>Número:</label>
+                <input type="text" id="numero" name="numero">
+                
+                <label>Data:</label>
+                <input type="date" id="dataAnomalia" name="dataAnomalia">
+                
+                <label>Descrição da Anomalia:</label>
+                <textarea id="descricaoAnomalia" name="descricaoAnomalia"></textarea>
+            </div>
+            <div class="row">
+                <label>Depois:</label>
+                <input type="file" id="fotoDepois" name="fotoDepois" accept="image/*">
+            </div>
+            <div class="row">
+                <label>Solução adotada:</label>
+                <textarea id="solucaoAdotada" name="solucaoAdotada"></textarea>
+            </div>
+            <div class="row">
+                <label>Custo:</label>
+                <input type="text" id="custo" name="custo">
+                
+                <label>Benefício:</label>
+                <textarea id="beneficio" name="beneficio"></textarea>
+            </div>
+            <div class="buttons">
+                <button type="button" onclick="salvar()">Salvar</button>
+                <button type="button" onclick="excluir()">Excluir</button>
+                <button type="reset">Limpar</button>
+                <button type="button" onclick="fechar()">Fechar</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

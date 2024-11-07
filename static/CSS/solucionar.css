@@ -1,0 +1,67 @@
+* {
+  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+    font-family: 'Poppins', sans-serif;
+   
+  }
+
+  body {
+    font-family: "Fahkwang", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    background-color: #E5E5E5;
+  }
+    .container {
+        background-color: #8EA1C0;
+        padding: 20px;
+        border-radius: 8px;
+        width: 1440px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    label {
+        flex: 1 0 100px;
+    }
+
+    input[type="text"], input[type="date"], input[type="file"], textarea {
+        flex: 1 1 auto;
+        padding: 5px;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    /* Botões */
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4f78a1;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #3b5a82;
+    }
