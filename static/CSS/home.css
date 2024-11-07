@@ -33,10 +33,6 @@ nav {
 
 }
 
-/* header {
-  position: relative;
-} */
-
 .input-search-header{
 
   display: flex;
@@ -46,7 +42,6 @@ nav {
 }
 
 .input-header{
-
   width: 300px;
    border-radius: 20px;
    height: 35px;
@@ -58,10 +53,9 @@ nav {
 }
 
 .search-button-header{
-
-  background-color: #005CAA; /* Cor de fundo */
-  color: white; /* Cor do texto/branco do ícone */
-  font-size: 15px; /* Tamanho do ícone */
+  background-color:white ; /* Cor de fundo */
+  color: #000; /* Cor do texto/branco do ícone */
+  font-size: 20px; /* Tamanho do ícone */
   justify-content: flex;
   align-items: center;
   padding: 6px 10px; /* Aumenta o tamanho do botão */
@@ -71,10 +65,14 @@ nav {
   padding-left: 10px;
 }
 
-.search-button-header:hover{
-  background-color: #00427b; 
-  transition: 0.3s;
-
+.category-dropdown {
+  padding: 8px 10px;
+  border: 1px solid #ccc; /* Borda do dropdown */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 14px;
+  background-color: rgb(246, 246, 246);
+  padding-right: 0;
 }
 
 
@@ -98,7 +96,7 @@ nav {
 
 .header-itens a:hover{
   background-color: #005CAA;
-  border-radius: 5px;
+  border-radius: 20px;
   color: #fff;
   transition: 0.5s;
 }
@@ -108,44 +106,76 @@ nav {
   filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
 
 }
-/* ___________________________________________________________________ */
-/* urgente */
-.urgente{
-  background-color: #D2DDED;
+/* ________________________________________________ */
+/* botão cards*/
+.createCards_container {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.createCards {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #005CAA;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.createCards:hover {
+  opacity: 0.8;
+}
+
+.createCards i {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 25px;
-  border-radius: 20px;
-  border: 5px solid #6782AB;
-}
-
-.urgente h3 {
-  font-family: "Fahkwang", sans-serif;
-  font-size: 96px;
-}
-.urgente button {
-  background-color: #798EAF;
-  font-size: 20px;
-  border: none;
-  border-radius: 15px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-.urgente button:hover{
-  background-color: #00427b;
+  height: 100%;
+  font-size: 25px;
   color: #fff;
 }
-.urgente button a {
-  text-decoration: none;
-  color: #000;
+
+.options {
+  list-style-type: none;
+  margin: 0;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: scale(0);
+  transform-origin: 85% bottom;
 }
 
-
-.info_urgente{
-  text-align: center;
-  
+.show-options {
+  opacity: 1;
+  transform: scale(1);
 }
+
+.options li {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.options li:hover {
+  opacity: 0.8;
+}
+
+.fan-label {
+  padding: 2px 5px;
+  align-items: center;
+  user-select: none;
+  white-space: nowrap;
+  border-radius: 3px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
 /* ______________________________________________ */
 /* Cards */
 h2 {

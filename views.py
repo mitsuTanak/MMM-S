@@ -1,5 +1,6 @@
 # Onde estão as rotas
-from flask import render_template, redirect, request, flash, url_for
+import json
+from flask import render_template, redirect, request, flash, url_for, jsonify
 from main import app
 # rotas
 @app.route("/home") 
@@ -31,3 +32,34 @@ def login():
             return redirect(url_for('login'))
     
     return render_template("login.html")
+
+@app.route('/save_card', methods=['POST'])
+def save_card():
+    data = request.get_json()
+    new_card = {
+        "name": data['name'],
+        "description": data['description']
+    }
+    
+    try:
+        with open('cards.json', 'r') as file:
+            cards = json.load(file)
+    except FileNotFoundError:
+        cards = []
+    
+    cards.append(new_card)
+    
+    with open('cards.json', 'w') as file:
+        json.dump(cards, file)
+    
+    return jsonify({"message": "Card salvo com sucesso!"})
+
+@app.route('/load_cards', methods=['GET'])
+def load_cards():
+    try:
+        with open('cards.json', 'r') as file:
+            cards = json.load(file)
+    except FileNotFoundError:
+        cards = []
+    
+    return jsonify(cards)
