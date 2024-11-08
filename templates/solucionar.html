@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solucionar Problema</title>
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="../static/CSS/home.css" />
+    <link rel="stylesheet" href="../static/CSS/solucionar.css" />
+
+    <!-- Link para JS -->
+
+    <!-- Inserindo favicon -->
+    <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
+
+     <!-- Link para fontawesome (Icones) -->
+    <script src="https://kit.fontawesome.com/23655c98f8.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ____________________________________________________________________________ -->
+<!-- Header -->
+
+  <header class="header">
+
+    <nav>
+
+        <div class="logo-header">
+            <a href="../../templates/home.html">
+                <img src="../static/assets/logo_mundo_senai-removebg-preview.png" 
+                    alt="logo" 
+                    width="125px"/>
+            </a>
+        </div>
+
+
+        <div class="input-search-header">
+            <input class="input-header" type="search" placeholder="Pesquisar" />
+            <button type="submit" 
+                    class="search-button-header"> 
+                <i class="fa fa-search" 
+                  aria-hidden="true">
+                </i>
+            </button>
+        </div>
+
+
+        <div class="list-header">
+            <ul id="MenuItems" class="menu-itens">
+                <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
+                <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
+
+                <a href="../../templates/login.html">
+                    <img src="../../static/assets/perfil-icon.png"
+                        alt="logo"
+                        width="50px"
+                        class="perfil-icon-header"/>
+                </a>
+            </ul>
+        </div>
+    </nav>
+  </header>
+<!-- ____________________________________________________________________________ -->
+<!-- Formulário -->
+    <main>
+        <div class="container">
+            <form id="anomalyForm">
+                <fieldset>
+                    <legend>Informações da Anomalia</legend>
+                    <div class="row">
+                        <div>
+                            <label for="planta">Planta:</label>
+                            <input type="text" id="planta" name="planta">
+                        </div>
+            
+                        <div>
+                            <label for="processo">Processo:</label>
+                            <input type="text" id="processo" name="processo">
+                        </div>
+            
+                        <div>
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" id="tipo" name="tipo">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Detalhes do Registro</legend>
+                    <div class="row">
+                        <div>
+                            <label for="abertoPor">Aberto por:</label>
+                            <input type="text" id="abertoPor" name="abertoPor">
+                        </div>
+            
+                        <div>
+                            <label for="data">Data:</label>
+                            <input type="date" id="data" name="data">
+                        </div>
+            
+                        <div>
+                            <label for="responsavel">Responsável:</label>
+                            <input type="text" id="responsavel" name="responsavel">
+                        </div>
+            
+                        <div>
+                            <label for="status">Status:</label>
+                            <input type="text" id="status" name="status">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Descrição do Problema</legend>
+                    <div class="content-section">
+                        <div class="image-upload">
+                            <label for="fotoAntes">Antes:</label>
+                            <input type="file" id="fotoAntes" name="fotoAntes" accept="image/*" onchange="previewImage('fotoAntes', 'previewAntes')">
+                            <div class="previewplaceholder"><img id="previewAntes" src="#" alt="Pré-visualização Antes" style="display: none;"></div>
+                        </div>
+                        <div class="text-content">
+                            <label for="descricaoProblema">Descrição do problema:</label>
+                            <textarea id="descricaoProblema" name="descricaoProblema"></textarea>
+                            <label for="numero">Número:</label>
+                            <input type="text" id="numero" name="numero">
+                            <label for="dataAnomalia">Data:</label>
+                            <input type="date" id="dataAnomalia" name="dataAnomalia">
+                            <label for="descricaoAnomalia">Descrição da Anomalia:</label>
+                            <textarea id="descricaoAnomalia" name="descricaoAnomalia"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Solução</legend>
+                    <div class="content-section">
+                        <div class="image-upload">
+                            <label for="fotoDepois">Depois:</label>
+                            <input type="file" id="fotoDepois" name="fotoDepois" accept="image/*" onchange="previewImage('fotoDepois', 'previewDepois')">
+                            <div class="previewplaceholder"><img id="previewDepois" src="#" alt="Pré-visualização Depois" style="display: none;"></div>
+                        </div>
+                        <div class="text-content">
+                            <label for="solucaoAdotada">Solução adotada:</label>
+                            <textarea id="solucaoAdotada" name="solucaoAdotada"></textarea>
+                            <label for="custo">Custo:</label>
+                            <input type="text" id="custo" name="custo">
+                            <label for="beneficio">Benefício:</label>
+                            <textarea id="beneficio" name="beneficio"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <div class="buttons">
+                    <button type="button" onclick="salvar()">Salvar</button>
+                    <button type="button" onclick="excluir()">Excluir</button>
+                    <button type="reset">Limpar</button>
+                    <button type="button" onclick="fechar()">Fechar</button>
+                </div>
+            </form>
+        </div>
+
+        <script src="../static/JS/solucionar.js"></script>
+        
+    </main>
+
+</body>
+</html>
