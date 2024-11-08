@@ -74,13 +74,55 @@
       <div class="container_maquinas" id="card-container"></div>
     </section>
 
-    <!-- Formulário para cadastrar um novo card -->
-    <div id="card-form" style="display: none;">
-        <input type="text" id="card-name" placeholder="Nome da Máquina" />
-        <input type="text" id="card-description" placeholder="Descrição" />
-        <button onclick="saveCard()">Salvar Máquina</button>
-        <button onclick="closeCardForm()">Cancelar</button>
-    </div>
+   <!-- Formulário de Modal para cadastrar uma nova máquina -->
+<div id="card-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeCardModal()">&times;</span>
+    <h2>Cadastrar Máquina</h2>
+
+    <label for="card-name">Nome da Máquina</label>
+    <input type="text" id="card-name" placeholder="Nome da Máquina" required />
+
+    <label for="card-model">Modelo da Máquina</label>
+    <input type="text" id="card-model" placeholder="Modelo da Máquina" required />
+
+    <label for="card-year">Ano de Fabricação</label>
+    <input type="date" id="card-year" required />
+
+    <label for="card-price">Preço</label>
+    <input type="number" id="card-price" placeholder="Preço" required />
+
+    <label for="card-sector">Setor</label>
+    <input type="text" id="card-sector" placeholder="Setor" required />
+
+    <label for="card-category">Categoria</label>
+    <select id="card-category" required>
+      <option value="">Selecione a Categoria</option>
+      <option value="Fresadoras">Fresadoras</option>
+      <option value="Tornos">Tornos</option>
+      <option value="Furadeiras">Furadeiras</option>
+      <option value="Retificadoras">Retificadoras</option>
+      <option value="CNCs">CNCs</option>
+      <option value="Especiais">Especiais</option>
+      <option value="Prensas">Prensas</option>
+      <option value="Serras">Serras</option>
+    </select>
+
+    <label for="card-status">Status</label>
+    <select id="card-status" required>
+      <option value="">Selecione o Status</option>
+      <option value="Funcionando">Funcionando</option>
+      <option value="Aguardando Manutenção">Aguardando Manutenção</option>
+      <option value="Em Manutenção">Em Manutenção</option>
+    </select>
+
+    <label for="card-image">Imagem da Máquina</label>
+    <input type="file" id="card-image" accept="image/*" />
+
+    <button class="save-button" onclick="saveCard()">Salvar Máquina</button>
+  </div>
+</div>
+
 
     <!-- Contêiner para exibir os cards -->
     <div id="card-container"></div>
@@ -146,7 +188,7 @@
     </footer> 
 
     <!-- Scripts -->
-    <script src="../static/JS/card.js"></script>
+    <!-- <script src="../static/JS/card.js"></script> -->
     <script src="../static/JS/filter.js"></script>
     <script src="../static/JS/createCard.js"></script>
   </body>
