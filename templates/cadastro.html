@@ -33,7 +33,7 @@
 
                 <!-- Área do Formulário -->
                 <form action="/" id="login" method="POST"> 
-                    <!-- Campo de inserção do E-mail -->
+                    <!-- Campo de inserção do Nome -->
                     <div class="campo">
                         <label for="email">Nome Completo:</label>
                         <input type="name" name="nome" id="nome" required placeholder="Digite seu nome completo"><br>
@@ -48,11 +48,21 @@
                         <label for="senha" id="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br>
                     </div>
-                    <!-- Campo de inserção do E-mail -->
-                    <div class="campo">
-                        <label class="nivel" for="email">Selecione seu nível de usuário:</label>
-                        <input type="level" name="nivel" id="nivel" required placeholder="Selecione o tipo de usuário"><br><br>
+                    <!-- Campo do Dropdown -->
+                    <div class="dropdown">
+                         <label for="email">Qual é o nivel do usuário?</label>
+                         <div class="select">
+                            <span class="selected">Selecione o nivel do usuário</span>
+                            <div class="caret"></div>
+                         </div>
+                         <ul class="menu">
+                            <li>Visitante</li>
+                            <li>Supervisor</li>
+                            <li>Admnistrador</li>
+                         </ul>
                     </div>
+
+                    <br><br>
 
                     <!-- Botão de Entrar -->
                     <button type="submit" id="btn_login">Cadastrar</button>
@@ -64,5 +74,6 @@
     <!-- Scripts -->
     <script type="text/javascript" src="../static/JS/particles.js"></script>
     <script type="text/javascript" src="../static/JS/app.js"></script>
+    <script type="text/javascript" src="../static/JS/cadastro.js"></script>
 </body>
 </html>
