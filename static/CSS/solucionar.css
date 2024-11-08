@@ -5,6 +5,28 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Imagem Logo */
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    
+    background-color: #000c22;
+}
+
+/* Link para entrar sem login */
+a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "Quicksand";
+    font-size: 17px;
+}
+
 body {
     font-family: "Fahkwang", sans-serif;
     font-style: normal;
@@ -15,6 +37,8 @@ body {
 main {
     display: flex;
     justify-content: center;
+
+    margin: 15px;
 }
 
 .container {
@@ -110,7 +134,7 @@ textarea {
 
 .buttons {
     display: flex;
-    justify-content: space-between;
+    
     gap: 10px;
 }
 
