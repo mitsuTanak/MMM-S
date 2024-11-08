@@ -194,29 +194,35 @@ h2 {
    margin: 25px 50px;
 }
 
-.card_mq{
+.card_mq {
   position: relative;
   width: 320px;
   height: 240px;
 }
-.card_mq:hover{
+
+.card_mq:hover {
   transform: translateY(-10px);
   transition: .4s ease;
 }
-.card_mq .imBX{
+
+.card_mq .imBX {
   position: relative;
   width: 100%;
   height: 150px;
-  background-color: turquoise;
   margin-bottom: 10px;
   border-radius: 15px;
-  background-image: url(../assets/maquina.png);
   background-size: cover;
-
+  background-position: center center;  /* Certifique-se de que a imagem está centralizada */
 }
 
+.card_mq .imBX img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover; /* Garante que a imagem preencha completamente a área sem distorcer */
+}
 
-.card_mq .imBX::before{
+.card_mq .imBX::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -228,22 +234,21 @@ h2 {
   box-shadow: -10px 10px 0 #E5E5E5;
 }
 
-.card_mq .content_card{
+.card_mq .content_card {
   position: relative;
   width: 100%;
   height: 80px;
-  background-color: navy ;
+  background-color: navy;
   border-radius: 15px;
   border-top-left-radius: 0;
   padding: 20px 25px;
-
 }
 
 .card_mq .content_card h3 {
   color: #fff;
 }
-    
-.card_mq .content_card .btn_mq{
+
+.card_mq .content_card .btn_mq {
   position: absolute;
   top: -60px;
   left: 0;
@@ -255,7 +260,7 @@ h2 {
   border-top-right-radius: 25px;
 }
 
-.card_mq .content_card .btn_mq::before{
+.card_mq .content_card .btn_mq::before {
   content: '';
   position: relative;
   width: 25px;
@@ -265,7 +270,7 @@ h2 {
   box-shadow: -10px 10px 0 #E5E5E5;
 }
 
-.card_mq .content_card .btn_mq::after{
+.card_mq .content_card .btn_mq::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -278,7 +283,7 @@ h2 {
 }
 
 /* Botão do card */
-.btn_A{
+.btn_A {
   position: relative;
   background-color: #fff;
   padding: 5px 20px;
@@ -288,11 +293,105 @@ h2 {
   color: #333;
   font-weight: 500;
   text-decoration: none;
-} 
+}
 
-.btn_A:hover{
+.btn_A:hover {
   background-color: #dedede;
 }
+
+
+/* ______________________________________________________________________________ */
+/* Modals */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #f9f9f9;
+  font-family: "Poppins", sans-serif;
+  margin: 10% auto;
+  padding: 30px;
+  border: none;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh; /* Limita a altura do modal */
+  overflow-y: auto; /* Permite rolagem se o conteúdo ultrapassar o limite */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.modal-content label {
+  font-weight: 500;
+  color: #333;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content input[type="number"],
+.modal-content input[type="file"],
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
+
+.close {
+  color: #555;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.save-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #357ab8;
+}
+
     
 /* ______________________________________________________________________________ */
 /* Footer */

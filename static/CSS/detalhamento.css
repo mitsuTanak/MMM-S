@@ -28,10 +28,6 @@ nav {
 
 }
 
-/* header {
-  position: relative;
-} */
-
 .input-search-header{
 
   display: flex;
@@ -41,7 +37,6 @@ nav {
 }
 
 .input-header{
-
   width: 300px;
    border-radius: 20px;
    height: 35px;
@@ -53,10 +48,9 @@ nav {
 }
 
 .search-button-header{
-
-  background-color: #ff523b; /* Cor de fundo vermelho */
-  color: white; /* Cor do texto/branco do ícone */
-  font-size: 15px; /* Tamanho do ícone */
+  background-color:white ; /* Cor de fundo */
+  color: #000; /* Cor do texto/branco do ícone */
+  font-size: 20px; /* Tamanho do ícone */
   justify-content: flex;
   align-items: center;
   padding: 6px 10px; /* Aumenta o tamanho do botão */
@@ -66,8 +60,14 @@ nav {
   padding-left: 10px;
 }
 
-.search-button-header:hover{
-  background-color: darkred; 
+.category-dropdown {
+  padding: 8px 10px;
+  border: 1px solid #ccc; /* Borda do dropdown */
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 14px;
+  background-color: rgb(246, 246, 246);
+  padding-right: 0;
 }
 
 
@@ -78,6 +78,7 @@ nav {
   text-decoration: none;
   list-style-type: none;
   align-items: center;
+
 }
 
 .header-itens a{
@@ -89,15 +90,15 @@ nav {
 }
 
 .header-itens a:hover{
-  background-color: #ff523b;
-  border-radius: 5px;
+  background-color: #005CAA;
+  border-radius: 20px;
   color: #fff;
   transition: 0.5s;
 }
 
 .perfil-icon-header:hover{
 
-  filter: invert(24%) sepia(91%) saturate(7492%) hue-rotate(357deg) brightness(90%) contrast(107%);
+  filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
 
 }
   /* Bento */
@@ -341,7 +342,7 @@ nav {
     transition: all 0.3s ease;
   }
   .footer-col ul li a:hover{
-    color: #9E1414;
+    color: #4198e4;
     padding-left: 10px;
   }
   .footer-col .medias-socias{
@@ -365,7 +366,7 @@ nav {
   }
   
   .footer-col .medias-socias a:hover{
-    color:#9E1414;
+    color: #005CAA;
     background-color: white;
   }
   .footer-col .form-sub input{
@@ -391,8 +392,15 @@ nav {
     color: white;
     border-radius: 3px;
     font-weight: bold;
-    background-color: #9E1414;        
+    background-color: #005CAA;        
   }
+  
+  .footer-col .form-sub button:hover{
+    background-color: #00427b; 
+    transition: 0.3s;
+    
+     
+  } 
   /* Responsivo */
   @media (max-width: 800px) {
     .footer-col{
