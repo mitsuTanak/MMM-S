@@ -1,8 +1,19 @@
-# Onde estão as rotas
 import json
+import os
 from flask import render_template, redirect, request, flash, url_for, jsonify
+from werkzeug.utils import secure_filename
 from main import app
-# rotas
+
+# Configuração do diretório de upload para as imagens
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Função para verificar se a extensão do arquivo é permitida
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Rotas
 @app.route("/home") 
 def home():
     return render_template("home.html")
@@ -35,10 +46,27 @@ def login():
 
 @app.route('/save_card', methods=['POST'])
 def save_card():
-    data = request.get_json()
+    data = request.form
+    image = request.files.get('image')  # Obter a imagem do formulário
+    
+    # Verifica se o arquivo de imagem existe e se tem uma extensão válida
+    if image and allowed_file(image.filename):
+        filename = secure_filename(image.filename)
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(image_path)
+        image_url = f"/{image_path}"  # Caminho para acessar a imagem no HTML
+    else:
+        image_url = None  # Se não houver imagem ou a extensão for inválida, define como None
+    
     new_card = {
         "name": data['name'],
-        "description": data['description']
+        "model": data['model'],
+        "year": data['year'],
+        "price": data['price'],
+        "sector": data['sector'],
+        "category": data['category'],
+        "status": data['status'],
+        "image_url": f'/static/uploads/{filename}'
     }
     
     try:
@@ -52,7 +80,8 @@ def save_card():
     with open('cards.json', 'w') as file:
         json.dump(cards, file)
     
-    return jsonify({"message": "Card salvo com sucesso!"})
+    return jsonify({"message": "Card salvo com sucesso!", "image_url": image_url})
+
 
 @app.route('/load_cards', methods=['GET'])
 def load_cards():
