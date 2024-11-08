@@ -48,7 +48,7 @@
           </select>
 
             <!-- Campo de busca com o filtro -->
-          <input class="input-header" type="text" placeholder="Pesquisar" id="search-input" />
+          <input class="input-header" type="search" placeholder="Pesquisar" id="search-input" />
             <!-- Ícone de lupa e botão de pesquisa -->
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
@@ -129,23 +129,25 @@
 
 
 
-       <div class="createCards_container">
+      <div class="createCards_container">
         <div class="createCards" onclick="toggleOptions()">
-          <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-plus"></i>
         </div>
-      
+    
         <ul class="options">
-          <li>
-            <span class="fan-label" id="add-card-button" onclick="openCardForm()">Cadastrar Máquinas</span>
-          </li>
-          <li>
-            <span class="fan-label">Cadastrar Manutenção</span>
-          </li>
-          <li>
-            <span class="fan-label">Concluir Manutenção</span>
-          </li>
+            <li>
+                <!-- O 'onclick' foi alterado para garantir que apenas o botão de cadastrar abra o modal -->
+                <span class="fan-label" id="add-card-button" onclick="openCardModal()">Cadastrar Máquinas</span>
+            </li>
+            <li>
+                <span class="fan-label">Cadastrar Manutenção</span>
+            </li>
+            <li>
+                <span class="fan-label">Concluir Manutenção</span>
+            </li>
         </ul>
-      </div>
+    </div>
+  
       
 
     <!-- ____________________________________________________________________________ -->

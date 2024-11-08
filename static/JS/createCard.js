@@ -13,6 +13,20 @@ function closeCardModal() {
     document.getElementById('card-modal').style.display = 'none';
 }
 
+// Função para alternar a visibilidade das opções
+function toggleOptions() {
+    const options = document.querySelector('.options');
+    options.classList.toggle('show-options');
+}
+
+// Fechar o modal ao clicar fora dele
+window.onclick = function(event) {
+    const modal = document.getElementById('card-modal');
+    if (event.target == modal) {
+        closeCardModal();
+    }
+}
+
 function saveCard() {
     const cardName = document.getElementById('card-name').value;
     const cardModel = document.getElementById('card-model').value;
@@ -111,10 +125,3 @@ document.addEventListener('DOMContentLoaded', loadCards);
 // Ajustar o botão "Cadastrar Máquinas" para abrir o modal
 document.getElementById('add-card-button').onclick = openCardModal;
 
-// Fechar o modal ao clicar fora dele
-window.onclick = function(event) {
-    const modal = document.getElementById('card-modal');
-    if (event.target == modal) {
-      closeCardModal();
-    }
-};
