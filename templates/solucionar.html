@@ -39,9 +39,7 @@
 
 
         <div class="input-search-header">
-            <input class="input-header" 
-                  type="text" 
-                  placeholder="Pesquisar" />
+            <input class="input-header" type="search" placeholder="Pesquisar" />
             <button type="submit" 
                     class="search-button-header"> 
                 <i class="fa fa-search" 
@@ -67,75 +65,107 @@
     </nav>
   </header>
 <!-- ____________________________________________________________________________ -->
- <!-- Formulário -->
-    <div class="container">
-        <form id="anomalyForm">
-            <div class="row">
-                <div>
-                    <label>Planta:</label>
-                    <input type="text" id="planta" name="planta">
+<!-- Formulário -->
+    <main>
+        <div class="container">
+            <form id="anomalyForm">
+                <fieldset>
+                    <legend>Informações da Anomalia</legend>
+                    <div class="row">
+                        <div>
+                            <label for="planta">Planta:</label>
+                            <input type="text" id="planta" name="planta">
+                        </div>
+            
+                        <div>
+                            <label for="processo">Processo:</label>
+                            <input type="text" id="processo" name="processo">
+                        </div>
+            
+                        <div>
+                            <label for="tipo">Tipo:</label>
+                            <input type="text" id="tipo" name="tipo">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Detalhes do Registro</legend>
+                    <div class="row">
+                        <div>
+                            <label for="abertoPor">Aberto por:</label>
+                            <input type="text" id="abertoPor" name="abertoPor">
+                        </div>
+            
+                        <div>
+                            <label for="data">Data:</label>
+                            <input type="date" id="data" name="data">
+                        </div>
+            
+                        <div>
+                            <label for="responsavel">Responsável:</label>
+                            <input type="text" id="responsavel" name="responsavel">
+                        </div>
+            
+                        <div>
+                            <label for="status">Status:</label>
+                            <input type="text" id="status" name="status">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Descrição do Problema</legend>
+                    <div class="content-section">
+                        <div class="image-upload">
+                            <label for="fotoAntes">Antes:</label>
+                            <input type="file" id="fotoAntes" name="fotoAntes" accept="image/*" onchange="previewImage('fotoAntes', 'previewAntes')">
+                            <div class="previewplaceholder"><img id="previewAntes" src="#" alt="Pré-visualização Antes" style="display: none;"></div>
+                        </div>
+                        <div class="text-content">
+                            <label for="descricaoProblema">Descrição do problema:</label>
+                            <textarea id="descricaoProblema" name="descricaoProblema"></textarea>
+                            <label for="numero">Número:</label>
+                            <input type="text" id="numero" name="numero">
+                            <label for="dataAnomalia">Data:</label>
+                            <input type="date" id="dataAnomalia" name="dataAnomalia">
+                            <label for="descricaoAnomalia">Descrição da Anomalia:</label>
+                            <textarea id="descricaoAnomalia" name="descricaoAnomalia"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Solução</legend>
+                    <div class="content-section">
+                        <div class="image-upload">
+                            <label for="fotoDepois">Depois:</label>
+                            <input type="file" id="fotoDepois" name="fotoDepois" accept="image/*" onchange="previewImage('fotoDepois', 'previewDepois')">
+                            <div class="previewplaceholder"><img id="previewDepois" src="#" alt="Pré-visualização Depois" style="display: none;"></div>
+                        </div>
+                        <div class="text-content">
+                            <label for="solucaoAdotada">Solução adotada:</label>
+                            <textarea id="solucaoAdotada" name="solucaoAdotada"></textarea>
+                            <label for="custo">Custo:</label>
+                            <input type="text" id="custo" name="custo">
+                            <label for="beneficio">Benefício:</label>
+                            <textarea id="beneficio" name="beneficio"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <div class="buttons">
+                    <button type="button" onclick="salvar()">Salvar</button>
+                    <button type="button" onclick="excluir()">Excluir</button>
+                    <button type="reset">Limpar</button>
+                    <button type="button" onclick="fechar()">Fechar</button>
                 </div>
-                
-                <label>Processo:</label>
-                <input type="text" id="processo" name="processo">
-                
-                <label>Tipo:</label>
-                <input type="text" id="tipo" name="tipo">
-            </div>
-            <div class="row">
-                <label>Aberto por:</label>
-                <input type="text" id="abertoPor" name="abertoPor">
-                
-                <label>Data:</label>
-                <input type="date" id="data" name="data">
-                
-                <label>Responsável:</label>
-                <input type="text" id="responsavel" name="responsavel">
-                
-                <label>Status:</label>
-                <input type="text" id="status" name="status">
-            </div>
-            <div class="row">
-                <label>Antes:</label>
-                <input type="file" id="fotoAntes" name="fotoAntes" accept="image/*">
-            </div>
-            <div class="row">
-                <label>Descrição do problema:</label>
-                <textarea id="descricaoProblema" name="descricaoProblema"></textarea>
-            </div>
-            <div class="row">
-                <label>Número:</label>
-                <input type="text" id="numero" name="numero">
-                
-                <label>Data:</label>
-                <input type="date" id="dataAnomalia" name="dataAnomalia">
-                
-                <label>Descrição da Anomalia:</label>
-                <textarea id="descricaoAnomalia" name="descricaoAnomalia"></textarea>
-            </div>
-            <div class="row">
-                <label>Depois:</label>
-                <input type="file" id="fotoDepois" name="fotoDepois" accept="image/*">
-            </div>
-            <div class="row">
-                <label>Solução adotada:</label>
-                <textarea id="solucaoAdotada" name="solucaoAdotada"></textarea>
-            </div>
-            <div class="row">
-                <label>Custo:</label>
-                <input type="text" id="custo" name="custo">
-                
-                <label>Benefício:</label>
-                <textarea id="beneficio" name="beneficio"></textarea>
-            </div>
-            <div class="buttons">
-                <button type="button" onclick="salvar()">Salvar</button>
-                <button type="button" onclick="excluir()">Excluir</button>
-                <button type="reset">Limpar</button>
-                <button type="button" onclick="fechar()">Fechar</button>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+
+        <script src="../static/JS/solucionar.js"></script>
+        
+    </main>
 
 </body>
 </html>

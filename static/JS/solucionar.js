@@ -12,3 +12,18 @@ function excluir() {
 function fechar() {
     window.close();
 }
+
+function previewImage(inputId, imgId) {
+    const input = document.getElementById(inputId);
+    const img = document.getElementById(imgId);
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        img.src = e.target.result;
+        img.style.display = 'block';
+    };
+    
+    if (input.files[0]) {
+        reader.readAsDataURL(input.files[0]);
+    }
+}
