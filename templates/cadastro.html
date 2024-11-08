@@ -9,7 +9,7 @@
     <title>Tela de Login</title>
 
     <!-- Links para CSS e o ícone -->
-    <link rel="stylesheet" href="../static/CSS/login.css">
+    <link rel="stylesheet" href="../static/CSS/cadastro.css">
     <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
 </head>
 
@@ -28,27 +28,18 @@
 
             <div id="form_frente">
 
-                  <!-- Exibir mensagens de erro -->
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div class="alerta">
-                            {% for category, message in messages %}
-                                <div class="alert {{ category }}">{{ message }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}
+                  
 
                 <!-- Área do Formulário -->
                 <form action="/" id="login" method="POST"> 
                     <!-- Campo de inserção do E-mail -->
                     <div class="campo" id="campo">
-                        <label for="email">Email</label>
+                        <label for="email">Email:</label>
                         <input type="email" name="email" id="email" required placeholder="Digite seu email"><br><br>
                     </div>
                     <!-- Campo de inserção da Senha -->
                     <div class="campo">
-                        <label for="senha" id="senha">Senha</label>
+                        <label for="senha" id="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br><br>
                     </div>
 
