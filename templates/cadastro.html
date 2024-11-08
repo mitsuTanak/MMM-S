@@ -24,27 +24,38 @@
 
         <!-- Card de Login -->
         <div id="form_fundo">
-            <h1>Login</h1>
-
+            
             <div id="form_frente">
+
+                <h1>Cadastro</h1>
 
                   
 
                 <!-- Área do Formulário -->
                 <form action="/" id="login" method="POST"> 
                     <!-- Campo de inserção do E-mail -->
+                    <div class="campo">
+                        <label for="email">Nome Completo:</label>
+                        <input type="name" name="nome" id="nome" required placeholder="Digite seu nome completo"><br>
+                    </div>
+                    <!-- Campo de inserção do E-mail -->
                     <div class="campo" id="campo">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" required placeholder="Digite seu email"><br><br>
+                        <input type="email" name="email" id="email" required placeholder="Digite seu email"><br>
                     </div>
                     <!-- Campo de inserção da Senha -->
                     <div class="campo">
                         <label for="senha" id="senha">Senha:</label>
-                        <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br><br>
+                        <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br>
+                    </div>
+                    <!-- Campo de inserção do E-mail -->
+                    <div class="campo">
+                        <label class="nivel" for="email">Selecione seu nível de usuário:</label>
+                        <input type="level" name="nivel" id="nivel" required placeholder="Selecione o tipo de usuário"><br><br>
                     </div>
 
                     <!-- Botão de Entrar -->
-                    <button type="submit" id="btn_login">Entrar</button>
+                    <button type="submit" id="btn_login">Cadastrar</button>
                 </form>
             </div>  
         </div>
