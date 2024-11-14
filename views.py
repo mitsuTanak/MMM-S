@@ -18,6 +18,14 @@ def allowed_file(filename):
 def home():
     return render_template("home.html")
 
+@app.route("/cadastrar_manutencao") 
+def solucionar():
+    return render_template("solucionar.html")
+
+@app.route("/cadastrar_usuario") 
+def cadastro():
+    return render_template("cadastro.html")
+
 @app.route("/sobre") 
 def sobre():
     return render_template("sobre.html")
