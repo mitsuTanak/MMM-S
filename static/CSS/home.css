@@ -297,7 +297,7 @@ h2 {
   height: 25px;
   background: transparent;
   border-radius: 50%;
-  box-shadow: -10px 10px 0 navy;
+  box-shadow: -10px 10px 0 #000080;
 }
 
 /* Botão do card */
