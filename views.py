@@ -17,6 +17,8 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# routes
+
 @app.route("/cadastrar_manutencao") 
 def solucionar():
     return render_template("solucionar.html")
@@ -25,8 +27,6 @@ def solucionar():
 def cadastro():
     return render_template("cadastro.html")
 
-
-# routes
 @app.route("/home") 
 def home():
     return render_template("home.html")

@@ -29,7 +29,7 @@
                 
                 <h1>Login</h1>
 
-                  <!-- Exibir mensagens de erro
+                  <!-- Exibir mensagens de erro -->
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         <div class="alerta">
@@ -38,7 +38,7 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                {% endwith %} -->
+                {% endwith %}
 
                 <!-- Área do Formulário -->
                 <form action="/" id="login" method="POST"> 
@@ -49,8 +49,8 @@
                     </div>
                     <!-- Campo de inserção da Senha -->
                     <div class="campo">
-                        <label for="senha" id="senha">Senha</label>
-                        <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br><br>
+                        <label for="password" id="senha">Senha</label>
+                        <input type="password" name="password" id="password" required placeholder="Digite sua senha"><br><br>
                     </div>
 
                     <!-- Botão de Entrar -->
