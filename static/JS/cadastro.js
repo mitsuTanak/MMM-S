@@ -9,6 +9,7 @@ dropdowns.forEach(dropdown => {
     const menu = dropdown.querySelector('.menu');
     const options = dropdown.querySelectorAll('.menu li');
     const selected = dropdown.querySelector('.selected');
+    const hiddenInput = document.getElementById('selected_role')
 
     // Adicionar um evento de clique ao elemento select
     select.addEventListener('click', () => {
@@ -25,6 +26,9 @@ dropdowns.forEach(dropdown => {
         option.addEventListener('click', () => {
             // Alterar o texto interno de "selected" para o texto interno da opção clicada
             selected.innerText = option.innerText;
+            // Atualiza o valor do campo oculto com o valor do dropdown
+            hiddenInput.value = option.getAttribute('data-value')
+            
             // Remover os estilos de clique do elemento select
             select.classList.remove('select-clicked');
             // Remover os estilos de rotação do elemento caret
