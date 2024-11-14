@@ -1,7 +1,10 @@
+# Imports
 import json
 import os
 from flask import render_template, redirect, request, flash, url_for, jsonify
 from werkzeug.utils import secure_filename
+from flask_login import login_user, logout_user, current_user, login_required
+from models import get_user_by_email
 from main import app
 
 # Configuração do diretório de upload para as imagens
@@ -13,10 +16,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Rotas
-@app.route("/home") 
-def home():
-    return render_template("home.html")
 
 @app.route("/cadastrar_manutencao") 
 def solucionar():
@@ -26,6 +25,12 @@ def solucionar():
 def cadastro():
     return render_template("cadastro.html")
 
+
+# routes
+@app.route("/home") 
+def home():
+    return render_template("home.html")
+
 @app.route("/sobre") 
 def sobre():
     return render_template("sobre.html")
@@ -34,23 +39,36 @@ def sobre():
 def bento():
     return render_template("bento.html")
 
-
 @app.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        senha = request.form.get('senha')
+        email = request.form['email']
+        password = request.form['password']
 
-        # Validação simples de email e senha
-        if email == 'livia@gmail.com' and senha == '123':
-            # Login bem-sucedido, redireciona para a página principal (home)
-            return redirect(url_for('home'))
-        else:
-            # Flash message para usuário ou senha incorretos
-            flash("E-mail ou senha incorretos", "error")
-            return redirect(url_for('login'))
-    
+        # Busca o usuário pelo email
+        user = get_user_by_email(email)
+
+        # Verifica a senha diretamente, sem hashing
+        if user and user.password == password:
+            login_user(user)
+            if user.role == 'administrator':
+                return redirect(url_for('bento'))
+            elif user.role == 'supervisor':
+                return redirect(url_for('sobre'))
+            else:
+                return redirect(url_for('home'))
+
+        flash('E-mail ou senha incorretos')
+        return redirect(url_for('login'))
+        
     return render_template("login.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 
 @app.route('/save_card', methods=['POST'])
 def save_card():
