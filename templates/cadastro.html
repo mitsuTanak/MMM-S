@@ -52,24 +52,19 @@
                         <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br>
                     </div>
 
-                    <!-- Campo do Dropdown -->
-                    <div class="dropdown">
-                        <label for="email">Qual é o nivel do usuário?</label>
-                        <div class="select">
-                            <span class="selected">Selecione o nivel do usuário</span>
-                            <div class="caret"></div>
-                        </div>
-                        <ul class="menu">
-                            <li data-value="visitante">Visitante</li>
-                            <li data-value="supervisor">Supervisor</li>
-                            <li data-value="admnistrador">Admnistrador</li>
-                        </select>
-                    </div>
-
-                    <input type="hidden" name="role" id="selected_role">
+                     <!-- Campo do Dropdown para Seleção de Nível -->
+                <div class="campo">
+                    <label for="role">Qual é o nível do usuário?</label>
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected>Selecione o nível do usuário</option>
+                        <option value="visitante">Visitante</option>
+                        <option value="supervisor">Supervisor</option>
+                        <option value="administrador">Administrador</option>
+                    </select>
+                </div>
 
                     <!-- Botão de Entrar -->
-                    <button type="submit" id="btn_cadastrar">Cadastrar</button>
+                    <button type="submit" id="btn_login">Cadastrar</button>
                 </form>
             </div>  
         </div>
