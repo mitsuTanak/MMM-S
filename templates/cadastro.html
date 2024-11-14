@@ -32,40 +32,44 @@
                   
 
                 <!-- Área do Formulário -->
-                <form action="/" id="login" method="POST"> 
+                <form action="/cadastro" id="cadastro" method="POST"> 
+
                     <!-- Campo de inserção do Nome -->
                     <div class="campo">
-                        <label for="email">Nome Completo:</label>
+                        <label for="nome">Nome Completo:</label>
                         <input type="name" name="nome" id="nome" required placeholder="Digite seu nome completo"><br>
                     </div>
+
                     <!-- Campo de inserção do E-mail -->
                     <div class="campo" id="campo">
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email" required placeholder="Digite seu email"><br>
                     </div>
+
                     <!-- Campo de inserção da Senha -->
                     <div class="campo">
                         <label for="senha" id="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" required placeholder="Digite sua senha"><br>
                     </div>
+
                     <!-- Campo do Dropdown -->
                     <div class="dropdown">
-                         <label for="email">Qual é o nivel do usuário?</label>
-                         <div class="select">
+                        <label for="email">Qual é o nivel do usuário?</label>
+                        <div class="select">
                             <span class="selected">Selecione o nivel do usuário</span>
                             <div class="caret"></div>
-                         </div>
-                         <ul class="menu">
-                            <li>Visitante</li>
-                            <li>Supervisor</li>
-                            <li>Admnistrador</li>
-                         </ul>
+                        </div>
+                        <ul class="menu">
+                            <li data-value="visitante">Visitante</li>
+                            <li data-value="supervisor">Supervisor</li>
+                            <li data-value="admnistrador">Admnistrador</li>
+                        </select>
                     </div>
 
-                    <br><br>
+                    <input type="hidden" name="role" id="selected_role">
 
                     <!-- Botão de Entrar -->
-                    <button type="submit" id="btn_login">Cadastrar</button>
+                    <button type="submit" id="btn_cadastrar">Cadastrar</button>
                 </form>
             </div>  
         </div>

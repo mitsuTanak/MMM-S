@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from main import mysql, login_manager
 
+# Login
 class User(UserMixin):
     def __init__(self, id, name, password, email, role):
         self.id = id
@@ -43,3 +44,19 @@ def load_user(user_id):
             role=user_data['role']
         )
     return None
+
+# Cadastro
+
+def create_user(name, email, password, role):
+    cursor = mysql.cursor()
+    try:
+        cursor.execute(
+            "INSERT INTO usuarios(name, email, password, role) VALUES (%s, %s, %s, %s)",
+            (name, email, password, role)
+        )
+        mysql.commit()
+    except Exception as e:
+        print("Erro ao criar usuaro", e)
+        mysql.rollback()
+    finally:
+        cursor.close()
