@@ -75,7 +75,7 @@
     </section>
 
    <!-- Formulário de Modal para cadastrar uma nova máquina -->
-<div id="card-modal" class="modal">
+  <div id="card-modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCardModal()">&times;</span>
     <h2>Cadastrar Máquina</h2>
@@ -116,8 +116,16 @@
       <option value="Em Manutenção">Em Manutenção</option>
     </select>
 
+    <label for="card-description">Descrição (Opcional)</label>
+    <textarea id="card-description" placeholder="Descrição da Máquina (opcional)"></textarea>
+
+
     <label for="card-image">Imagem da Máquina</label>
     <input type="file" id="card-image" accept="image/*" />
+
+    <label for="card-pdf">Upload do PDF de Detalhamento</label>
+    <input type="file" id="card-pdf" accept=".pdf" />
+
 
     <button class="save-button" onclick="saveCard()">Salvar Máquina</button>
   </div>

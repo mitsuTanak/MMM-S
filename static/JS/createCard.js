@@ -35,6 +35,8 @@ function saveCard() {
     const cardSector = document.getElementById('card-sector').value;
     const cardCategory = document.getElementById('card-category').value;
     const cardStatus = document.getElementById('card-status').value;
+    const cardDescription = document.getElementById('card-description').value;
+    const cardPdf = document.getElementById('card-pdf').files[0]; 
     const cardImage = document.getElementById('card-image').files[0];  // Captura da imagem
 
     // Verifica se todos os campos foram preenchidos
@@ -47,7 +49,11 @@ function saveCard() {
         formData.append('sector', cardSector);
         formData.append('category', cardCategory);
         formData.append('status', cardStatus);
+        formData.append('description', cardDescription); // Adiciona a descrição no formData
         formData.append('image', cardImage);  // Envia a imagem no formData
+        if (cardPdf) {
+            formData.append('pdf', cardPdf); // Adiciona o PDF ao FormData
+        }
 
         // Envia os dados para o backend
         fetch('/save_card', {
@@ -65,21 +71,18 @@ function saveCard() {
             // Adicionando o card na página
             const cardContainer = document.getElementById('card-container');
             const newCardHtml = `
-                <div class="card_mq">
-                    <div class="content_card">
-                        <div class="imBX" style="background-image: url('${imageUrl}')">
-                            <!-- A imagem de fundo é atribuída aqui -->
-                        </div>
-                        <h3>${cardName}</h3>
-                        <p><strong>Modelo:</strong> ${cardModel}</p>
-                        <p><strong>Ano:</strong> ${cardYear}</p>
-                        <p><strong>Preço:</strong> R$ ${cardPrice}</p>
-                        <p><strong>Setor:</strong> ${cardSector}</p>
-                        <p><strong>Categoria:</strong> ${cardCategory}</p>
-                        <p><strong>Status:</strong> ${cardStatus}</p>
-                    </div>
+            <div class="card_mq" data-category="${card.category}">
+                <div class="imBX">
+                    <img src="${imageUrl}" alt="${cardName}" class="card-image"/>
                 </div>
-            `;
+                <div class="content_card">
+                    <span class="btn_mq">
+                        <a href="/detalhamento/${card.id}" class="btn_A">Ver mais</a>
+                    </span>
+                    <h3>${cardName}</h3>
+                </div>
+            </div>
+        `;
             cardContainer.insertAdjacentHTML("beforeend", newCardHtml);
 
             // Resetando o formulário após salvar
@@ -100,19 +103,19 @@ function loadCards() {
         cardContainer.innerHTML = ''; // Limpar o conteúdo atual
 
         cards.forEach(card => {
-          const cardHtml = `
-          <div class="card_mq" data-category="${card.category}">
-              <div class="imBX">
-              <img src="${card.image_url}" alt="${card.name}" class="card-image"/>
-              </div>
-              <div class="content_card">
-                  <span class="btn_mq">
-                      <a href="" class="btn_A">Ver mais</a>
-                  </span>
-                  <h3>${card.name}</h3>
-              </div>
-          </div>
-      `;
+            const cardHtml = `
+            <div class="card_mq" data-category="${card.category}">
+                <div class="imBX">
+                    <img src="${card.image_url}" alt="${card.name}" class="card-image"/>
+                </div>
+                <div class="content_card">
+                    <span class="btn_mq">
+                        <a href="/detalhamento/${card.id}" class="btn_A">Ver mais</a>
+                    </span>
+                    <h3>${card.name}</h3>
+                </div>
+            </div>
+        `;
           cardContainer.insertAdjacentHTML("beforeend", cardHtml);
         });
       })

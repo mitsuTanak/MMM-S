@@ -1,170 +1,181 @@
+/* Reset e Fonte */
 body, html {
-    height: 100%;
     margin: 0;
-    font-family: "Quicksand";
-    
+    padding: 0;
+    font-family: "Quicksand", sans-serif;
+    background-color: #0D1B2A; /* Fundo escuro */
+    color: #FFFFFF;
 }
-/* Seta */
-.voltar{
-    background-color: #101010;
-   
-}
-i {
-    color: #f4f4f4;
-    margin-left: 35px;
-    margin-top: 15px;
-}
+/* Particulas */
 
-.container {
-    display: flex;
+#particles-js{
     height: 100%;
     width: 100%;
+    position: relative;
+    background: #000c22; 
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #101010;
+
 }
 
-.grid {
+.particles-js-canvas-el{
+    justify-content: start;
+    color: #fff;
+}
+/* Voltar */
+.voltar {
+    padding: 10px;
+}
+.voltar a i {
+    color: #f4f4f4;
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+.voltar a i:hover {
+    transform: scale(1.2);
+}
+
+/* Container Principal */
+.container {
     display: grid;
-    height: 100vh;
-    width: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    grid-template-rows: repeat(3, auto); /* Linhas automáticas */
     gap: 16px;
-
-    padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 90%;
+    height: 80vh;
+    margin: 0 auto;
 }
 
-.item {
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-/* ______________________________________________________________________________ */
-/* Nome das Maquina e Foto */
-
-.salmon {
-    grid-column: span 2;
-    grid-row: span 1;
-    background-color: #D9D9D9;
-    border-radius: 50px;
-}
-.Nome{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 20px;
-}
-
-.Nome img {
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
-.title-Salmon{
+/* Itens do Grid */
+.grid-item {
+    background-color: #F3F6F9; /* Fundo claro */
+    border-radius: 12px;
+    padding: 16px;
     color: #02255D;
-    font-weight: bold;
-    font-family: "Quicksand";
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-ul{
-    color: #02317A;
+/* Nome da Máquina */
+.salmon {
+    grid-column: span 2; /* Ocupa 2 colunas */
+    grid-row: span 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+.salmon ul {
     list-style: none;
-    gap: 5px;
+    padding: 0;
+    margin: 0;
+}
+.salmon li {
+    margin-bottom: 5px;
 }
 
-/* __________________________________________________________________ */
+/* Imagem Principal */
+.edamame {
+    grid-column: span 1; /* Ocupa 1 coluna */
+    grid-row: span 2; /* Ocupa 2 linhas */
+    padding: 0;
+}
+.edamame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
 
-.broccoli {
+/* Custo por Setor e Custo Realizado */
+.broccoli, .tamago {
     grid-column: span 1;
     grid-row: span 3;
-    background-color: rgba(173, 255, 47, 0.5);
+    text-align: center;
+}
+.broccoli h2, .tamago h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-
-/* __________________________________________________________________ */
-
-.tamago {
-    grid-column: span 1;
-    grid-row: span 3;
-    background-color: rgba(255, 255, 224, 0.5);
-}
-
-/* __________________________________________________________________ */
-/* Staus */
+/* Status */
 .pork {
     grid-column: span 1;
     grid-row: span 2;
-    background-color: #D9D9D9;
-    border-radius: 50px;
-    padding: 16px;
-}
-
-h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #02255D;
-}
-
-.checkbox-container {
     display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Faz com que os itens sejam alinhados à esquerda */
-    margin-bottom: 8px; /* Espaço entre os itens */
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+}
+.pork h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.pork label {
+    display: block;
+    margin-bottom: 8px;
 }
 
-.checkbox-container input[type="checkbox"] {
-    margin-right: 10px; /* Ajuste o espaço entre o checkbox e o texto */
-}
-
-.checkbox-container label {
-    text-align: center; /* Centraliza o texto em relação ao checkbox */
-    flex-grow: 1; /* Faz o texto ocupar o restante do espaço */
-}
-
-.checkmark{
-    background-color: red;
-}
-
-/* Notas */
-.notas h3{
-    padding-bottom: 0;
-}
-
-
-/* __________________________________________________________________ */
-.edamame {
-    grid-column: span 1;
-    grid-row: span 2;
-    background-color: rgba(144, 238, 144, 0.5);
-}
-
-/* __________________________________________________________________ */
 /* Histórico de Manutenção */
 .tomato {
-    grid-column: span 4;
-    grid-row: span 4;
-    background-color: #D9D9D9;
-    border-radius: 50px;
-    align-items: center;
-    text-align: center;
+    grid-column: span 4; /* Ocupa 4 colunas */
+    grid-row: span 1;
+    padding: 16px;
+    background-color: #F3F6F9; /* Fundo claro */
+    border-radius: 12px;
 }
 
-/* Botão */
-.btn-pdf{
+.tomato h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #02255D;
+    text-align: left;
+}
+
+.historico {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre as linhas */
+}
+
+.linha-historico {
+    display: grid;
+    grid-template-columns: 80px 1fr; /* Coluna para a data e outra para o texto */
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 2px solid #02255D; /* Linha divisória azul escura */
+}
+
+.linha-historico:last-child {
+    border-bottom: none; /* Remove a linha da última entrada */
+}
+
+.data {
+    font-size: 20px;
+    font-weight: bold;
+    color: #02317A;
+    text-align: left;
+}
+
+.texto {
+    font-size: 16px;
+    color: #02255D;
+    text-align: left;
+}
+
+/* Botão PDF */
+.btn-pdf {
     background-color: #02317A;
-    color: #f4f4f4;
-    font-family: 'Quicksand';
-    height: 25px;
-    font-size: 17px;
-    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 8px;
     border: none;
-    bottom: 10px;
-   
-   
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-pdf:hover {
+    background-color: #022255;
 }

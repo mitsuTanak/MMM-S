@@ -6,226 +6,139 @@
     <title>Detalhamento de Máquinas</title>
     
     <!-- Link para o CSS -->
-    <link rel="stylesheet" href="../static/CSS/detalhamento.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/detalhamento.css') }}" />
 
     <!-- Inserindo favicon -->
-    <link rel="shortcut icon" href="../static/assets/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/logo.ico') }}" type="image/x-icon">
 
-     <!-- Link para fontawesome (Icones) -->
+    <!-- Link para fontawesome (Icones) -->
     <script src="https://kit.fontawesome.com/23655c98f8.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fahkwang:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
 </head>
 
-    <!-- Header -->
-
-
-
+<body>
     <header class="header">
-
-      <nav>
-  
-          <div class="logo-header">
-  
-              <a href="../../templates/home.html">
-                  <img src="../static/assets/logo_mundo_senai-removebg-preview.png" 
-                      alt="logo" 
-                      width="125px"/>
-              </a>
-  
-          </div>
-  
-  
-          <div class="input-search-header">
-  
-              <input class="input-header" 
-                    type="text" 
-                    placeholder="Pesquisar" />
-  
-              <button type="submit" 
-                      class="search-button-header"> 
-                  <i class="fa fa-search" 
-                    aria-hidden="true">
-                  </i>
-              </button>
-  
-          </div>
-  
-  
-          <div class="list-header">
-  
-              <ul id="MenuItems" class="menu-itens">
-  
-                  <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
-                  <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
-  
-                  <a href="../../templates/login.html">
-                      <img src="../../static/assets/perfil-icon.png"
-                          alt="logo"
-                          width="50px"
-                          class="perfil-icon-header"/>
-                  </a>
-  
-              </ul>
-  
-          </div>
-  
-      </nav>
-    
+        <nav>
+            <div class="logo-header">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='assets/logo_mundo_senai-removebg-preview.png') }}" alt="logo" width="125px"/>
+                </a>
+            </div>
+            <div class="input-search-header">
+                <input class="input-header" type="text" placeholder="Pesquisar" />
+                <button type="submit" class="search-button-header"> 
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="list-header">
+                <ul id="MenuItems" class="menu-itens">
+                    <li class="header-itens"><a href="{{ url_for('home') }}">Home</a></li>
+                    <li class="header-itens"><a href="{{ url_for('sobre') }}">Sobre Nós</a></li>
+                    <a href="{{ url_for('login') }}">
+                        <img src="{{ url_for('static', filename='assets/perfil-icon.png') }}" alt="logo" width="50px" class="perfil-icon-header"/>
+                    </a>
+                </ul>
+            </div>
+        </nav>
     </header>
 
-<body>
-    
     <div class="container-bento">
         <div class="grid">
-
-            
-          <div class="item full">
-            <div class="desc-title">
-              <h1>Pontos de lubrificação:</h1>
+            <!-- Exibir informações do card -->
+            <div class="item full">
+                <div class="desc-title">
+                    <h1>Pontos de lubrificação:</h1>
+                </div>
+                <div class="lubrificacao">
+                    <img src="{{ url_for('static', filename='assets/lubrificacao.png') }}" alt="Lubrificação">
+                </div>
+                <div class="desc-title">
+                    <h1>Tipo de óleo ou graxa utilizados:</h1>
+                </div>
             </div>
-            <div class="lubrificacao">
-              <img src="../static/assets/lubrificacao.png">
+
+            <div class="item salmon">
+                <ul class="especificacao">
+                    <li><h2>Marca/modelo: {{ card.name }}</h2></li>
+                    <li><h2>Ano de Fabricação: {{ card.year }}</h2></li>
+                    <li><h2>Status: {{ card.status }}</h2></li>
+                    <li><h2>NI: {{ card.model }}</h2></li>
+                    <li><h2>Equipamento: {{ card.category }}</h2></li>
+                </ul>
             </div>
-            <div class="desc-title">
-              <h1>Tipo de óleo ou graxa utilizados:</h1>
+
+            <div class="item broccoli">
+                <img class="maquina" src="{{ card.image_url }}" alt="Imagem do Card">
             </div>
-          </div>
 
-          <div class="item tamago">
-            <div class="desc-title-black">
-              <h1>Roteiro de conservação (Tarefas Diárias)</h1>
+            <div class="item tamago">
+                <ul class="especificacao-black">
+                    <li><h2>Setor: {{ card.sector }}</h2></li>
+                    <li><h2>Imobilizado: {{ card.status }}</h2></li>
+                </ul>
             </div>
-            <ul class="especificacao-black">
-              <li><h2>Desligar Chave Geral (Botão de emergência)</h2> </li>
-              <li><h2>Limpar ferramentas e instrumentos guardando-os em local adequado</h2> </li>
-              <li><h2>Retirar e guardar em local adequado todos os acessórios utilizados durante o período de trabalho.</h2> </li>
-              <li><h2>Retirar os cavacos com vassourinha ou pincel e pôr em recipiente adequado</h2> </li>
-              <li><h2>Limpar toda a máquina com estopa ou pano p/ limpeza</h2> </li>
-              <li><h2>Lubrificar barramentos, guias dos carros e pontos de lubrificação</h2> </li>
-              <li><h2>Alinhar carros, mesas, mangotes e cabeçotes</h2> </li>
-              <li><h2>Deixar alavancas de acionamento dos movimentos automáticos em posição neutra</h2> </li>
-              <li><h2>Limpar e organizar armários e bancadas</h2> </li>
-              <li><h2>Varrer o setor</h2> </li>
-            </ul>
-            
-          </div>
-          <div class="item tamago">
-            <div class="desc-title-black">
-              <h1>Roteiro de manutenção preventiva (Semanal)</h1>
+
+            <div class="item pork">
+                <div class="desc-title">
+                    <h1>Descrição</h1>
+                </div>
+                <div class="desc">
+                    <h3>{{ card.description if card.description else 'Sem descrição' }}</h3>
+                </div>
             </div>
-            <ul class="especificacao-black">
-              <li><h2>Correias em “V”</h2> </li>
-              <li><h2>Limpeza da Placa Universal</h2> </li>
-              <li><h2>Parafuso do Castelo</h2> </li>
-              <li><h2>Porca e Parafuso (Carro Superior)</h2> </li>
-              <li><h2>Engrenagens de Grade</h2> </li>
-            </ul>
-            
-          </div>
 
-          <div class="item salmon">
-            <ul class="especificacao">
-              <li><h2>Marca/modelo:</h2> </li>
-              <li><h2>Ano de Fabricação:</h2> </li>
-              <li><h2>Status:</h2> </li>
-              <li><h2>NI:</h2> </li>
-              <li><h2>Equipamento:</h2> </li>
-            </ul>
-          </div>
-
-          <div class="item broccoli">
-            <img class="maquina" src="../static/assets/maquina.png">
-          </div>
-
-          <div class="item tamago">
-            <ul class="especificacao-black">
-              <li><h2>Valor de aquisição</h2> </li>
-              <li><h2>Localização</h2> </li>
-              <li><h2>Imobilizado:</h2> </li>
-            </ul>
-          </div>
-
-          <div class="item pork">
-            <div class="desc-title">
-              <h1>Descrição</h1>
+            <div class="item full">
+                <div class="desc-title">
+                    <h1>Pontos de atenção e segurança</h1>
+                </div>
+                <ul class="especificacao">
+                    <li><h2>Guias Lineares:</h2></li>
+                    <li><h2>Parafusos de Esfera:</h2></li>
+                    <li><h2>Motores e Eixos:</h2></li>
+                    <li><h2>Cabeçote da Fresadora:</h2></li>
+                    <li><h2>Sistema de Refrigeração:</h2></li>
+                    <li><h2>Correias e Polias:</h2></li>
+                </ul>
+                <img class="atencao" src="{{ url_for('static', filename='assets/cuidado.png') }}" alt="Atenção">
             </div>
-              <div class="desc">
-                <h3>Fresadora CNC de alta precisão, utilizada para usinagem de peças metálicas e plásticas, com controle numérico computadorizado que permite operações complexas e automáticas.</h3>
-              </div>
-          </div>
-
-
-          <div class="item full">
-            <div class="desc-title">
-              <h1>Pontos de atenção e segurança</h1>
-            </div>
-            <ul class="especificacao">
-              <li><h2>Guias Lineares:</h2> </li>
-              <li><h2>Parafusos de Esfera:</h2> </li>
-              <li><h2>Motores e Eixos:</h2> </li>
-              <li><h2>Cabeçote da Fresadora:</h2> </li>
-              <li><h2>Sistema de Refrigeração:</h2> </li>
-              <li><h2>Correias e Polias:</h2> </li>
-            </ul>
-            <img class="atencao" src="../static/assets/cuidado.png">
-          </div>
-
         </div>
-      </div>
-      <div class="button">
+    </div>
+
+    <div class="button">
         <ul>
-
-          <li class="botao"><button link="#" class="pdf">PDF de Cuidados com a maquina</button></li>
-          <li class="botao"><button link="#" class="pdf">Ordem de Serviço</button></li>
+            <li class="botao">
+            <!-- Vao gerar um pdf -->
+            <button class="pdf">
+              <a href="{{ card.pdf_url }}" class="pdf" target="_blank">Baixar PDF de Detalhamento</a>
+          </button>
+          
+            <li class="botao">
+              <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
+                Página de Detalhes da Máquina
+            </button>
+            
+          </li>
         </ul>
-      </div>
+    </div>
 
-      <!-- Footer -->
-      <footer>
+    <footer>
         <div class="container-footer">
             <div class="row-footer">
-                <!--container-->
                 <div class="container">
-                    <img src="../../static/assets/logo_mundo_senai-removebg-preview.png" alt="">
-                   
+                    <img src="{{ url_for('static', filename='assets/logo_mundo_senai-removebg-preview.png') }}" alt="Logo">
                 </div>
-                <!--end footer col-->
-                <!-- footer col-->
                 <div class="footer-col">
                     <h4>Informações</h4>
                     <ul>
                         <li><a href="#">Contatos</a></li>
                         <li><a href="#">Termos de Serviço</a></li>
                         <li><a href="#">Política de Privacidade</a></li>
-      
                     </ul>
                 </div>
-                <!--end footer col-->
-                <!-- footer col-->
-                <div class="footer-col">
-                    <h4>Entre em contato</h4>
-                    <div class="form-sub">
-                        <form>
-                            <input type="email" placeholder="Digite o seu e-mail" required>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-      
-                    <div class="medias-socias">
-                        <a href="#"> <i class="fa fa-facebook"></i> </a>
-                        <a href="#"> <i class="fa fa-instagram"></i> </a>
-                        <a href="#"> <i class="fa fa-twitter"></i> </a>
-                        <a href="#"> <i class="fa fa-linkedin"></i> </a>
-                    </div>
-      
-                </div>
-                <!--end footer col-->
             </div>
         </div>
-      </footer>
-  
+    </footer>
 </body>
 </html>
