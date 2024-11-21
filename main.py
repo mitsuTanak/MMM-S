@@ -14,19 +14,19 @@ login_manager.login_view = 'login'
 
 # MySQL connection
 
-print("Conectando ao banco de dados MySQL...")
-try:
-    mysql = mysql.connector.connect(
-        host=app.config['MYSQL_HOST'],
-        user=app.config['MYSQL_USER'],
-        password=app.config['MYSQL_PASSWORD'],
-        database=app.config['MYSQL_DB'],
-    )
-    print("Conexão com o MySQL bem-sucedida!")
-except mysql.connector.Error as err:
-    print(f"Erro do MySQL: {err}")
-except Exception as e:
-    print(f"Erro inesperado: {e}")
+# print("Conectando ao banco de dados MySQL...")
+# try:
+#     mysql = mysql.connector.connect(
+#         host=app.config['MYSQL_HOST'],
+#         user=app.config['MYSQL_USER'],
+#         password=app.config['MYSQL_PASSWORD'],
+#         database=app.config['MYSQL_DB'],
+#     )
+#     print("Conexão com o MySQL bem-sucedida!")
+# except mysql.connector.Error as err:
+#     print(f"Erro do MySQL: {err}")
+# except Exception as e:
+#     print(f"Erro inesperado: {e}")
 
 
 # Definindo a chave secreta para usar o flash

@@ -60,3 +60,8 @@ def create_user(name, email, password, role):
         mysql.rollback()
     finally:
         cursor.close()
+
+
+
+
+
