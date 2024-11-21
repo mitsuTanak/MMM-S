@@ -81,7 +81,7 @@ def cadastro():
         create_user(name=nome, email=email, password=senha, role=role)
         
         flash ('Cadastro realizado com SUCESSO!')
-        return redirect(url_for('home'))
+        return redirect(url_for('cadastro'))
     return render_template("cadastro.html")
 
 # Card
