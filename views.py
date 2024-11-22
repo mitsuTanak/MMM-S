@@ -133,58 +133,57 @@ def cadastro():
 
 # Card
 # Rota para criar os cards
-
 # _________________________________________________________________________________________________
 @app.route('/save_machine', methods=['POST'])
 def save_machine():
     data = request.form
-    image = request.files.get('image')  # Obter a imagem do formulário
+    image = request.files.get('image')  # Obter a imagem
+    pdf = request.files.get('pdf')  # Obter o PDF
 
-    # Verifica se o arquivo de imagem existe e se tem uma extensão válida
+    # Salvar a imagem
+    image_url = None
     if image and allowed_file(image.filename):
         image_filename = secure_filename(image.filename)
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
         image.save(image_path)
-        image_url = f"/static/uploads/{image_filename}"  # Caminho para acessar a imagem no HTML
-    else:
-        image_url = None  # Se não houver imagem ou a extensão for inválida, define como None
+        image_url = f"/static/uploads/{image_filename}"  # Caminho acessível no HTML
 
-    # Adicionar o campo de descrição
-    description = data.get('card-description', None)  # Captura a descrição do formulário, se existir
+    # Salvar o PDF
+    pdf_url = None
+    if pdf and allowed_file(pdf.filename, extensions=['pdf']):
+        pdf_filename = secure_filename(pdf.filename)
+        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
+        pdf.save(pdf_path)
+        pdf_url = f"/static/uploads/{pdf_filename}"  # Caminho acessível no HTML
 
-    # Salvar as informações da máquina no banco de dados (tabela 'collection')
+    # Salvar os dados no banco
     cursor = mysql.cursor()
     try:
         cursor.execute(
             """
-            INSERT INTO collection (machine_name, model, manufacturing_year, price, sector, category, status, image_path, description)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO collection (machine_name, model, manufacturing_year, price, sector, category, status, description, image_path, pdf_path)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
-            (data['card-name'], data['card-model'], data['card-year'], data['card-price'], data['card-sector'], 
-             data['card-category'], data['card-status'], image_url, description)
+            (data['card-name'], data['card-model'], data['card-year'], data['card-price'],
+             data['card-sector'], data['card-category'], data['card-status'],
+             data.get('card-description'), image_url, pdf_url)
         )
         mysql.commit()
 
-        # Recupera o ID gerado para o novo card (máquina)
-        cursor.execute("SELECT LAST_INSERT_ID()")
-        machine_id = cursor.fetchone()[0]
-
-        # Retorna o ID e o caminho da imagem como resposta para o frontend
+        machine_id = cursor.lastrowid  # Recupera o ID da máquina cadastrada
         response = {
             'id': machine_id,
             'image_url': image_url,
             'name': data['card-name']
         }
-
-        return jsonify(response)  # Envia os dados como resposta JSON
+        return jsonify(response)
 
     except Exception as e:
         mysql.rollback()
-        flash(f'Erro ao cadastrar a máquina. Tente novamente. Detalhes do erro: {e}')  # Detalhes do erro
-        print(f"Erro ao salvar no banco de dados: {e}")  # Detalhes no console
-        return jsonify({'error': f'Erro ao salvar a máquina: {e}'}), 500  # Resposta detalhada no JSON
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
+
 
 
 @app.route('/load_machines', methods=['GET'])
