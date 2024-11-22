@@ -151,7 +151,7 @@ def save_machine():
 
     # Salvar o PDF
     pdf_url = None
-    if pdf and allowed_file(pdf.filename, extensions=['pdf']):
+    if pdf and allowed_file(pdf.filename, allowed_extensions={'pdf'}):
         pdf_filename = secure_filename(pdf.filename)
         pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
         pdf.save(pdf_path)
@@ -187,6 +187,7 @@ def save_machine():
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
+
 
 
 @app.route('/load_machines', methods=['GET'])
@@ -260,7 +261,7 @@ def bento(card_id):
         return "Erro ao carregar os dados.", 500
     finally:
         cursor.close()
-        
+
 @app.route('/download_cuidados/<int:card_id>', methods=['GET'])
 def download_cuidados(card_id):
     try:
