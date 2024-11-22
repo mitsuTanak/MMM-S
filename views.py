@@ -4,14 +4,26 @@ import os
 from flask import render_template, redirect, request, flash, url_for, jsonify, send_file
 from flask_login import login_user, logout_user, current_user, login_required
 from passlib.hash import scrypt
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
-from main import app, mysql
-from models import get_user_by_email, create_user
+from main import app
+from database import mysql
+from models import User
+
+# Configuração do diretório de upload para as imagens
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Função para verificar se a extensão do arquivo é permitida
+def allowed_file(filename, allowed_extensions=None):
+    if allowed_extensions is None:
+        allowed_extensions = ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Rotas
 
@@ -28,20 +40,29 @@ def sobre():
     return render_template("sobre.html")
 
 @app.route("/supervisor")
+@login_required
 def supervisor():
+    if current_user.role != 'supervisor' and current_user.role != 'administrator':
+        flash('Acesso não autorizado', 'Erro')
+        return redirect(url_for('home'))
     return render_template("supervisor.html")
 
-# Login
 
+# Login
 # Rota após o Login
 @app.route("/", methods=['GET', 'POST'])
 def login():
+    # Autenticação
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
+        if not email or not password:
+            flash('Por favor, preencha todos os campos', 'Erro')
+            return redirect(url_for('login'))
+        
         # Busca o usuário pelo email
-        user = get_user_by_email(email)
+        user = User.get_by_email(email)
 
         # Verifica a senha diretamente, sem hashing
         if user and user.check_password(password):
@@ -65,49 +86,59 @@ def logout():
     return redirect(url_for('login'))
 
 
+
 # Cadastro
-
 # Rota para a pagina de cadastro
-
 @app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
+    print("Acessando rota de cadastro")
+
     if request.method == 'POST':
         nome = request.form.get('name')
         email = request.form.get('email')
         senha = request.form.get('password')
         role = request.form.get('role')
 
+        print(f"Dados recebidos: nome={nome}, email={email}, role={role}")  # Log para debug
+
+        # Validações
+        if not all([nome, email, senha, role]):
+            flash('Todos os campos são obrigatórios', 'error')
+            return redirect(url_for('cadastro'))
+
         # Verifica se já existe
-        if get_user_by_email(email):
+        if User.get_by_email(email):
             flash("Esse e-mail já está cadastrado")
             return redirect(url_for('cadastro'))
         
         # Cria o usuário no banco de dados, passando a senha criptografada (senha hash)
-        senha_hash = generate_password_hash(senha)
-        create_user(name=nome, email=email, password_hash=senha_hash, role=role)  # Corrigido o nome do argumento
+        try:
+            # Tenta criar o usuário
+            if User.create(name=nome, email=email, password=senha, role=role):
+                flash('Cadastro realizado com sucesso!', 'success')
+                return redirect(url_for('login'))
+            else:
+                flash('Erro ao realizar cadastro. Tente novamente.', 'error')
+        except Exception as e:
+            print(f"Erro no cadastro: {str(e)}")  # Log para debug
+            flash(f'Erro ao realizar cadastro: {str(e)}', 'error')
 
         flash('Cadastro realizado com SUCESSO!')
+
         return redirect(url_for('cadastro'))
+    
+    # Se for GET, simplesmente renderiza o template
     return render_template("cadastro.html")
 
 
 # Card
-
-# Configuração do diretório de upload para as imagens
-UPLOAD_FOLDER = 'static/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Função para verificar se a extensão do arquivo é permitida
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 # Rota para criar os cards
-@app.route('/save_card', methods=['POST'])
-def save_card():
+
+# _________________________________________________________________________________________________
+@app.route('/save_machine', methods=['POST'])
+def save_machine():
     data = request.form
     image = request.files.get('image')  # Obter a imagem do formulário
-    pdf = request.files.get('pdf')  # Obter o PDF do formulário
 
     # Verifica se o arquivo de imagem existe e se tem uma extensão válida
     if image and allowed_file(image.filename):
@@ -118,100 +149,116 @@ def save_card():
     else:
         image_url = None  # Se não houver imagem ou a extensão for inválida, define como None
 
-    # Verifica se o arquivo PDF existe e se tem uma extensão válida
-    if pdf and allowed_file(pdf.filename, ['pdf']):
-        pdf_filename = secure_filename(pdf.filename)
-        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
-        pdf.save(pdf_path)
-        pdf_url = f"/static/uploads/{pdf_filename}"  # Caminho do PDF
-    else:
-        pdf_url = None
+    # Adicionar o campo de descrição
+    description = data.get('card-description', None)  # Captura a descrição do formulário, se existir
 
-    # Carregar o arquivo JSON
+    # Salvar as informações da máquina no banco de dados (tabela 'collection')
+    cursor = mysql.cursor()
     try:
-        with open('cards.json', 'r') as file:
-            cards = json.load(file)
-    except FileNotFoundError:
-        cards = []
+        cursor.execute(
+            """
+            INSERT INTO collection (machine_name, model, manufacturing_year, price, sector, category, status, image_path, description)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """,
+            (data['card-name'], data['card-model'], data['card-year'], data['card-price'], data['card-sector'], 
+             data['card-category'], data['card-status'], image_url, description)
+        )
+        mysql.commit()
 
-    # Gerar ID único
-    card_id = max([card['id'] for card in cards], default=-1) + 1  # Garantir que o ID seja único
+        # Recupera o ID gerado para o novo card (máquina)
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        machine_id = cursor.fetchone()[0]
 
-    # Criar o novo card
-    new_card = {
-        "id": card_id,  # Adicionando o ID
-        "name": data['name'],
-        "model": data['model'],
-        "year": data['year'],
-        "price": data['price'],
-        "sector": data['sector'],
-        "category": data['category'],
-        "status": data['status'],
-        "description": data.get('description', 'Sem descrição'),  # Incluindo descrição padrão, se não fornecida
-        "image_url": image_url,  # Caminho da imagem, se disponível
-        "pdf_url": pdf_url  # Caminho do PDF, se disponível
-    }
+        # Retorna o ID e o caminho da imagem como resposta para o frontend
+        response = {
+            'id': machine_id,
+            'image_url': image_url,
+            'name': data['card-name']
+        }
 
-    # Adicionar o novo card à lista e salvar no JSON
-    cards.append(new_card)
-    with open('cards.json', 'w') as file:
-        json.dump(cards, file, indent=4)
+        return jsonify(response)  # Envia os dados como resposta JSON
 
-    return jsonify({"message": "Card salvo com sucesso!", "image_url": image_url, "pdf_url": pdf_url})
-
-
-# Função para verificar extensões de arquivo permitidas
-def allowed_file(filename, allowed_extensions=['png', 'jpg', 'jpeg', 'pdf']):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+    except Exception as e:
+        mysql.rollback()
+        flash(f'Erro ao cadastrar a máquina. Tente novamente. Detalhes do erro: {e}')  # Detalhes do erro
+        print(f"Erro ao salvar no banco de dados: {e}")  # Detalhes no console
+        return jsonify({'error': f'Erro ao salvar a máquina: {e}'}), 500  # Resposta detalhada no JSON
+    finally:
+        cursor.close()
 
 
-# Chama os cards
-@app.route('/load_cards', methods=['GET'])
-def load_cards():
+@app.route('/load_machines', methods=['GET'])
+def load_machines():
+    cursor = mysql.cursor(dictionary=True)
     try:
-        with open('cards.json', 'r') as file:
-            cards = json.load(file)
-    except FileNotFoundError:
-        cards = []
-    
-    return jsonify(cards)
+        cursor.execute("SELECT * FROM collection")
+        machines = cursor.fetchall()
 
-# Rota para a página de detalhamento de um card específico
-@app.route('/detalhamento/<int:card_id>', methods=['GET'])
-def detalhamento(card_id):
+        # Debug: Verificando os dados recuperados
+        print("Máquinas recuperadas do banco:", machines)
+
+        return jsonify(machines)  # Retorne os dados como JSON para o frontend
+
+    except Exception as e:
+        print(f"Erro ao carregar máquinas: {e}")  # Log de erro detalhado
+        flash(f'Erro ao carregar máquinas: {e}')  # Mostrar no flash
+        return jsonify({'error': 'Erro ao carregar máquinas'}), 500  # Resposta de erro em JSON
+    finally:
+        cursor.close()
+
+
+@app.route('/detalhamento/<int:machine_id>', methods=['GET'])
+def detalhamento(machine_id):
+    cursor = mysql.cursor(dictionary=True)
     try:
-        with open('cards.json', 'r') as file:
-            cards = json.load(file)
-        
-        # Buscar o card com o ID fornecido
-        card = next((card for card in cards if card['id'] == card_id), None)
-        
-        if card is None:
-            return "Card não encontrado", 404
-        
-        # Renderiza a página de detalhamento, passando o card encontrado
-        return render_template('detalhamento.html', card=card)
-    
-    except FileNotFoundError:
-        return "Arquivo cards.json não encontrado", 404
+        cursor.execute("SELECT * FROM collection WHERE id = %s", (machine_id,))
+        machine = cursor.fetchone()
+        if machine:
+            return render_template('detalhamento.html', card=machine)
+        else:
+            return "Máquina não encontrada", 404
+    except Exception as e:
+        print(f"Erro ao buscar detalhes da máquina: {e}")
+        return "Erro ao carregar os detalhes.", 500
+    finally:
+        cursor.close()
+
+# _______________________________________________________________________________________
 
 @app.route('/bento/<int:card_id>', methods=['GET'])
 def bento(card_id):
+    cursor = mysql.cursor(dictionary=True)
     try:
-        with open('cards.json', 'r') as file:
-            cards = json.load(file)
-        
-        # Buscar o card com o ID fornecido
-        card = next((card for card in cards if card['id'] == card_id), None)
-        
-        if card is None:
+        # Buscar dados da máquina
+        cursor.execute("SELECT * FROM collection WHERE id = %s", (card_id,))
+        card = cursor.fetchone()
+
+        # Calcular o custo total por setor
+        cursor.execute("""
+            SELECT sector, SUM(price) as total_cost
+            FROM collection
+            GROUP BY sector
+        """)
+        sector_costs = cursor.fetchall()
+
+        # Verifique se os dados estão sendo recuperados corretamente
+        print("Dados de setor e custo: ", sector_costs)  # Verifique os dados no console
+
+        # Transformar os dados em JSON antes de passar para o template
+        sector_costs_json = json.dumps(sector_costs)
+
+        if not card:
             return "Card não encontrado", 404
-        
-        # Renderiza a página bento, passando o card encontrado
-        return render_template('bento.html', card=card)
+
+        # Passar os dados para o template
+        return render_template('bento.html', card=card, sector_costs=sector_costs_json)
     
-    except FileNotFoundError:
-        return "Arquivo cards.json não encontrado", 404
+    except Exception as e:
+        print(f"Erro ao buscar dados para o bento: {e}")
+        return "Erro ao carregar os dados.", 500
+    finally:
+        cursor.close()
+
 
 
 @app.route('/download_cuidados/<int:card_id>', methods=['GET'])

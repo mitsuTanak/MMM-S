@@ -37,14 +37,14 @@
             <!-- Filtro de Categorias como um dropdown -->
           <select id="category-filter" class="category-dropdown">
             <option value="">Todas</option>
-            <option value="Fresadoras">Fresadoras</option>
-            <option value="Tornos">Tornos</option>
-            <option value="Furadeiras">Furadeiras</option>
-            <option value="Retificadoras">Retificadoras</option>
-            <option value="CNCs">CNCs</option>
-            <option value="Especiais">Especiais</option>
-            <option value="Prensas">Prensas</option>
-            <option value="Serras">Serras</option>
+            <option value="fresadoras">Fresadoras</option>
+            <option value="tornos">Tornos</option>
+            <option value="furadeiras">Furadeiras</option>
+            <option value="retificadoras">Retificadoras</option>
+            <option value="cnc">CNCs</option>
+            <option value="especiais">Especiais</option>
+            <option value="prensas">Prensas</option>
+            <option value="serras">Serras</option>
           </select>
 
             <!-- Campo de busca com o filtro -->
@@ -74,8 +74,8 @@
       <div class="container_maquinas" id="card-container"></div>
     </section>
 
-   <!-- Formulário de Modal para cadastrar uma nova máquina -->
-  <div id="card-modal" class="modal">
+<!-- Formulário de Modal para cadastrar uma nova máquina -->
+<div id="card-modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeCardModal()">&times;</span>
     <h2>Cadastrar Máquina</h2>
@@ -93,39 +93,43 @@
     <input type="number" id="card-price" placeholder="Preço" required />
 
     <label for="card-sector">Setor</label>
-    <input type="text" id="card-sector" placeholder="Setor" required />
+    <select id="card-sector" required>
+      <option value="">Selecione o Setor</option>
+      <option value="automotivo">Automotivo</option>
+      <option value="moldes">Moldes</option>
+      <option value="ferramentas">Ferramentas</option>
+      <option value="construcao">Construção</option>
+    </select>
 
     <label for="card-category">Categoria</label>
     <select id="card-category" required>
       <option value="">Selecione a Categoria</option>
-      <option value="Fresadoras">Fresadoras</option>
-      <option value="Tornos">Tornos</option>
-      <option value="Furadeiras">Furadeiras</option>
-      <option value="Retificadoras">Retificadoras</option>
-      <option value="CNCs">CNCs</option>
-      <option value="Especiais">Especiais</option>
-      <option value="Prensas">Prensas</option>
-      <option value="Serras">Serras</option>
+      <option value="fresadoras">Fresadoras</option>
+      <option value="tornos">Tornos</option>
+      <option value="furadeiras">Furadeiras</option>
+      <option value="retificadoras">Retificadoras</option>
+      <option value="cnc">CNCs</option>
+      <option value="especiais">Especiais</option>
+      <option value="prensas">Prensas</option>
+      <option value="serras">Serras</option>
     </select>
 
     <label for="card-status">Status</label>
     <select id="card-status" required>
       <option value="">Selecione o Status</option>
-      <option value="Funcionando">Funcionando</option>
-      <option value="Aguardando Manutenção">Aguardando Manutenção</option>
-      <option value="Em Manutenção">Em Manutenção</option>
+      <option value="operating">Funcionando</option>
+      <option value="waiting">Aguardando Manutenção</option>
+      <option value="stopped">Em Manutenção</option>
     </select>
 
     <label for="card-description">Descrição (Opcional)</label>
     <textarea id="card-description" placeholder="Descrição da Máquina (opcional)"></textarea>
-
 
     <label for="card-image">Imagem da Máquina</label>
     <input type="file" id="card-image" accept="image/*" />
 
     <label for="card-pdf">Upload do PDF de Detalhamento</label>
     <input type="file" id="card-pdf" accept=".pdf" />
-
 
     <button class="save-button" onclick="saveCard()">Salvar Máquina</button>
   </div>

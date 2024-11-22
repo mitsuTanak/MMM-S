@@ -61,22 +61,22 @@
 
             <div class="item salmon">
                 <ul class="especificacao">
-                    <li><h2>Marca/modelo: {{ card.name }}</h2></li>
-                    <li><h2>Ano de Fabricação: {{ card.year }}</h2></li>
-                    <li><h2>Status: {{ card.status }}</h2></li>
-                    <li><h2>NI: {{ card.model }}</h2></li>
-                    <li><h2>Equipamento: {{ card.category }}</h2></li>
+                    <li><h2>Marca/modelo: {{ card['machine_name'] }}</h2></li>
+                    <li><h2>Ano de Fabricação: {{ card['manufacturing_year'] }}</h2></li>
+                    <li><h2>Status: {{ card['status'] }}</h2></li>
+                    <li><h2>NI: {{ card['model'] }}</h2></li>
+                    <li><h2>Equipamento: {{ card['category'] }}</h2></li>
                 </ul>
             </div>
 
             <div class="item broccoli">
-                <img class="maquina" src="{{ card.image_url }}" alt="Imagem do Card">
+                <img class="maquina" src="{{ card['image_path'] }}" alt="Imagem da Máquina">
             </div>
 
             <div class="item tamago">
                 <ul class="especificacao-black">
-                    <li><h2>Setor: {{ card.sector }}</h2></li>
-                    <li><h2>Imobilizado: {{ card.status }}</h2></li>
+                    <li><h2>Setor: {{ card['sector'] }}</h2></li>
+                    <li><h2>Imobilizado: {{ card['status'] }}</h2></li>
                 </ul>
             </div>
 
@@ -109,17 +109,17 @@
     <div class="button">
         <ul>
             <li class="botao">
-            <!-- Vao gerar um pdf -->
-            <button class="pdf">
-              <a href="{{ card.pdf_url }}" class="pdf" target="_blank">Baixar PDF de Detalhamento</a>
-          </button>
-          
+              <!-- Vão gerar um pdf -->
+              <button class="pdf">
+                <a href="{{ card.pdf_url }}" class="pdf" target="_blank">Baixar PDF de Detalhamento</a>
+              </button>
+            </li>
+
             <li class="botao">
               <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
                 Página de Detalhes da Máquina
-            </button>
-            
-          </li>
+              </button>
+            </li>
         </ul>
     </div>
 

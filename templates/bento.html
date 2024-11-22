@@ -16,6 +16,8 @@
             });
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="voltar">
@@ -24,20 +26,16 @@
     <div class="container">
         <div class="grid-item salmon">
             <ul>
-                <li><strong>{{card.name}}</strong></li>
+                <li><strong>{{ card.machine_name }}</strong></li>
                 <li>Modelo: {{ card.model }}</li>
-                <li>Ano de Fabricação: {{ card.year }}</li>
+                <li>Ano de Fabricação: {{ card.manufacturing_year }}</li>
                 <li>Setor: {{ card.sector }}</li>
                 <li>Categoria: {{ card.category }}</li>
             </ul>
         </div>
         <div class="grid-item tamago">
-            <h2>Custo Realizado</h2>
-            <!-- Gráfico pode ser opcional -->
-        </div>
-        <div class="grid-item broccoli">
-            <h2>Custo por Setor</h2>
-            <!-- Gráfico pode ser opcional -->
+            <h2>Custo Realizado por Setor</h2>
+            <canvas id="sectorChart" width="400" height="400"></canvas>
         </div>
         <div class="grid-item pork">
             <h2>Status</h2>
@@ -45,26 +43,25 @@
                 <label>
                     <input type="checkbox" name="opcao" 
                            onclick="selecionarUnico(this)"
-                           {% if card['status'] == 'Operando' %} checked {% endif %}>
+                           {% if card.status == 'Operando' %} checked {% endif %}>
                     Operando
                 </label>
                 <label>
                     <input type="checkbox" name="opcao" 
                            onclick="selecionarUnico(this)"
-                           {% if card['status'] == 'Parado' %} checked {% endif %}>
+                           {% if card.status == 'Parado' %} checked {% endif %}>
                     Parado
                 </label>
                 <label>
                     <input type="checkbox" name="opcao" 
                            onclick="selecionarUnico(this)"
-                           {% if card['status'] == 'Aguardando Manutenção' %} checked {% endif %}>
+                           {% if card.status == 'Aguardando Manutenção' %} checked {% endif %}>
                     Aguardando Manutenção
                 </label>
             </form>
         </div>
-        
         <div class="grid-item edamame">
-            <img src="{{ card.image_url }}" alt="Máquina">
+            <img src="{{ card.image_path }}" alt="Imagem da Máquina">
         </div>
         <div class="grid-item tomato">
             <h2>Histórico de Manutenção</h2>
@@ -78,10 +75,16 @@
                     <div class="texto">Lorem ipsum q sla sla o q</div>
                 </div>
             </div>
-            <button onclick="window.location.href=`{{ url_for('download_cuidados', card_id=card['id']) }}`" class="btn-pdf">
+            <button onclick="window.location.href=`{{ url_for('download_cuidados', card_id=card.id) }}`" class="btn-pdf">
                 Gerar PDF
             </button>
         </div>
     </div>
+    <script>
+        // Convertendo os dados JSON para um array JavaScript
+        const sectorCosts = `{{ sector_costs | tojson }}`;
+        console.log(sectorCosts);  // Verifique no console se os dados estão sendo passados corretamente
+    </script>
+    <script src="../static/JS/grafico.js"></script>
 </body>
 </html>
