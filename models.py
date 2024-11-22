@@ -1,18 +1,22 @@
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 from main import mysql, login_manager
 
 # Login
 class User(UserMixin):
-    def __init__(self, id, name, password, email, role):
+    def __init__(self, id, name, password_hash, email, role):
         self.id = id
         self.name = name
-        self.password = password  # agora é a senha em texto simples
+        self.password_hash = password_hash  # agora é a senha em texto simples
         self.email = email
         self.role = role
 
     def check_password(self, password):
-        # Comparação direta com a senha armazenada
-        return self.password == password
+        try:
+            return check_password_hash(self.password_hash, password)
+        except Exception as e:
+            print(f"Erro na verificação da senha: {e}")
+            return False
 
 def get_user_by_email(email):
     cursor = mysql.cursor(dictionary=True)
@@ -24,7 +28,7 @@ def get_user_by_email(email):
             id=user_data['id'],
             name=user_data['name'],
             email=user_data['email'],
-            password=user_data['password'],  # senha em texto simples
+            password_hash=user_data['password'],  # senha em texto simples
             role=user_data['role']
         )
     return None
@@ -40,28 +44,23 @@ def load_user(user_id):
             id=user_data['id'],
             name=user_data['name'],
             email=user_data['email'],
-            password=user_data['password'],  # senha em texto simples
+            password_hash=user_data['password'],  # senha em texto simples
             role=user_data['role']
         )
     return None
 
 # Cadastro
 
-def create_user(name, email, password, role):
+def create_user(name, email, password_hash, role):
     cursor = mysql.cursor()
     try:
         cursor.execute(
             "INSERT INTO usuarios(name, email, password, role) VALUES (%s, %s, %s, %s)",
-            (name, email, password, role)
+            (name, email, password_hash, role)
         )
         mysql.commit()
     except Exception as e:
-        print("Erro ao criar usuaro", e)
+        print("Erro ao criar usuário", e)
         mysql.rollback()
     finally:
         cursor.close()
-
-
-
-
-

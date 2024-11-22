@@ -147,33 +147,29 @@ input:focus{
 
 /* Dropdown */
 
-.dropdown {
-    min-width: 15em;
-    position: relative;
-    padding-top: 5px;
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-}
 
-.dropdown * {
-    box-sizing: border-box;
-    
-}
 
-.select {
-    background: rgba(230, 230, 230, 0.25);
-    color: #DEDADA;
-    font-family: "Quicksand";
+select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 0px rgba(230, 230, 230, 0.25) solid;
+    height: 40px;
+    margin-bottom: 5%;
+    padding: 10px;
+    
     border-radius: 6px;
-    padding: 12px;
+    background: rgba(230, 230, 230, 0.25);
+    color: #DEDADA;
+    border: 0px rgba(230, 230, 230, 0.25) solid;
+    
+    font-family: "Quicksand";
+    font-size: 15px;
     cursor: pointer;
     transition: background 0.3s;
-    height: 40px
+}
+
+option{
+    background-color: #363a43;
 }
 
 /* Clicked styles (added Later in JS) */

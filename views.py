@@ -2,14 +2,16 @@
 import json
 import os
 from flask import render_template, redirect, request, flash, url_for, jsonify, send_file
-from werkzeug.utils import secure_filename
 from flask_login import login_user, logout_user, current_user, login_required
-from models import get_user_by_email, create_user
+from passlib.hash import scrypt
+from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
-from main import app
+from main import app, mysql
+from models import get_user_by_email, create_user
 
 # Rotas
 
@@ -25,20 +27,24 @@ def home():
 def sobre():
     return render_template("sobre.html")
 
+@app.route("/supervisor")
+def supervisor():
+    return render_template("supervisor.html")
+
 # Login
 
 # Rota após o Login
 @app.route("/", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+        email = request.form.get('email')
+        password = request.form.get('password')
 
         # Busca o usuário pelo email
         user = get_user_by_email(email)
 
         # Verifica a senha diretamente, sem hashing
-        if user and user.password == password:
+        if user and user.check_password(password):
             login_user(user)
             if user.role == 'administrator':
                 return redirect(url_for('home'))
@@ -47,7 +53,7 @@ def login():
             else:
                 return redirect(url_for('sobre'))
 
-        flash('E-mail ou senha incorretos')
+        flash('E-mail ou senha incorretos', 'error')
         return redirect(url_for('login'))
         
     return render_template("login.html")
@@ -63,9 +69,8 @@ def logout():
 
 # Rota para a pagina de cadastro
 
-@app.route("/cadastro", methods=['GET', 'POST']) 
+@app.route("/cadastro", methods=['GET', 'POST'])
 def cadastro():
-
     if request.method == 'POST':
         nome = request.form.get('name')
         email = request.form.get('email')
@@ -74,15 +79,17 @@ def cadastro():
 
         # Verifica se já existe
         if get_user_by_email(email):
-            flash("Esse e-mail já está cadstrado")
+            flash("Esse e-mail já está cadastrado")
             return redirect(url_for('cadastro'))
         
-        # cria o usuario no banco de dados
-        create_user(name=nome, email=email, password=senha, role=role)
-        
-        flash ('Cadastro realizado com SUCESSO!')
+        # Cria o usuário no banco de dados, passando a senha criptografada (senha hash)
+        senha_hash = generate_password_hash(senha)
+        create_user(name=nome, email=email, password_hash=senha_hash, role=role)  # Corrigido o nome do argumento
+
+        flash('Cadastro realizado com SUCESSO!')
         return redirect(url_for('cadastro'))
     return render_template("cadastro.html")
+
 
 # Card
 
