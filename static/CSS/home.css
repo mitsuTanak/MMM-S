@@ -337,7 +337,7 @@ h2 {
 }
 
 .modal-content {
-  background-color: #f9f9f9;
+  background-color: #8EA1C0;
   font-family: "Poppins", sans-serif;
   margin: 10% auto;
   padding: 30px;
@@ -352,12 +352,12 @@ h2 {
 }
 .modal-content h2 {
   margin-top: 0;
-  color: #333;
+  color: #000;
 }
 
 .modal-content label {
   font-weight: 500;
-  color: #333;
+  color: #000;
   display: block;
   margin: 10px 0 5px;
 }
@@ -370,10 +370,11 @@ h2 {
   width: 100%;
   padding: 10px;
   margin: 5px 0 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #173d79;
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 1em;
+  background-color: #fff;
 }
 
 .modal-content input:focus,
@@ -384,7 +385,7 @@ h2 {
 }
 
 .close {
-  color: #555;
+  color: #000;
   float: right;
   font-size: 24px;
   font-weight: bold;
@@ -400,7 +401,7 @@ h2 {
 .save-button {
   width: 100%;
   padding: 12px;
-  background-color: #4a90e2;
+  background-color: #173d79;
   color: white;
   border: none;
   border-radius: 5px;
@@ -411,7 +412,7 @@ h2 {
 }
 
 .save-button:hover {
-  background-color: #357ab8;
+  background-color: #0c2854;
 }
 
     

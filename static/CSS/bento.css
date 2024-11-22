@@ -175,6 +175,7 @@ body, html {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
+    margin-bottom: 25px;
 }
 .btn-pdf:hover {
     background-color: #022255;

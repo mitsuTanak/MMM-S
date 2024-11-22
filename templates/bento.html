@@ -75,10 +75,11 @@
                     <div class="texto">Lorem ipsum q sla sla o q</div>
                 </div>
             </div>
-            <button onclick="window.location.href=`{{ url_for('download_cuidados', card_id=card.id) }}`" class="btn-pdf">
-                Gerar PDF
-            </button>
+            
         </div>
+        <button onclick="window.location.href=`{{ url_for('download_cuidados', card_id=card.id) }}`" class="btn-pdf">
+                Gerar PDF
+        </button>
     </div>
     <script>
         // Convertendo os dados JSON para um array JavaScript

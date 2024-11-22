@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
-
     padding-right: 15px;
     padding-left: 15px;
     width: 100%;
@@ -25,6 +24,7 @@ a {
     color: #fff;
     font-family: "Quicksand";
     font-size: 17px;
+    padding-right: 50px;
 }
 
 body {
@@ -134,7 +134,6 @@ textarea {
 
 .buttons {
     display: flex;
-    
     gap: 10px;
 }
 
