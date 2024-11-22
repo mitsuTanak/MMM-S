@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import mysql
+from database import mysql, get_db_connection
 import logging
 
 # Configuração do logging
@@ -137,6 +137,8 @@ class User(UserMixin):
         except Exception as e:
             logger.error(f"Erro ao buscar usuário por ID: {e}")
             return None
+        finally:
+            cursor.close()
 
     @staticmethod
     def update_user(user_id, name=None, email=None, role=None):

@@ -89,12 +89,12 @@ body, html {
 }
 
 /* Custo por Setor e Custo Realizado */
-.broccoli, .tamago {
-    grid-column: span 1;
+.tamago {
+    grid-column: span 2;
     grid-row: span 3;
     text-align: center;
 }
-.broccoli h2, .tamago h2 {
+.tamago h2 {
     margin-bottom: 10px;
     font-size: 18px;
 }

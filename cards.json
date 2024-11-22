@@ -68,5 +68,18 @@
         "description": "Yellow",
         "image_url": "/static/uploads/R.png",
         "pdf_url": "/static/uploads/caracterisitas_tecnicas_fresadora.pdf"
+    },
+    {
+        "id": 7,
+        "name": "Prensa",
+        "model": "220V TMB-500 Bumafer",
+        "year": "2012-02-12",
+        "price": "55555",
+        "sector": "Automotivo",
+        "category": "Especiais",
+        "status": "Funcionando",
+        "description": "Testando com os novos setores",
+        "image_url": "/static/uploads/fresadora-cnc-.jpg",
+        "pdf_url": "/static/uploads/UML.pdf"
     }
 ]

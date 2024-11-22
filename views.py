@@ -26,7 +26,6 @@ def allowed_file(filename, allowed_extensions=None):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Rotas
-
 @app.route("/cadastrar_manutencao") 
 def solucionar():
     return render_template("solucionar.html")
@@ -89,15 +88,19 @@ def logout():
 
 # Cadastro
 # Rota para a pagina de cadastro
-@app.route("/cadastro", methods=['GET', 'POST'])
+@app.route("/cadastro", methods=['GET', 'POST']) 
 def cadastro():
-    print("Acessando rota de cadastro")
-
     if request.method == 'POST':
-        nome = request.form.get('name')
-        email = request.form.get('email')
-        senha = request.form.get('password')
-        role = request.form.get('role')
+        nome = request.form.get('name')  # Corrigido para 'nome'
+        email = request.form.get('email')  # Correto
+        senha = request.form.get('password')  # Corrigido para 'senha'
+        role = request.form.get('role')  # Correto
+
+        print(f"Dados recebidos: nome={nome}, email={email}, role={role}")
+
+        if not all([nome, email, senha, role]):
+            flash("Todos os campos são obrigatórios", "error")
+            return redirect(url_for('cadastro'))
 
         print(f"Dados recebidos: nome={nome}, email={email}, role={role}")  # Log para debug
 
@@ -110,7 +113,6 @@ def cadastro():
         if User.get_by_email(email):
             flash("Esse e-mail já está cadastrado")
             return redirect(url_for('cadastro'))
-        
         # Cria o usuário no banco de dados, passando a senha criptografada (senha hash)
         try:
             # Tenta criar o usuário
@@ -132,7 +134,6 @@ def cadastro():
 
 
 # Card
-# Rota para criar os cards
 # _________________________________________________________________________________________________
 @app.route('/save_machine', methods=['POST'])
 def save_machine():
@@ -156,7 +157,10 @@ def save_machine():
         pdf.save(pdf_path)
         pdf_url = f"/static/uploads/{pdf_filename}"  # Caminho acessível no HTML
 
-    # Salvar os dados no banco
+    # Adicionar o campo de descrição
+    description = data.get('card-description', None)  # Captura a descrição do formulário, se existir
+
+    # Salvar as informações da máquina no banco de dados (tabela 'collection')
     cursor = mysql.cursor()
     try:
         cursor.execute(
@@ -183,7 +187,6 @@ def save_machine():
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
-
 
 
 @app.route('/load_machines', methods=['GET'])
@@ -257,9 +260,7 @@ def bento(card_id):
         return "Erro ao carregar os dados.", 500
     finally:
         cursor.close()
-
-
-
+        
 @app.route('/download_cuidados/<int:card_id>', methods=['GET'])
 def download_cuidados(card_id):
     try:
@@ -273,50 +274,62 @@ def download_cuidados(card_id):
         # Criar o PDF
         pdf_path = f"static/uploads/cuidados_{card_id}.pdf"
         c = canvas.Canvas(pdf_path, pagesize=letter)
-        c.setFont("Helvetica", 12)
+        c.setFont("Helvetica-Bold", 14)
 
         # Título
-        c.drawString(100, 750, f"PDF do Histórico de Manutenção - {card['name']} ({card['model']})")
+        c.drawString(200, 770, "FICHA DE MÁQUINAS E EQUIPAMENTOS")
 
-        # Informações da máquina
-        c.drawString(50, 700, f"Marca/Modelo: {card['name']}")
-        c.drawString(50, 680, f"Ano de Fabricação: {card['year']}")
-        c.drawString(50, 660, f"Status: {card['status']}")
-        c.drawString(50, 640, f"Equipamento: {card['category']}")
-        c.drawString(50, 620, f"Valor de Aquisição: {card['price']}")
-        c.drawString(50, 600, f"Localização: {card['sector']}")
-        c.drawString(50, 580, f"Descrição: {card.get('description', 'Sem descrição')}")
+        # Cabeçalho da ficha
+        c.setFont("Helvetica", 15)
+        c.drawString(50, 740, f"Denominação: {card['name']}")
+        c.drawString(300, 740, f"Marca/Modelo: {card['model']}")
+        c.drawString(50, 720, f"Nº de Série: {card.get('serial_number', 'N/A')}")
+        c.drawString(300, 720, f"Ano de Fabricação: {card['year']}")
+        c.drawString(50, 700, f"Seção: {card['sector']}")
+        c.drawString(300, 700, f"Categoria: {card['category']}")
 
-        # Histórico de manutenção fictício
-        historico = [
-            ["Data", "Tipo", "Problema", "Ação", "Responsável", "Custo"],
-            ["01/01/2023", "Preventiva", "Inspeção geral", "Verificação de peças", "João Silva", "R$ 200,00"],
-            ["15/02/2023", "Corretiva", "Motor travado", "Troca de rolamento", "Maria Oliveira", "R$ 500,00"],
-            ["20/03/2023", "Preventiva", "Lubrificação", "Engrenagens lubrificadas", "Carlos Mendes", "R$ 150,00"]
+        # Descrição e status
+        c.drawString(50, 680, f"Status: {card['status']}")
+        c.drawString(50, 660, f"Descrição: {card.get('description', 'Sem descrição')}")
+
+        # Tabela de acessórios e implementos (exemplo fictício)
+        c.drawString(50, 630, "Acessórios e Implementos:")
+        accessories = [
+            ["Denominação", "Aplicação", "Características"],
+            ["Placa Universal", "Fixação de Peça", "8''"],
+            ["Luneta Fixa", "Usinagem de Peça", "10''"],
+            ["Jogo de Engrenagens", "Abertura de Rosca", "40-128 Dentes"]
         ]
 
-        # Adicionar o título da seção do histórico
-        c.drawString(50, 540, "Histórico de Manutenção:")
-
-        # Configurar a tabela no PDF
-        table = Table(historico)
+        table = Table(accessories, colWidths=[150, 200, 100])
         table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-            ('FONTSIZE', (0, 1), (-1, -1), 10),
-            ('FONTSIZE', (0, 0), (-1, 0), 11),
-            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.lightgrey]),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
         ]))
+        table.wrapOn(c, 50, 550)
+        table.drawOn(c, 50, 550)
 
-        # Inserir a tabela no PDF
-        table.wrapOn(c, 50, 400)
-        table.drawOn(c, 50, 400)
+        # Histórico de manutenção
+        c.drawString(50, 500, "Histórico de Manutenção Corretiva:")
+        historico = [
+            ["Data", "Ocorrência/Descrição", "Nº OS", "Visto"],
+            ["05/10/2018", "Troca de correia do avanço do torno", "1023", "OK"],
+            ["20/02/2023", "Lubrificação preventiva", "2025", "OK"]
+        ]
 
-        # Finalizar e salvar o PDF
+        history_table = Table(historico, colWidths=[80, 300, 80, 50])
+        history_table.setStyle(TableStyle([
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ]))
+        history_table.wrapOn(c, 50, 350)
+        history_table.drawOn(c, 50, 350)
+
+        # Finalizar o PDF
         c.save()
         return send_file(pdf_path, as_attachment=True)
     
