@@ -2,7 +2,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
     background-color: #fff;
     color: #000;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
 }
 

@@ -7,6 +7,8 @@
     
     <!-- Link para o CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/detalhamento.css') }}" />
+    <link rel="stylesheet" href="../static/CSS/detalhamento.css" />
+
 
     <!-- Inserindo favicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/logo.ico') }}" type="image/x-icon">
@@ -19,30 +21,37 @@
 </head>
 
 <body>
+    <!-- Header -->
     <header class="header">
         <nav>
-            <div class="logo-header">
-                <a href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='assets/logo_mundo_senai-removebg-preview.png') }}" alt="logo" width="125px"/>
-                </a>
-            </div>
-            <div class="input-search-header">
-                <input class="input-header" type="text" placeholder="Pesquisar" />
-                <button type="submit" class="search-button-header"> 
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </div>
-            <div class="list-header">
-                <ul id="MenuItems" class="menu-itens">
-                    <li class="header-itens"><a href="{{ url_for('home') }}">Home</a></li>
-                    <li class="header-itens"><a href="{{ url_for('sobre') }}">Sobre Nós</a></li>
-                    <a href="{{ url_for('login') }}">
-                        <img src="{{ url_for('static', filename='assets/perfil-icon.png') }}" alt="logo" width="50px" class="perfil-icon-header"/>
-                    </a>
-                </ul>
-            </div>
+          <div class="logo-header">
+            <a href="/home">
+              <img src="../static/assets/logo_mundo_senai-removebg-preview.png" alt="logo" width="125px"/>
+            </a>
+          </div>
+  
+          <div class="input-search-header">
+      
+            <button type="submit" class="search-button-header" onclick="applyFilter()">
+              <!-- Campo de busca com o filtro -->
+            <input class="input-header" type="search" placeholder="Pesquisar" id="search-input" />
+              <!-- Ícone de lupa e botão de pesquisa -->
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+          
+          <div class="list-header">
+            <ul id="MenuItems" class="menu-itens">
+              <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
+              <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
+  
+              <a href="../../templates/login.html">
+                <img src="../../static/assets/perfil-icon.png" alt="logo" width="50px" class="perfil-icon-header"/>
+              </a>
+            </ul>
+          </div>
         </nav>
-    </header>
+      </header>
 
     <div class="container-bento">
         <div class="grid">
@@ -111,7 +120,7 @@
             <li class="botao">
               <!-- Vão gerar um pdf -->
               <button class="pdf">
-                <a href="{{ card.pdf_url }}" class="pdf" target="_blank">Baixar PDF de Detalhamento</a>
+                <a href="{{ card.pdf_url }}" target="_blank">Baixar PDF de Detalhamento</a>
               </button>
             </li>
 
@@ -119,6 +128,12 @@
               <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
                 Página de Detalhes da Máquina
               </button>
+            </li>
+
+            <li class="botao">
+                <button class="pdf">
+                    Solicitar Manutenção
+                </button>
             </li>
         </ul>
     </div>

@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Geral */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+ 
+  font-family: 'Poppins', sans-serif;
+ 
+}
+body {
+  font-weight: 600;
+  font-style: normal;
+  background-color: #E5E5E5;
+}
+
+/* ______________________________________________________________________________ */
+/* Header */
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #171717;
+    align-items: center;
+    text-align: center;
+    padding: 25px 50px;
+
+}
+  
+  
+.menu-itens{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    text-decoration: none;
+    list-style-type: none;
+    align-items: center;
+  
+}
+  
+.header-itens a{
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+  
+}
+  
+.header-itens a:hover{
+    background-color: #005CAA;
+    border-radius: 20px;
+    color: #fff;
+    transition: 0.5s;
+}
+  
+.perfil-icon-header:hover{
+  
+    filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
+  
+}
