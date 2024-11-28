@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/CSS/politicas.css">
+    <title>Politicas de Privacidade</title>
+</head>
+  <body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav>
+          <div class="logo-header">
+            <a href="/home">
+              <img src="../static/assets/logo_mundo_senai-removebg-preview.png" alt="logo" width="125px"/>
+            </a>
+          </div>
+          
+          <div class="list-header">
+            <ul id="MenuItems" class="menu-itens">
+              <li class="header-itens"><a href="../../templates/home.html">Home</a></li>
+              <li class="header-itens"><a href="../../templates/sobre.html">Sobre Nós</a></li>
+  
+              <a href="../../templates/login.html">
+                <img src="../../static/assets/perfil-icon.png" alt="logo" width="50px" class="perfil-icon-header"/>
+              </a>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+
+      <!-- Titulo da pagina -->
+      <h1>Termos de Uso e Condições</h1>
+
+      <div>
+        <p>
+            1. Aceitação dos Termos.
+            Ao acessar e usar os serviços MMMS (Monitoramento de Manutenção de Máquinas -Software), você concorda em cumprir estes Termos de Uso e Condições.
+            <br>
+            2. Modificações dos Termos.
+            Reservamos o direito de modificar estes Termos a qualquer momento. Quaisquer alterações serão publicadas nesta página e entrarão em vigor imediatamente.
+            <br>
+            3. Descrição do Serviço.
+            Somos a MMMS (Monitoramento de Manutenção de Máquinas - Software), uma plataforma prática para acessar dados técnicos e fornecer informações sobre máquinas do SENAI. Nosso objetivo é facilitar o gerenciamento e a manutenção de máquinas, contribuindo para a eficiência e a produtividade das operações.
+            <br>
+            4. Uso do Serviço.
+            Você concorda em usar o serviço apenas para fins legais e de maneira que não infrinja os direitos de terceiros ou restrinja ou iniba o uso do serviço por terceiros.
+            <br>
+            5. Registro de Conta.
+            Para acessar determinadas funcionalidades do serviço, você pode ser solicitado a criar uma conta. Você concorda em fornecer informações precisas, completas e atualizadas durante o registro e a manter a segurança de sua senha.
+            <br>
+            7. Contato.
+            Se você tiver alguma dúvida sobre estes Termos, entre em contato conosco
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container-footer">
+          <div class="row-footer">
+              <div class="container">
+                  <img src="{{ url_for('static', filename='assets/logo_mundo_senai-removebg-preview.png') }}" alt="Logo">
+              </div>
+              <div class="footer-col">
+                  <h4>Informações</h4>
+                  <ul>
+                      <li><a href="#">Contatos</a></li>
+                      <li><a href="#">Termos de Serviço</a></li>
+                      <li><a href="politica.html">Política de Privacidade</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </footer>
+  </body>
+</html>
