@@ -22,7 +22,7 @@
 
 <body>
     <div class="voltar">
-        <a href="../templates/home.html"><i class="fa-solid fa-door-open"></i></a>
+        <a href="/home"><i class="fa-solid fa-door-open"></i></a>
     </div>
     <div class="container">
         <div class="grid-item salmon">
@@ -78,19 +78,19 @@
         <div class="grid-item pork">
             <h2>Status</h2>
             <form>
-                <label>
+                <label class="checkbox-container">
                     <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Operando' %} checked {% endif %}>
                     Operando
                 </label>
-                <label>
+                <label class="checkbox-container">
                     <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Parado' %} checked {% endif %}>
                     Parado
                 </label>
-                <label>
+                <label class="checkbox-container">
                     <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Aguardando Manutenção' %} checked {% endif %}>

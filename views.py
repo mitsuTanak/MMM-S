@@ -30,6 +30,14 @@ def allowed_file(filename, allowed_extensions=None):
 def solucionar():
     return render_template("solucionar.html")
 
+@app.route("/politica") 
+def politica():
+    return render_template("politica.html")
+
+@app.route("/termos") 
+def termos():
+    return render_template("termos.html")
+
 @app.route("/home") 
 def home():
     return render_template("home.html")

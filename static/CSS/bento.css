@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    background-color: #0D1B2A; /* Fundo escuro */
+    background-color: #121231; /* Fundo escuro */
     color: #FFFFFF;
 }
 /* Particulas */
@@ -179,10 +179,10 @@ body, html {
 
 /* Botão PDF */
 .btn-pdf {
-    background-color: #02317A;
+    background-color: #436395;
     color: #FFFFFF;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 10px 50px;
+    border-radius: 55px;
     border: none;
     font-size: 16px;
     cursor: pointer;
@@ -191,11 +191,24 @@ body, html {
     align-items: center;
 }
 .btn-pdf:hover {
-    background-color: #022255;
+    background-color: #173d79;
 }
 .container_btn{
     align-items: center;
     display: flex;
     justify-content: center;
     margin: 50px;
+}
+
+input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 1; /* Remove a opacidade reduzida */
+    background-color: #ddd; /* Cor de fundo para o checkbox desabilitado */
+    color: #333; /* Cor do texto */
+}
+
+/* Para o label também se destacar */
+input[type="checkbox"]:disabled + label {
+    color: #666; /* Cor do texto ao lado do checkbox desabilitado */
+    cursor: not-allowed; /* Desativa o cursor do texto também */
 }
