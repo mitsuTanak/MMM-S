@@ -140,20 +140,39 @@
 
     <footer>
         <div class="container-footer">
-            <div class="row-footer">
-                <div class="container">
-                    <img src="{{ url_for('static', filename='assets/logo_mundo_senai-removebg-preview.png') }}" alt="Logo">
-                </div>
-                <div class="footer-col">
-                    <h4>Informações</h4>
-                    <ul>
-                        <li><a href="#">Contatos</a></li>
-                        <li><a href="#">Termos de Serviço</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
-                    </ul>
-                </div>
+          <div class="row-footer">
+            <div class="container">
+              <img src="../../static/assets/logo_mundo_senai-removebg-preview.png" alt="">
+              <img src="../static/assets/logo.png" alt="">
             </div>
+  
+            <div class="footer-col">
+              <h4>Informações</h4>
+              <ul>
+                <li><a href="#">Contatos</a></li>
+                <li><a href="#">Termos de Serviço</a></li>
+                <li><a href="politica.html">Política de Privacidade</a></li>
+              </ul>
+            </div>
+  
+            <div class="footer-col">
+              <h4>Entre em contato</h4>
+              <div class="form-sub">
+                <form>
+                  <input type="email" placeholder="Digite o seu e-mail" required>
+                  <button>Enviar</button>
+                </form>
+              </div>
+  
+              <div class="medias-socias">
+                <a href="#"> <i class="fa fa-facebook"></i> </a>
+                <a href="#"> <i class="fa fa-instagram"></i> </a>
+                <a href="#"> <i class="fa fa-twitter"></i> </a>
+                <a href="#"> <i class="fa fa-linkedin"></i> </a>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </footer>
 </body>
 </html>

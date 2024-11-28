@@ -285,6 +285,9 @@ button:hover{
 /* Footer */
 
 footer{
+  display: flex;
+  align-items: end;
+  justify-content: end;
   background-color: #000000;
   padding: 50px 0;
 }
@@ -300,7 +303,7 @@ footer{
 .container { 
   width: 33%;
   padding: 0 15px; 
-  }
+ }
 
 .container img{
   position: relative;
@@ -394,8 +397,10 @@ footer{
   background-color: #00427b; 
   transition: 0.3s;
   
-    
+   
 } 
+
+
 /* Responsivo */
 @media (max-width: 800px) {
   .footer-col{
@@ -409,4 +414,60 @@ footer{
   }
 }
 
-  
+/* ______________________________________________________________________________ */
+/* Responsividade */
+
+@media screen and (max-width: 800px) {
+
+  /* Header */
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #333;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+  }
+  nav ul li {
+    display: block;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  nav ul li a{
+    color: #fff;
+  }
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  /* Geral */
+  .row {
+    text-align: center;
+  }
+  .col-2, .col-3, .col-4 {
+    flex-basis: 100%;
+  }
+  /* Produto detalhado */
+  .single-product .row {
+    text-align: left;
+  }
+  .single-product .col-2 {
+    padding: 20px 0;
+  }
+  .single-product h1 {
+    font-size: 26px;
+    line-height: 32px;
+    padding-bottom: 20px;
+  }
+  /* Pagamentos */
+  .cart-info p {
+    display: none;
+  }
+
+}

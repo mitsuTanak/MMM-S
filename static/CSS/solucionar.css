@@ -6,25 +6,58 @@
 }
 
 /* Imagem Logo */
-.header{
+/* ______________________________________________________________________________ */
+/* Header */
+
+nav {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+    background-color: #171717;
+    align-items: center;
     text-align: center;
-    padding-right: 15px;
-    padding-left: 15px;
-    width: 100%;
-    
-    background-color: #000c22;
+    padding: 25px 50px;
+
+}
+  
+  
+.menu-itens{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    text-decoration: none;
+    list-style-type: none;
+    align-items: center;
+  
+}
+  
+.header-itens a{
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+  
+}
+  
+.header-itens a:hover{
+    background-color: #005CAA;
+    border-radius: 20px;
+    color: #fff;
+    transition: 0.5s;
+}
+  
+.perfil-icon-header:hover{
+  
+    filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
+  
 }
 
 /* Link para entrar sem login */
 a {
-    text-decoration: none;
+    /* text-decoration: none;
     color: #fff;
-    font-family: "Quicksand";
-    font-size: 17px;
-    padding-right: 50px;
+    font-size: 17px; */
+    /* padding-right: 50px; */
 }
 
 body {

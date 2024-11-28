@@ -86,49 +86,52 @@ p {
 /* Footer */
 
 footer{
+    display: flex;
+    align-items: end;
+    justify-content: end;
     background-color: #000000;
     padding: 50px 0;
-}
-.container-footer{
+  }
+  .container-footer{
     max-width: 1400px;
     padding: 0 4%;
     margin: auto;
-}
-.row-footer{
+  }
+  .row-footer{
     display: flex;
     flex-wrap: wrap;
-}
-.container { 
+  }
+  .container { 
     width: 33%;
     padding: 0 15px; 
-}
-
-.container img{
+   }
+  
+  .container img{
     position: relative;
     
     width: 50%;
-}
-
-.footer-col{
+  }
+  
+  .footer-col{
     
     width: 33%;
     padding: 0 15px; 
   
-}
-.footer-col h4{
+  }
+  .footer-col h4{
     font-size: 22px;
     color: white;
     margin-bottom: 20px;
     font-weight: 500;
     position: relative;
-}
-.footer-col ul{
+  }
+  .footer-col ul{
     list-style: none;
-}
-.footer-col ul li{
+  }
+  .footer-col ul li{
     margin: 10px 0;
-}
-.footer-col ul li a{
+  }
+  .footer-col ul li a{
     font-size: 16px;
     text-transform: capitalize;
     color: white;
@@ -136,15 +139,15 @@ footer{
     font-weight: 300;
     display: block;
     transition: all 0.3s ease;
-}
-.footer-col ul li a:hover{
+  }
+  .footer-col ul li a:hover{
     color: #4198e4;
     padding-left: 10px;
-}
-.footer-col .medias-socias{
+  }
+  .footer-col .medias-socias{
     margin-top: 30px;
-}
-.footer-col .medias-socias a{
+  }
+  .footer-col .medias-socias a{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -156,17 +159,16 @@ footer{
     color: white;
     border: 1px solid white;
     transition: all 0.5s ease;
-}
-.footer-col .medias-socias a i{
+  }
+  .footer-col .medias-socias a i{
     font-size: 20px;
-}
+  }
   
-.footer-col .medias-socias a:hover{
+  .footer-col .medias-socias a:hover{
     color: #005CAA;
     background-color: white;
-}
-
-.footer-col .form-sub input{
+  }
+  .footer-col .form-sub input{
     width: 100%;
     padding: 10px;
     font-size: 15px;
@@ -174,13 +176,11 @@ footer{
     border: 1px solid white;
     color: white;
     background-color: #000000;
-}
-
-.footer-col .form-sub input::placeholder{
+  }
+  .footer-col .form-sub input::placeholder{
     color: white;
-}
-
-.footer-col .form-sub button{
+  }
+  .footer-col .form-sub button{
     width: 100%;
     margin-top: 10px;
     padding: 10px; 
@@ -192,24 +192,84 @@ footer{
     border-radius: 3px;
     font-weight: bold;
     background-color: #005CAA;        
-}
+  }
   
-.footer-col .form-sub button:hover{
+  .footer-col .form-sub button:hover{
     background-color: #00427b; 
     transition: 0.3s;
     
-      
-} 
-
-/* Responsivo */
-@media (max-width: 800px) {
+     
+  } 
+  
+  
+  /* Responsivo */
+  @media (max-width: 800px) {
     .footer-col{
         width: 50%;
         margin-bottom: 30px;
     }
-}
-@media (max-width:600px) {
+  }
+  @media (max-width:600px) {
     .footer-col{
         width: 100%;
     }
-}
+  }
+  
+  /* ______________________________________________________________________________ */
+  /* Responsividade */
+  
+  @media screen and (max-width: 800px) {
+  
+    /* Header */
+    nav ul {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background: #333;
+      width: 100%;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+    nav ul li {
+      display: block;
+      margin-right: 50px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    nav ul li a{
+      color: #fff;
+    }
+    .menu-icon {
+      display: block;
+      cursor: pointer;
+    }
+  
+  }
+  
+  @media screen and (max-width: 600px) {
+    /* Geral */
+    .row {
+      text-align: center;
+    }
+    .col-2, .col-3, .col-4 {
+      flex-basis: 100%;
+    }
+    /* Produto detalhado */
+    .single-product .row {
+      text-align: left;
+    }
+    .single-product .col-2 {
+      padding: 20px 0;
+    }
+    .single-product h1 {
+      font-size: 26px;
+      line-height: 32px;
+      padding-bottom: 20px;
+    }
+    /* Pagamentos */
+    .cart-info p {
+      display: none;
+    }
+  
+  }
+  
