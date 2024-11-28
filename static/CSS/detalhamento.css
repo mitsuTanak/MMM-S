@@ -291,11 +291,9 @@ nav {
 }
 
 button:hover{
-  background-color: #2b3f5fe9;
   transition: 0.2s ease-in-out;
-  color: #fff;
   cursor: pointer;
-  transform: scale(110%);
+
 }
 
 /* Footer */

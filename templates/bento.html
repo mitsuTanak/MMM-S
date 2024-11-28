@@ -36,31 +36,69 @@
         </div>
         <div class="grid-item tamago">
             <h2>Custo Realizado por Setor</h2>
-            <canvas id="sectorChart" width="400" height="400"></canvas>
+            <canvas id="sectorChart" width="200" height="200"></canvas>
+            <script>
+                // Dados fictícios para o gráfico de pizza (substitua conforme necessário)
+                const data = {
+                    labels: ['Automativo', 'Moldes', 'Ferramentas', 'Construção'],
+                    datasets: [{
+                        label: 'Custo por Setor',
+                        data: [300, 150, 200, 100],  // Exemplo de valores
+                        backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'],
+                        hoverOffset: 4
+                    }]
+                };
+
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': R$ ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                };
+
+                // Criação do gráfico
+                const sectorChart = new Chart(
+                    document.getElementById('sectorChart'),
+                    config
+                );
+            </script>
         </div>
         <div class="grid-item pork">
             <h2>Status</h2>
             <form>
                 <label>
-                    <input type="checkbox" name="opcao" 
+                    <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Operando' %} checked {% endif %}>
                     Operando
                 </label>
                 <label>
-                    <input type="checkbox" name="opcao" 
+                    <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Parado' %} checked {% endif %}>
                     Parado
                 </label>
                 <label>
-                    <input type="checkbox" name="opcao" 
+                    <input type="checkbox" name="opcao" disabled 
                            onclick="selecionarUnico(this)"
                            {% if card.status == 'Aguardando Manutenção' %} checked {% endif %}>
                     Aguardando Manutenção
                 </label>
             </form>
         </div>
+        
         <div class="grid-item edamame">
             <img src="{{ card.image_path }}" alt="Imagem da Máquina">
         </div>
@@ -78,16 +116,13 @@
             </div>
             
         </div>
+    
+    </div> 
+    <div class="container_btn">
         <button onclick="window.location.href=`{{ url_for('download_cuidados', card_id=card.id) }}`" class="btn-pdf">
                 Gerar PDF
         </button>
-        
     </div>
-    <script>
-        // Passando a variável do Flask (sector_costs) para JavaScript e convertendo para JSON
-        const sectorCosts = `{{ sector_costs | tojson }}`;
-        console.log(sectorCosts);  // Verifique os dados no console
-    </script>
-    <script src="../static/JS/grafico.js"></script>    
+    
 </body>
 </html>

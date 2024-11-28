@@ -246,6 +246,17 @@ def bento(card_id):
         cursor.execute("SELECT * FROM collection WHERE id = %s", (card_id,))
         card = cursor.fetchone()
 
+        if not card:
+            return "Card não encontrado", 404
+
+        # Converter o status para valores esperados
+        status_mapping = {
+            'operating': 'Operando',
+            'stopped': 'Parado',
+            'waiting': 'Aguardando Manutenção'
+        }
+        card['status'] = status_mapping.get(card['status'], 'Indefinido')
+
         # Calcular o custo total por setor
         cursor.execute("""
             SELECT sector, SUM(price) as total_cost
@@ -254,14 +265,8 @@ def bento(card_id):
         """)
         sector_costs = cursor.fetchall()
 
-        # Verifique se os dados estão sendo recuperados corretamente
-        print("Dados de setor e custo: ", sector_costs)  # Verifique os dados no console
-
         # Transformar os dados em JSON antes de passar para o template
         sector_costs_json = json.dumps(sector_costs)
-
-        if not card:
-            return "Card não encontrado", 404
 
         # Passar os dados para o template
         return render_template('bento.html', card=card, sector_costs=sector_costs_json)
@@ -271,6 +276,7 @@ def bento(card_id):
         return "Erro ao carregar os dados.", 500
     finally:
         cursor.close()
+
 
 @app.route('/download_cuidados/<int:card_id>', methods=['GET'])
 def download_cuidados(card_id):
