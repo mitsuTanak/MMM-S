@@ -42,6 +42,14 @@ def termos():
 def home():
     return render_template("home.html")
 
+@app.route("/detalhes") 
+def detalhes():
+    return render_template("detalhes.html")
+
+@app.route("/visitante") 
+def visitante():
+    return render_template("visitante.html")
+
 @app.route("/sobre") 
 def sobre():
     return render_template("sobre.html")
@@ -79,7 +87,7 @@ def login():
             elif user.role == 'supervisor':
                 return redirect(url_for('supervisor'))
             else:
-                return redirect(url_for('sobre'))
+                return redirect(url_for('visitante'))
 
         flash('E-mail ou senha incorretos', 'error')
         return redirect(url_for('login'))
