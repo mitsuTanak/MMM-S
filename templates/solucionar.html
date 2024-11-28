@@ -49,26 +49,21 @@
 <!-- Formulário -->
     <main >
         <div class="container">
-            <form id="anomalyForm">
+            <form id="anomalyForm" action="/solucionar" method="POST" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Informações da Anomalia</legend>
                     <div class="row">
                         <div>
-                            <label for="planta">Planta:</label>
+                            <label>Setor:</label>
                             <input type="text" id="planta" name="planta">
                         </div>
             
                         <div>
-                            <label for="processo">Processo:</label>
-                            <input type="text" id="processo" name="processo">
-                        </div>
-            
-                        <div>
-                            <label for="tipo">Tipo:</label>
-                            <input type="text" id="tipo" name="tipo">
-                        </div>
-                    </div>
-                </fieldset>
+                            <label>Categoria:</label>
+                            <input type="text" id="tipo">
+                            </div>
+                        </div>  
+                    </fieldset>
                 
                 <fieldset>
                     <legend>Detalhes do Registro</legend>
@@ -100,18 +95,19 @@
                     <div class="content-section">
                         <div class="image-upload">
                             <label for="fotoAntes">Antes:</label>
-                            <input type="file" id="fotoAntes" name="fotoAntes" accept="image/*" onchange="previewImage('fotoAntes', 'previewAntes')">
+                            <input type="file" id="fotoAntes" name="anomaly_image" accept="image/*">
                             <div class="previewplaceholder"><img id="previewAntes" src="#" alt="Pré-visualização Antes" style="display: none;"></div>
                         </div>
                         <div class="text-content">
                             <label for="descricaoProblema">Descrição do problema:</label>
                             <textarea id="descricaoProblema" name="descricaoProblema"></textarea>
-                            <label for="numero">Número:</label>
-                            <input type="text" id="numero" name="numero">
+
+
                             <label for="dataAnomalia">Data:</label>
-                            <input type="date" id="dataAnomalia" name="dataAnomalia">
+                            <input type="date" id="dataAnomalia" name="created_at">
+
                             <label for="descricaoAnomalia">Descrição da Anomalia:</label>
-                            <textarea id="descricaoAnomalia" name="descricaoAnomalia"></textarea>
+                            <textarea id="descricaoAnomalia" name="problem_description"></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -121,23 +117,25 @@
                     <div class="content-section">
                         <div class="image-upload">
                             <label for="fotoDepois">Depois:</label>
-                            <input type="file" id="fotoDepois" name="fotoDepois" accept="image/*" onchange="previewImage('fotoDepois', 'previewDepois')">
+                            <input type="file" id="fotoDepois" name="solution_image" accept="image/*" onchange="previewImage('fotoDepois', 'previewDepois')">
                             <div class="previewplaceholder"><img id="previewDepois" src="#" alt="Pré-visualização Depois" style="display: none;"></div>
                         </div>
-                        <div class="text-content">
+                        <div class="text-content">  
                             <label for="solucaoAdotada">Solução adotada:</label>
-                            <textarea id="solucaoAdotada" name="solucaoAdotada"></textarea>
+                            <textarea id="solucaoAdotada" name="solution"></textarea>
+
                             <label for="custo">Custo:</label>
-                            <input type="text" id="custo" name="custo">
+                            <input type="text" id="custo" name="cost">
+
                             <label for="beneficio">Benefício:</label>
-                            <textarea id="beneficio" name="beneficio"></textarea>
+                            <textarea id="beneficio" name="benefit"></textarea>
                         </div>
                     </div>
                 </fieldset>
                 
                 <div class="buttons">
-                    <button type="button" onclick="salvar()">Salvar</button>
-                    <button type="button" onclick="excluir()">Excluir</button>
+                    <button type="submit">Salvar</button>
+
                     <button type="reset">Limpar</button>
                     <button type="button" onclick="fechar()">Fechar</button>
                 </div>

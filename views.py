@@ -132,6 +132,74 @@ def cadastro():
     # Se for GET, simplesmente renderiza o template
     return render_template("cadastro.html")
 
+# Manutenção
+# Rota para o cadastro de manutenção
+@app.route('/solucionar', methods=['POST'])
+def save_maintenance():
+    data = request.form
+
+    # Depuração: Exibir os dados recebidos no console
+    print("Dados recebidos (form):", data)
+    print("Arquivos recebidos:", request.files)
+
+    # Validação dos campos esperados
+    required_fields = ['machine_id', 'problem_description', 'solution', 'cost']
+    missing_fields = [field for field in required_fields if not data.get(field)]
+
+    if missing_fields:
+        return jsonify({'error': f'Campos obrigatórios ausentes: {", ".join(missing_fields)}'}), 400
+
+    anomaly_image = request.files.get('anomaly_image')
+    solution_image = request.files.get('solution_image')
+
+    # Salvar imagem da anomalia
+    anomaly_image_url = None
+    if anomaly_image and allowed_file(anomaly_image.filename):
+        anomaly_image_filename = secure_filename(anomaly_image.filename)
+        anomaly_image_path = os.path.join(app.config['UPLOAD_FOLDER'], anomaly_image_filename)
+        anomaly_image.save(anomaly_image_path)
+        anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
+
+    # Salvar imagem da solução
+    solution_image_url = None
+    if solution_image and allowed_file(solution_image.filename):
+        solution_image_filename = secure_filename(solution_image.filename)
+        solution_image_path = os.path.join(app.config['UPLOAD_FOLDER'], solution_image_filename)
+        solution_image.save(solution_image_path)
+        solution_image_url = f"/static/uploads/{solution_image_filename}"
+
+    # Salvar os dados da manutenção no banco de dados
+    cursor = mysql.cursor()
+
+    try:
+        cursor.execute(
+            """
+            INSERT INTO maintenance (machine_id, problem_description, anomaly_image, solution, cost, solution_image, benefit)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """,
+            (
+                data['machine_id'],
+                data['problem_description'],
+                anomaly_image_url,
+                data['solution'],
+                data['cost'],
+                solution_image_url,
+                data['benefit']
+            )
+        )
+        mysql.commit()
+
+        response = {'message': 'Maintenance record created successfully'}
+        return jsonify(response)
+    
+    except Exception as e:
+        mysql.rollback()
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        cursor.close()
+
+
 
 # Card
 # _________________________________________________________________________________________________
