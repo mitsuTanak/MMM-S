@@ -85,7 +85,7 @@
     </div>
     <script>
         // Passando a variável do Flask (sector_costs) para JavaScript e convertendo para JSON
-        const sectorCosts = {{ sector_costs | tojson }};
+        const sectorCosts = `{{ sector_costs | tojson }}`;
         console.log(sectorCosts);  // Verifique os dados no console
     </script>
     <script src="../static/JS/grafico.js"></script>    
