@@ -23,7 +23,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename, allowed_extensions=None):
     if allowed_extensions is None:
         allowed_extensions = ALLOWED_EXTENSIONS
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 # Rotas
 @app.route("/cadastrar_manutencao") 
@@ -143,24 +143,24 @@ def save_machine():
 
     # Salvar a imagem
     image_url = None
-    if image and allowed_file(image.filename):
+    if image and allowed_file(image.filename):  # Verifica a imagem
         image_filename = secure_filename(image.filename)
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
         image.save(image_path)
         image_url = f"/static/uploads/{image_filename}"  # Caminho acessível no HTML
 
-    # Salvar o PDF
+   # Salvar o PDF
     pdf_url = None
-    if pdf and allowed_file(pdf.filename, allowed_extensions={'pdf'}):
+    if pdf and allowed_file(pdf.filename, allowed_extensions={'pdf'}):  # Verifica o PDF
         pdf_filename = secure_filename(pdf.filename)
-        pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
-        pdf.save(pdf_path)
+    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
+    try:
+        pdf.save(pdf_path)  # Salva o arquivo PDF no diretório de uploads
         pdf_url = f"/static/uploads/{pdf_filename}"  # Caminho acessível no HTML
+    except Exception as e:
+        print(f"Erro ao salvar o arquivo PDF: {e}")  # Log do erro
 
-    # Adicionar o campo de descrição
-    description = data.get('card-description', None)  # Captura a descrição do formulário, se existir
-
-    # Salvar as informações da máquina no banco de dados (tabela 'collection')
+    # Salvar no banco de dados (adicionando o campo PDF)
     cursor = mysql.cursor()
     try:
         cursor.execute(
@@ -169,24 +169,26 @@ def save_machine():
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (data['card-name'], data['card-model'], data['card-year'], data['card-price'],
-             data['card-sector'], data['card-category'], data['card-status'],
-             data.get('card-description'), image_url, pdf_url)
+            data['card-sector'], data['card-category'], data['card-status'],
+            data.get('card-description'), image_url, pdf_url)  # AQUI, pdf_url sendo passado corretamente
         )
         mysql.commit()
 
-        machine_id = cursor.lastrowid  # Recupera o ID da máquina cadastrada
+        machine_id = cursor.lastrowid
         response = {
             'id': machine_id,
             'image_url': image_url,
+            'pdf_url': pdf_url,  # Incluir a URL do PDF
             'name': data['card-name']
         }
         return jsonify(response)
-
     except Exception as e:
         mysql.rollback()
+        print(f"Erro ao salvar no banco: {e}")
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
+
 
 
 
@@ -217,6 +219,12 @@ def detalhamento(machine_id):
         cursor.execute("SELECT * FROM collection WHERE id = %s", (machine_id,))
         machine = cursor.fetchone()
         if machine:
+            # Gerar o caminho correto para o PDF
+            if machine['pdf_path']:
+                machine['pdf_url'] = url_for('static', filename=f'upload/{machine["pdf_path"]}')
+            else:
+                machine['pdf_url'] = None  # Caso não tenha PDF
+
             return render_template('detalhamento.html', card=machine)
         else:
             return "Máquina não encontrada", 404
@@ -225,6 +233,8 @@ def detalhamento(machine_id):
         return "Erro ao carregar os detalhes.", 500
     finally:
         cursor.close()
+
+
 
 # _______________________________________________________________________________________
 

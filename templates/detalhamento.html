@@ -58,15 +58,22 @@
             <!-- Exibir informações do card -->
             <div class="item full">
                 <div class="desc-title">
-                    <h1>Pontos de lubrificação:</h1>
-                </div>
-                <div class="lubrificacao">
-                    <img src="{{ url_for('static', filename='assets/lubrificacao.png') }}" alt="Lubrificação">
-                </div>
-                <div class="desc-title">
-                    <h1>Tipo de óleo ou graxa utilizados:</h1>
+                    <h1>Alertas !</h1>
+                    <ul class="especificacao">
+                    <li>Sobrecarga de Motor</li>
+                    <li>Vibração Excessiva</li>
+                    <li>Falta ou Insuficiência de Lubrificação</li>
+                    <li>Sobreaquecimento</li>
+                    <li>Desgaste ou Quebra de Ferramentas</li>
+                </ul>
                 </div>
             </div>
+
+            <div class="item full desc">
+            <div class="lubrificacao">
+                <img src="{{ url_for('static', filename='assets/lubrificacao.png') }}" alt="Lubrificação">
+            </div>
+             </div>
 
             <div class="item salmon">
                 <ul class="especificacao">
@@ -98,17 +105,26 @@
                 </div>
             </div>
 
-            <div class="item full">
+            <div class="item fall">
                 <div class="desc-title">
                     <h1>Pontos de atenção e segurança</h1>
                 </div>
                 <ul class="especificacao">
-                    <li><h2>Guias Lineares:</h2></li>
-                    <li><h2>Parafusos de Esfera:</h2></li>
-                    <li><h2>Motores e Eixos:</h2></li>
-                    <li><h2>Cabeçote da Fresadora:</h2></li>
-                    <li><h2>Sistema de Refrigeração:</h2></li>
-                    <li><h2>Correias e Polias:</h2></li>
+                    <li><h2>Manutenção Preventiva:</h2>
+                        <p>Realizar manutenções preventivas regularmente é necessário para evitar falhas inesperadas e prolongar a vida útil da máquina. Isso inclui verificar o alinhamento das peças móveis, a lubrificação de componentes essenciais e o desgaste de peças, como rolamentos e guias. Pequenos ajustes periódicos podem evitar custos elevados com reparos corretivos.</p>
+                    </li>
+                    <li>
+                        <h2>Condições de Operação:</h2>
+                        <p>Manter a máquina em um ambiente limpo e organizado reduz o acúmulo de sujeira e partículas que podem comprometer o funcionamento. Além disso, é crucial que o equipamento opere dentro de suas especificações técnicas, respeitando os limites de peso, velocidade e carga de trabalho, para garantir segurança e proteção nas operações.</p>
+                    </li>
+                    <li>
+                        <h2>Monitoramento do Desempenho:</h2>
+                        <p>A utilização de sistemas de monitoramento é uma prática recomendada para identificar problemas antes que se tornem críticos. Analisar parâmetros como vibração, temperatura e desempenho geral da máquina ajuda a detectar falhas precocemente e a melhorar a eficiência do processo produtivo.</p>
+                    </li>
+                    <li>
+                        <h2>Documentação e Histórico:</h2>
+                        <p>Manter registros detalhados das manutenções, reparos e atualizações realizadas é essencial para acompanhar o histórico da máquina. Essa prática permite identificar problemas recorrentes e traçar estratégias para resolver os de forma definitiva, além de facilitar o planejamento de futuras manutenções.</p>
+                    </li>
                 </ul>
                 <img class="atencao" src="{{ url_for('static', filename='assets/cuidado.png') }}" alt="Atenção">
             </div>
@@ -120,20 +136,14 @@
             <li class="botao">
               <!-- Vão gerar um pdf -->
               <button class="pdf">
-                <a href="{{ card.pdf_url }}" target="_blank">Baixar PDF de Detalhamento</a>
-              </button>
+                <a href="{{  card['pdf_path'] }}" target="_blank">Baixar PDF de Detalhamento</a>
+            </button>            
             </li>
 
             <li class="botao">
               <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
                 Página de Detalhes da Máquina
               </button>
-            </li>
-
-            <li class="botao">
-                <button class="pdf">
-                    Solicitar Manutenção
-                </button>
             </li>
         </ul>
     </div>

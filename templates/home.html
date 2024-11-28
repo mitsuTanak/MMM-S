@@ -75,7 +75,7 @@
     </section>
 
 <!-- Formulário de Modal para cadastrar uma nova máquina -->
-<div id="card-modal" class="modal">
+<div id="card-modal" class="modal" >
   <div class="modal-content">
     <span class="close" onclick="closeCardModal()">&times;</span>
     <h2>Cadastrar Máquina</h2>
@@ -95,10 +95,10 @@
     <label for="card-sector">Setor</label>
     <select id="card-sector" required>
       <option value="">Selecione o Setor</option>
-      <option value="automotivo">Automotivo</option>
+      <option value="automativo">Automotivo</option>
       <option value="moldes">Moldes</option>
       <option value="ferramentas">Ferramentas</option>
-      <option value="construcao">Construção</option>
+      <option value="contrucao">Construção</option>
     </select>
 
     <label for="card-category">Categoria</label>
@@ -126,12 +126,12 @@
     <textarea id="card-description" placeholder=" Descrição da Máquina (opcional)"></textarea>
 
     <label for="card-image">Imagem da Máquina</label>
-    <input type="file" id="card-image" accept="image/*" />
+    <input type="file" id="card-image" name="image" accept=".jpg,.jpeg,.png,.gif" />
 
     <label for="card-pdf">Upload do PDF de Detalhamento</label>
-    <input type="file" id="card-pdf" accept=".pdf" />
+    <input type="file" id="card-pdf" name="pdf" accept=".pdf" />
 
-    <button class="save-button" onclick="saveCard()">Salvar Máquina</button>
+    <button class="save-button" type="submit" onclick="saveCard()">Salvar Máquina</button>
   </div>
 </div>
 

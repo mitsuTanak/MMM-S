@@ -142,7 +142,8 @@ nav {
 .tamago {
   grid-column: span 2;
   grid-row: span 4;
-  background-color: #798eaf;
+  background-color: #02317a;
+  color: white;
 }
 
 .pork {
@@ -152,6 +153,14 @@ nav {
 }
 
 .full {
+  grid-column: span 2;
+  grid-row: span 2;
+  background-color: #02317a;
+  width: 100%;
+  
+}
+
+.fall {
   grid-column: span 4;
   grid-row: span 4;
   background-color: #02317a;
@@ -159,7 +168,7 @@ nav {
   
 }
 
-.full .atencao{
+.fall .atencao{
   height: 100px;
   width: 100px;
   display: flex;
@@ -212,7 +221,13 @@ nav {
   padding: 0; 
   margin: 0; 
 }
+.especificacao p {
+  font-size: 18px ;
+}
 
+.especificacao h2 {
+  font-size: 20px ;
+}
 .especificacao li {
   margin: 30px;
   color: #ffffff; 
@@ -222,18 +237,18 @@ nav {
   display: flex;
   flex-direction: column;
   top: 30%;
-  font-size: 10px;
+  font-size: 18px;
 }
 .especificacao-black li {
   margin: 30px;
-  color: #171717; 
+  color: white; 
   justify-content: center;
   align-items: stretch;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   top: 30%;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .pdf{
@@ -272,6 +287,7 @@ nav {
 
 .botao{
   width: 15%;
+  margin-left: 50px;
 }
 
 button:hover{
