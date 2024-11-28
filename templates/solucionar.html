@@ -31,6 +31,16 @@
           <img src="../static/assets/logo_mundo_senai-removebg-preview.png" alt="logo" width="125px"/>
         </a>
       </div>
+
+      <div class="input-search-header">
+  
+        <button type="submit" class="search-button-header" onclick="applyFilter()">
+          <!-- Campo de busca com o filtro -->
+        <input class="input-header" type="search" placeholder="Pesquisar" id="search-input" />
+          <!-- Ícone de lupa e botão de pesquisa -->
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
       
       <div class="list-header">
         <ul id="MenuItems" class="menu-itens">
@@ -43,7 +53,7 @@
         </ul>
       </div>
     </nav>
-</header>
+  </header>
 
 <!--_________________________________________________________________ -->
 <!-- Formulário -->
@@ -134,10 +144,10 @@
                 </fieldset>
                 
                 <div class="buttons">
-                    <button type="submit">Salvar</button>
+                    <button class="button-2" type="submit">Salvar</button>
 
-                    <button type="reset">Limpar</button>
-                    <button type="button" onclick="fechar()">Fechar</button>
+                    <button class="button-2" type="reset">Limpar</button>
+                    <button class="button-2" type="button" onclick="fechar()">Fechar</button>
                 </div>
             </form>
         </div>

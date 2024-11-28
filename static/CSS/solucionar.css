@@ -5,8 +5,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Imagem Logo */
-/* ______________________________________________________________________________ */
+body {
+    font-family: "Fahkwang", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background-color: #E5E5E5;
+}
+
+/* I______________________________________________________________________________ */
 /* Header */
 
 nav {
@@ -17,11 +23,42 @@ nav {
     align-items: center;
     text-align: center;
     padding: 25px 50px;
-
-}
   
+  }
   
-.menu-itens{
+  .input-search-header{
+  
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Adiciona 5px de espaço entre os itens */
+  
+  }
+  
+  .input-header{
+    width: 300px;
+    border-radius: 20px;
+    height: 35px;
+    width: 500px;
+    padding-left: 10px;
+    background: white;
+    border: none;
+    outline: none;
+  }
+  
+  .search-button-header{
+    background-color:white ; /* Cor de fundo */
+    color: #000; /* Cor do texto/branco do ícone */
+    font-size: 20px; /* Tamanho do ícone */
+    justify-content: flex;
+    align-items: center;
+    padding: 6px 10px; /* Aumenta o tamanho do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 25px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    padding-left: 10px;
+  }
+  
+  .menu-itens{
     display: flex;
     flex-direction: row;
     gap: 15px;
@@ -29,43 +66,32 @@ nav {
     list-style-type: none;
     align-items: center;
   
-}
+  }
   
-.header-itens a{
+  .header-itens a{
     text-decoration: none;
     color: white;
     padding: 10px 15px;
     font-weight: bold;
   
-}
+  }
   
-.header-itens a:hover{
+  .header-itens a:hover{
     background-color: #005CAA;
     border-radius: 20px;
     color: #fff;
     transition: 0.5s;
-}
+  }
   
-.perfil-icon-header:hover{
+  .perfil-icon-header:hover{
   
     filter: invert(42%) sepia(96%) saturate(1500%) hue-rotate(185deg) brightness(95%) contrast(90%);
   
-}
+  }
 
 /* Link para entrar sem login */
-a {
-    /* text-decoration: none;
-    color: #fff;
-    font-size: 17px; */
-    /* padding-right: 50px; */
-}
 
-body {
-    font-family: "Fahkwang", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    background-color: #E5E5E5;
-}
+
 
 main {
     display: flex;
@@ -170,7 +196,7 @@ textarea {
     gap: 10px;
 }
 
-button {
+.button-2 {
     padding: 10px 20px;
     background-color: #4f78a1;
     color: white;
@@ -179,6 +205,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button-2:hover {
     background-color: #3b5a82;
 }
