@@ -142,7 +142,7 @@ def cadastro():
 
 # Manutenção
 # Rota para o cadastro de manutenção
-@app.route('/solucionar', methods=['POST'])
+@app.route('/solucionar', methods=['GET','POST'])
 def save_maintenance():
     data = request.form
 

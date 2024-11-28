@@ -59,19 +59,34 @@
 <!-- Formulário -->
     <main >
         <div class="container">
-            <form id="anomalyForm" action="/solucionar" method="POST" enctype="multipart/form-data">
+            <form id="anomalyForm" method="POST">
                 <fieldset>
+                    
                     <legend>Informações da Anomalia</legend>
                     <div class="row">
+
                         <div>
-                            <label>Setor:</label>
-                            <input type="text" id="planta" name="planta">
+                            <label for="machine-select">Selecione uma Máquina:</label>
+                            <select id="machine-select" name="machine_id" onchange="updateFields()" required>
+                            <option value="">Selecione a Máquina</option>
+                            {% for machine in machines %}
+                                <option value="{{ machine.id }}" 
+                                        data-sector="{{ machine.sector }}" 
+                                        data-category="{{ machine.category }}">
+                                    {{ machine.machine_name }}
+                                </option>
+                            {% endfor %}
+                    </select>
+                        </div>
+                        <div>
+                            <label for="setor">Setor:</label>
+                            <input type="text" id="setor" name="setor" readonly>
                         </div>
             
                         <div>
-                            <label>Categoria:</label>
-                            <input type="text" id="tipo">
-                            </div>
+                            <label for="categoria">Categoria:</label>
+                            <input type="text" id="categoria" name="categoria" readonly>
+                        </div>
                         </div>  
                     </fieldset>
                 

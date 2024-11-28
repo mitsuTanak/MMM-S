@@ -27,3 +27,14 @@ function previewImage(inputId, imgId) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+function updateFields() {
+    const select = document.getElementById('machine-select');
+    const selectedOption = select.options[select.selectedIndex];
+
+    const setor = selectedOption.getAttribute('data-sector');
+    const categoria = selectedOption.getAttribute('data-category');
+
+    document.getElementById('setor').value = setor;
+    document.getElementById('categoria').value = categoria;
+}
