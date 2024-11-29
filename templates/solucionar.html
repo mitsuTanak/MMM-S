@@ -100,22 +100,22 @@
                     <div class="row">
                         <div>
                             <label for="abertoPor">Aberto por:</label>
-                            <input type="text" id="abertoPor" name="abertoPor">
+                            <input type="text" id="abertoPor" name="abertoPor" required>
                         </div>
             
                         <div>
                             <label for="data">Data:</label>
-                            <input type="date" id="data" name="data">
+                            <input type="date" id="data" name="data" required>
                         </div>
             
                         <div>
                             <label for="responsavel">Responsável:</label>
-                            <input type="text" id="responsavel" name="responsavel">
+                            <input type="text" id="responsavel" name="responsavel" required>
                         </div>
             
                         <div>
                             <label for="status">Status:</label>
-                            <input type="text" id="status" name="status">
+                            <input type="text" id="status" name="status" required>
                         </div>
                     </div>
                 </fieldset>
@@ -125,7 +125,7 @@
                     <div class="content-section">
                         <div class="image-upload">
                             <label for="fotoAntes">Antes:</label>
-                            <input type="file" id="fotoAntes" name="anomaly_image" accept="image/*">
+                            <input type="file" id="fotoAntes" name="anomaly_image" accept="image/*" onchange="previewImage('fotoAntes', 'previewAntes')">
                             <div class="previewplaceholder"><img id="previewAntes" src="#" alt="Pré-visualização Antes" style="display: none;"></div>
                         </div>
                         <div class="text-content">
@@ -171,49 +171,6 @@
                 </div>
             </form>
         </div>
-
-        <script>
-            function updateFields() {
-                const select = document.getElementById('machine-select');
-                const selectedOption = select.options[select.selectedIndex];
-                const sector = selectedOption.getAttribute('data-sector');
-                const category = selectedOption.getAttribute('data-category');
-                
-                document.getElementById('setor').value = sector || '';
-                document.getElementById('categoria').value = category || '';
-            }
-        </script>
-
-        <script>
-            function previewImage(inputId, previewId) {
-                const input = document.getElementById(inputId);
-                const preview = document.getElementById(previewId);
-                
-                if (input.files && input.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-        }
-        </script>
-
-        <script>
-            document.getElementById('anomalyForm').addEventListener('submit', function(e) {
-                const machineSelect = document.getElementById('machine-select').value;
-                const problemDescription = document.getElementById('descricaoAnomalia').value;
-                
-                if (!machineSelect || !problemDescription) {
-                    alert('Por favor, preencha todos os campos obrigatórios.');
-                    e.preventDefault();  // Evita o envio do formulário
-                }
-            });
-        </script>
-    
-    
-            
 
         <script src="../static/JS/solucionar.js"></script>
         

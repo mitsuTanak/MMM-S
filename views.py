@@ -153,18 +153,12 @@ def cadastro():
 @app.route('/solucionar', methods=['GET', 'POST'])
 def save_maintenance():
     data = request.form
-    print("Dados recebidos (form):", data)
-    print("Arquivos recebidos:", request.files)
 
     required_fields = ['problem_description', 'solution', 'cost']
     missing_fields = [field for field in required_fields if not data.get(field)]
 
-    if missing_fields:
-        return jsonify({'error': f'Campos obrigatórios ausentes: {", ".join(missing_fields)}'}), 400
-
     anomaly_image = request.files.get('anomaly_image')
     solution_image = request.files.get('solution_image')
-
     anomaly_image_url, solution_image_url = None, None
 
     if anomaly_image and allowed_file(anomaly_image.filename):
@@ -174,7 +168,8 @@ def save_maintenance():
             anomaly_image.save(anomaly_image_path)
             anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
         except Exception as e:
-            return jsonify({'error': f'Erro ao salvar imagem da anomalia: {str(e)}'}), 500
+            flash({'error': f'Erro ao salvar imagem da anomalia: {str(e)}'})
+            return redirect(url_for('save_maintenance'))
 
     if solution_image and allowed_file(solution_image.filename):
         try:
@@ -183,7 +178,8 @@ def save_maintenance():
             solution_image.save(solution_image_path)
             solution_image_url = f"/static/uploads/{solution_image_filename}"
         except Exception as e:
-            return jsonify({'error': f'Erro ao salvar imagem da solução: {str(e)}'}), 500
+            flash({'error': f'Erro ao salvar imagem da solução: {str(e)}'})
+            return redirect(url_for('save_machine'))
 
     cursor = mysql.cursor()
 
@@ -202,11 +198,13 @@ def save_maintenance():
             )
         )
         mysql.commit()
-        return jsonify({'message': 'Maintenance record created successfully'}), 201
+        flash({'message': 'Maintenance record created successfully'})
+        return redirect(url_for('save_maintenance'))
 
     except Exception as e:
         mysql.rollback()
-        return jsonify({'error': f'Erro ao inserir no banco de dados: {str(e)}'}), 500
+        flash({'error': f'Erro ao inserir no banco de dados: {str(e)}'})
+        return redirect(url_for('save_maintenance'))
 
     finally:
         cursor.close()
@@ -433,3 +431,27 @@ def download_cuidados(card_id):
     
     except FileNotFoundError:
         return "Arquivo cards.json não encontrado", 404
+
+# Gráfico
+# Importa os dados do custo de manutenção
+@app.route('/api/maintenance-costs')
+def get_maintenance_costs():
+    cursor = mysql.cursor()
+    try:
+        # Exemplo de consulta que agrupa custos por setor
+        query = """
+            SELECT sector, SUM(cost) as total_cost
+            FROM maintenance
+            INNER JOIN machines ON maintenance.machine_id = machines.id
+            GROUP BY sector
+        """
+        cursor.execute(query)
+        results = cursor.fetchall()
+        
+        # Formatar os resultados em JSON
+        data = [{'sector': row[0], 'total_cost': row[1]} for row in results]
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
