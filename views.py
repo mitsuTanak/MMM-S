@@ -150,16 +150,13 @@ def cadastro():
 
 # Manutenção
 # Rota para o cadastro de manutenção
-@app.route('/solucionar', methods=['GET','POST'])
+@app.route('/solucionar', methods=['GET', 'POST'])
 def save_maintenance():
     data = request.form
-
-    # Depuração: Exibir os dados recebidos no console
     print("Dados recebidos (form):", data)
     print("Arquivos recebidos:", request.files)
 
-    # Validação dos campos esperados
-    required_fields = ['machine_id', 'problem_description', 'solution', 'cost']
+    required_fields = ['problem_description', 'solution', 'cost']
     missing_fields = [field for field in required_fields if not data.get(field)]
 
     if missing_fields:
@@ -168,52 +165,52 @@ def save_maintenance():
     anomaly_image = request.files.get('anomaly_image')
     solution_image = request.files.get('solution_image')
 
-    # Salvar imagem da anomalia
-    anomaly_image_url = None
+    anomaly_image_url, solution_image_url = None, None
+
     if anomaly_image and allowed_file(anomaly_image.filename):
-        anomaly_image_filename = secure_filename(anomaly_image.filename)
-        anomaly_image_path = os.path.join(app.config['UPLOAD_FOLDER'], anomaly_image_filename)
-        anomaly_image.save(anomaly_image_path)
-        anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
+        try:
+            anomaly_image_filename = secure_filename(anomaly_image.filename)
+            anomaly_image_path = os.path.join(app.config['UPLOAD_FOLDER'], anomaly_image_filename)
+            anomaly_image.save(anomaly_image_path)
+            anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
+        except Exception as e:
+            return jsonify({'error': f'Erro ao salvar imagem da anomalia: {str(e)}'}), 500
 
-    # Salvar imagem da solução
-    solution_image_url = None
     if solution_image and allowed_file(solution_image.filename):
-        solution_image_filename = secure_filename(solution_image.filename)
-        solution_image_path = os.path.join(app.config['UPLOAD_FOLDER'], solution_image_filename)
-        solution_image.save(solution_image_path)
-        solution_image_url = f"/static/uploads/{solution_image_filename}"
+        try:
+            solution_image_filename = secure_filename(solution_image.filename)
+            solution_image_path = os.path.join(app.config['UPLOAD_FOLDER'], solution_image_filename)
+            solution_image.save(solution_image_path)
+            solution_image_url = f"/static/uploads/{solution_image_filename}"
+        except Exception as e:
+            return jsonify({'error': f'Erro ao salvar imagem da solução: {str(e)}'}), 500
 
-    # Salvar os dados da manutenção no banco de dados
     cursor = mysql.cursor()
 
     try:
         cursor.execute(
             """
-            INSERT INTO maintenance (machine_id, problem_description, anomaly_image, solution, cost, solution_image, benefit)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO maintenance (problem_description, anomaly_image, solution, cost, solution_image)
+            VALUES (%s, %s, %s, %s, %s)
             """,
             (
-                data['machine_id'],
                 data['problem_description'],
                 anomaly_image_url,
                 data['solution'],
                 data['cost'],
                 solution_image_url,
-                data['benefit']
             )
         )
         mysql.commit()
+        return jsonify({'message': 'Maintenance record created successfully'}), 201
 
-        response = {'message': 'Maintenance record created successfully'}
-        return jsonify(response)
-    
     except Exception as e:
         mysql.rollback()
-        return jsonify({'error': str(e)}), 500
-    
+        return jsonify({'error': f'Erro ao inserir no banco de dados: {str(e)}'}), 500
+
     finally:
         cursor.close()
+
 
 
 
