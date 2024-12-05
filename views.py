@@ -449,7 +449,6 @@ def get_maintenance_costs():
         query = """
             SELECT sector, SUM(cost) AS total_cost
             FROM maintenance 
-
             GROUP BY sector
         """
         cursor.execute(query)
