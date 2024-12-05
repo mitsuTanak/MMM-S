@@ -190,14 +190,16 @@ def save_maintenance():
         try:
             cursor.execute(
                 """
-                INSERT INTO maintenance (problem_description, anomaly_image, solution, cost, solution_image)
-                VALUES (%s, %s, %s, %s, %s)
+                INSERT INTO maintenance (problem_description, anomaly_image, solution, cost, sector, category, solution_image)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
                     data['problem_description'],
                     anomaly_image_url,
                     data['solution'],
                     data['cost'],
+                    data['sector'],
+                    data['category'],
                     solution_image_url,
                 )
             )
@@ -442,22 +444,22 @@ def download_cuidados(card_id):
 # Importa os dados do custo de manutenção
 @app.route('/api/maintenance-costs')
 def get_maintenance_costs():
-    cursor = mysql.cursor()
+    cursor = mysql.cursor(dictionary=True)  # Usa dictionary=True para mapear resultados em dict diretamente
     try:
-        # Exemplo de consulta que agrupa custos por setor
         query = """
-            SELECT sector, SUM(cost) as total_cost
-            FROM maintenance
-            INNER JOIN machines ON maintenance.machine_id = machines.id
+            SELECT sector, SUM(cost) AS total_cost
+            FROM maintenance 
+
             GROUP BY sector
         """
         cursor.execute(query)
         results = cursor.fetchall()
-        
-        # Formatar os resultados em JSON
-        data = [{'sector': row[0], 'total_cost': row[1]} for row in results]
-        return jsonify(data)
+
+        return jsonify(results)  # Retorna diretamente a lista de dicionários
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
     finally:
         cursor.close()
+
