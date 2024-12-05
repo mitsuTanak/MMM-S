@@ -26,9 +26,9 @@ def allowed_file(filename, allowed_extensions=None):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 # Rotas
-@app.route("/cadastrar_manutencao") 
-def solucionar():
-    return render_template("solucionar.html")
+# @app.route("/cadastrar_manutencao") 
+# def solucionar():
+#     return render_template("solucionar.html")
 
 @app.route("/politica") 
 def politica():
@@ -150,64 +150,70 @@ def cadastro():
 
 # Manutenção
 # Rota para o cadastro de manutenção
-@app.route('/solucionar', methods=['GET', 'POST'])
+@app.route('/cadastrar_manutencao', methods=['GET', 'POST'])
 def save_maintenance():
-    data = request.form
+    if request.method == 'POST':
+        data = request.form
+        required_fields = ['problem_description', 'solution', 'cost']
+        missing_fields = [field for field in required_fields if not data.get(field)]
 
-    required_fields = ['problem_description', 'solution', 'cost']
-    missing_fields = [field for field in required_fields if not data.get(field)]
-
-    anomaly_image = request.files.get('anomaly_image')
-    solution_image = request.files.get('solution_image')
-    anomaly_image_url, solution_image_url = None, None
-
-    if anomaly_image and allowed_file(anomaly_image.filename):
-        try:
-            anomaly_image_filename = secure_filename(anomaly_image.filename)
-            anomaly_image_path = os.path.join(app.config['UPLOAD_FOLDER'], anomaly_image_filename)
-            anomaly_image.save(anomaly_image_path)
-            anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
-        except Exception as e:
-            flash({'error': f'Erro ao salvar imagem da anomalia: {str(e)}'})
+        if missing_fields:
+            flash(f'Erro: Campos obrigatórios ausentes: {", ".join(missing_fields)}', 'error')
             return redirect(url_for('save_maintenance'))
 
-    if solution_image and allowed_file(solution_image.filename):
+        anomaly_image = request.files.get('anomaly_image')
+        solution_image = request.files.get('solution_image')
+        anomaly_image_url, solution_image_url = None, None
+
+        if anomaly_image and allowed_file(anomaly_image.filename):
+            try:
+                anomaly_image_filename = secure_filename(anomaly_image.filename)
+                anomaly_image_path = os.path.join(app.config['UPLOAD_FOLDER'], anomaly_image_filename)
+                anomaly_image.save(anomaly_image_path)
+                anomaly_image_url = f"/static/uploads/{anomaly_image_filename}"
+            except Exception as e:
+                flash(f'Erro ao salvar imagem da anomalia: {str(e)}', 'error')
+                return redirect(url_for('save_maintenance'))
+
+        if solution_image and allowed_file(solution_image.filename):
+            try:
+                solution_image_filename = secure_filename(solution_image.filename)
+                solution_image_path = os.path.join(app.config['UPLOAD_FOLDER'], solution_image_filename)
+                solution_image.save(solution_image_path)
+                solution_image_url = f"/static/uploads/{solution_image_filename}"
+            except Exception as e:
+                flash(f'Erro ao salvar imagem da solução: {str(e)}', 'error')
+                return redirect(url_for('save_maintenance'))
+
+        cursor = mysql.cursor()
+
         try:
-            solution_image_filename = secure_filename(solution_image.filename)
-            solution_image_path = os.path.join(app.config['UPLOAD_FOLDER'], solution_image_filename)
-            solution_image.save(solution_image_path)
-            solution_image_url = f"/static/uploads/{solution_image_filename}"
-        except Exception as e:
-            flash({'error': f'Erro ao salvar imagem da solução: {str(e)}'})
-            return redirect(url_for('save_machine'))
-
-    cursor = mysql.cursor()
-
-    try:
-        cursor.execute(
-            """
-            INSERT INTO maintenance (problem_description, anomaly_image, solution, cost, solution_image)
-            VALUES (%s, %s, %s, %s, %s)
-            """,
-            (
-                data['problem_description'],
-                anomaly_image_url,
-                data['solution'],
-                data['cost'],
-                solution_image_url,
+            cursor.execute(
+                """
+                INSERT INTO maintenance (problem_description, anomaly_image, solution, cost, solution_image)
+                VALUES (%s, %s, %s, %s, %s)
+                """,
+                (
+                    data['problem_description'],
+                    anomaly_image_url,
+                    data['solution'],
+                    data['cost'],
+                    solution_image_url,
+                )
             )
-        )
-        mysql.commit()
-        flash({'message': 'Maintenance record created successfully'})
-        return redirect(url_for('save_maintenance'))
+            mysql.commit()
+            flash('Registro de manutenção criado com sucesso!', 'success')
+            return redirect(url_for('save_maintenance'))
 
-    except Exception as e:
-        mysql.rollback()
-        flash({'error': f'Erro ao inserir no banco de dados: {str(e)}'})
-        return redirect(url_for('save_maintenance'))
+        except Exception as e:
+            mysql.rollback()
+            flash(f'Erro ao inserir no banco de dados: {str(e)}', 'error')
+            return redirect(url_for('save_maintenance'))
 
-    finally:
-        cursor.close()
+        finally:
+            cursor.close()
+
+    return render_template("solucionar.html")
 
 
 
