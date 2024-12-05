@@ -1,207 +1,536 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-@font-face {
-    font-family: Istok Web;
-    src: url();
-}
-
-* {
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand";
-   
-}
-body{
-    font-family: "Poppins", sans-serif;
-    
-    background-color: #010d11;
-}
-.banner {
-    width: 100%;
-    display: block;
-}
-
-img, p{
-    z-index: 2;
-}
-
-/* Sobre */
-ul {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #010d11;
-    list-style: none;
-    margin-top: 0;
-    height: 600px;
-    position: relative;
-    z-index: 1; 
-    /* overflow: hidden; */
-}
-
-li {
-    margin: 50px;
-}
-
-.mmms, .senai {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    color: white;
-    text-align: center;
-    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #141515; /* Fundo da página */
+    color: white; /* Cor padrão do texto */
 }
 
-.img-mmms {
-    margin-bottom: 95px;
+/* Animação de entrada */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px); /* Começa com o elemento um pouco abaixo */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-p {
-    font-size: 25px;
-    font-family: "Quicksand";
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0); /* O elemento vai voltar para a posição original */
 }
 
-.linha-vertical {
-    width: 20px; 
-    height: 90%; 
-    background: linear-gradient(to bottom, #010d11, #404648, #4d5558, #404648, #010d11); 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Corrige o alinhamento da linha */
-}
 
-.container-sobre-nos {
-    position: relative;
-    overflow: hidden; 
-    margin-bottom: 50px;
-}
 
-.circulo {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background-color: #4d555871;
-    position: absolute;
-    z-index: 1; /* Garante que os círculos fiquem atrás do conteúdo */
-}
-
-#circulo-1 {
-    top: 60%;
-    left: -150px; /* Posiciona o primeiro círculo à esquerda */
-}
-
-#circulo-2 {
-    top: -20%;
-    right: -150px; /* Posiciona o segundo círculo à direita */
-
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.mmms, .senai {
-    margin-left: 50px;
-}
-
-/* ___________________________________________ */
-/* Tabs*/
-
-.container-tabs{
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.tab-buttons{
+/* Cabeçalho */
+header {
     display: flex;
-    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: black; /* Fundo preto do cabeçalho */
+    height: 70px;
+    overflow: hidden;
+
+
 }
 
-.tab-btn{
-    width: 100%;
+
+/* Logo */
+.logo img {
+    height: 100px; /* Altura ajustável para a logo */
+    max-height: 100%;
+    width: auto; /* Largura automática para manter a proporção */
+    margin-left: 20px;
+}
+
+
+/* Container da barra de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0 20px; /* Espaçamento lateral */
+}
+
+
+/* Barra de pesquisa */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px; /* Bordas arredondadas */
     border: none;
-    color: #010d11;
-    background-color: #4d5558;
-    border-radius: 8px 8px 0px 0px;
+    padding: 5px 10px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+}
+
+
+/* Campo de pesquisa */
+.search-bar input {
     padding: 8px;
-    cursor: pointer;
-    transition: background-color .3s ease;
-    font-family: "titillium-web", sans-serif;
-    font-size: larger;
-    font-style: normal;
-}
-
-.tab-btn.active {
-    background-color: #d9d9d9;
-}
-
-.tabs-contents {
-    position: relative; /* Ajuste importante para sobreposição */
-}
-
-/* .content{
-    display: flex;
-    flex-wrap: wrap;
-} */
-
-.content {
-    display: none; /* Esconde os conteúdos */
-    position: absolute; /* Posiciona cada conteúdo sobreposto */
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-.content.show{
-    display: flex;
-    gap:14px;
-    background-color: #d9d9d9;
-    border-radius: 0px 0px 8px 8px;
-    padding: 16px;
-}
-
-.foto{
-    padding: 50px 30px;
-    margin-left: 75px;
-    width: 40%;
-    align-items: center;
-    text-align: center;
-}
-
- .infos{
-    padding: 40px 5px;
-    margin-left: 130px;
-    text-align: center;
-    align-items: center;
-    width: 40%;
+    width: 600px; /* Aumenta a largura da barra de pesquisa */
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    outline: none; /* Remove o contorno ao clicar */
+    margin-right: 50px; /* Aumenta um pouco no lado direito */
    
 }
-.content-title{
-    font-family: "titillium-web", sans-serif;
-    font-weight: 400;
-    font-style: normal;
 
+
+/* Botão da lupa */
+.search-bar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px;
 }
-.content-description{
-    margin-top: 20px;
+
+
+.search-bar .search-btn i {
+    color: black; /* Cor da lupa */
+    font-size: 16px;
+}
+
+
+/* Menu links */
+.menu {
+    display: flex;
     align-items: center;
-    text-align: justify;
+    margin-left: -20px; /* Reduz a distância entre a barra de pesquisa e os títulos */
 }
-  /* Responsivo */
-  @media (max-width: 800px) {
-    .footer-col{
-        width: 50%;
-        margin-bottom: 30px;
-    }
-  }
-  @media (max-width:600px) {
-    .footer-col{
-        width: 100%;
-    }
-  }
+
+
+.menu a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+
+/* Ícone do usuário */
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Tamanho do círculo */
+    height: 40px; /* Tamanho do círculo */
+    border-radius: 50%; /* Forma circular */
+    border: 2px solid white; /* Borda branca */
+    cursor: pointer; /* Indicação de que é clicável */
+    margin-left: 20px; /* Espaçamento do ícone de usuário */
+    background-color: transparent; /* Remover fundo se não necessário */
+}
+
+
+.user-icon i {
+    color: white; /* Cor do ícone */
+    font-size: 28px; /* Ajuste de tamanho do ícone */
+    margin: 0; /* Garante que o ícone não tenha margem */
+    padding: 0; /* Garante que o ícone não tenha padding */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+
+/* Foto da equipe */
+.team-photo {
+    width: 100%; /* Garante que ocupe toda a largura */
+    height: 500px; /* Ajuste a altura para um valor menor */
+    background-size: cover; /* Ajuste a imagem para cobrir toda a área */
+    margin-bottom: 20px; /* Espaço abaixo do banner */
+}
+
+
+.team-photo img {
+    width: 100%; /* Garante que a imagem ocupe toda a largura */
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 500px; /* Limita a altura da imagem */
+    object-fit: cover; /* Ajusta a imagem sem distorção */
+}
+
+
+/* Conteúdo principal */
+main {
+    flex: 1; /* Faz o conteúdo principal crescer para ocupar o espaço */
+}
+
+
+.main-content {
+    padding: 20px;
+    margin-left: 0;
+    margin-right: 0; /* Centraliza o conteúdo na tela */
+}
+
+
+.main-content h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+
+.fitinha {
+    background-color: white;
+    height: 2px;
+    width: 12%;
+    margin: 0 auto;
+    margin-top: -20px;
+}
+
+
+/* Estilo das seções principais */
+.section {
+    margin-bottom: 40px; /* Espaçamento entre as seções */
+}
+
+
+/* Fundo azul para a seção "Sobre o Senai" */
+.sobre-senai {
+    background-color: #798EAF; /* Cor de fundo azul */
+    padding: 20px; /* Espaçamento interno */
+    color: white; /* Cor do texto */
+    width: 100%; /* Garante que cubra toda a largura */
+    margin: 0; /* Remove qualquer margem externa */
+    box-sizing: border-box; /* Inclui padding no tamanho */
+}
+
+
+
+
+/* Estilo do texto dentro do fundo azul */
+.sobre-senai h2,
+.sobre-senai p {
+    margin: 0; /* Remove espaçamento extra */
+    line-height: 1.6; /* Espaçamento entre linhas */
+    text-align: left; /* Mantém o alinhamento do texto à esquerda */
+}
+
+
+.section p {
+    font-size: 18px;
+    line-height: 1.6; /* Espaçamento entre as linhas */
+}
+
+
+/* Wrapper para conteúdo principal */
+.content-wrapper {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que a página tenha altura total */
+}
+
+
+/* Equipe */
+.team-members {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 25px;
+    flex-grow: 1; /* Faz o conteúdo expandir para ocupar espaço */
+}
+
+
+/* Colunas esquerda e direita */
+.team-left, .team-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduz o espaço entre os cartões na mesma coluna */
+    width: 48%; /* Adicionei uma largura para evitar o afastamento excessivo */
+}
+
+
+/* Cartão de cada membro */
+.member-card {
+    flex-wrap: wrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #1e1e1e;
+    padding: 20px;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to right, #02317A, #798EAF);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: 10px auto;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Efeito de hover: muda a cor para vermelho e eleva o card */
+.member-card:hover {
+    background: linear-gradient(to right, #800101, #9a0707); /* Cor vermelha */
+    transform: translateY(-10px); /* Eleva o card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilo da informação do membro dentro do card */
+.member-info h3 {
+    color: white;  /* Cor do texto para contraste */
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Ícone do LinkedIn */
+.linkedin-icon {
+    color: white; /* Cor do ícone */
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* Ícone do LinkedIn ao passar o mouse: muda a cor */
+.member-card:hover .linkedin-icon {
+    color: #f39c12; /* Cor amarela ao passar o mouse */
+}
+
+
+.foto-gabi, .foto-isinha, .foto-livia, .foto-pedro, .foto-raphael, .foto-samuel, .foto-shopia, .foto-vitor {
+    width: 150px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 0;
+    position: absolute;
+    top: 50%;
+    left: -0px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+
+
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 170px;
+    position: relative;
+}
+
+
+.member-info h3 {
+    margin: 0;
+    font-size: 18px;
+    text-align: left; /* Nome alinhado à esquerda */
+    color: #ffffff;
+    margin-top: -5px;
+}
+
+
+.linkedin-icon {
+    margin-top: 35px;
+    color: #dedede;
+    font-size: 15px;
+    text-decoration: none;
+    border: 2px solid #dedede;
+    width: 25px;
+    height: 25px;
+    display: flex;  
+    justify-content: center; /* Centraliza o ícone horizontalmente */
+    align-items: center; /* Centraliza o ícone verticalmente */
+    border-radius: 5px;
+    background-color: transparent;
+   
+}
+
+
+.linkedin-icon:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+
+.content-wrapper {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+/* Reseta margens e espaçamentos */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Impede rolagem horizontal */
+    box-sizing: border-box;
+}
+
+
+/* Rodapé */
+.footer {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: 100%;
+    padding: 20px 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* Container do rodapé */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
+/* Logo do rodapé */
+.footer-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 2px;
+}
+
+
+/* Logo SENAI */
+.senai-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+
+/* Logo MMMS */
+.mms-logo {
+    width: 130px;
+    height: auto;
+}
+
+
+.footer-info {
+    padding: 0 5px;
+    margin: 0;
+}
+
+
+/* Informações */
+.footer-info h3 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.footer-info ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+.footer-info ul li {
+    margin-bottom: 8px;
+    margin-left: 0;
+}
+
+
+.footer-info ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+.footer-info ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Formulário de contato */
+.footer-contact h3 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* Botão "Digite meu e-mail" */
+.contact-input {
+    width: 300px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+}
+
+
+/* Botão "Enviar" */
+.contact-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+
+/* Efeito de hover no botão "Enviar" */
+.contact-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Redes sociais */
+.social-icons {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+
+.icon {
+    margin-right: 5px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 6px;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+
+/* Cor dos ícones ao passar o mouse */
+.icon:hover {
+    color: #007bff;
+    border-color: #007bff;
+}
