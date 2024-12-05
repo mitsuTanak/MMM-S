@@ -59,7 +59,7 @@
 <!-- Formulário -->
     <main >
         <div class="container">
-            <form id="anomalyForm" method="POST" action="/solucionar" enctype="multipart/form-data">
+            <form id="anomalyForm" method="POST" action="{{ url_for('save_maintenance') }}" enctype="multipart/form-data">
                 <fieldset>
                     
                     <legend>Informações da Anomalia</legend>

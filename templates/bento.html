@@ -42,6 +42,8 @@
                     try {
                         const response = await fetch('/api/maintenance-costs');
                         const data = await response.json();
+
+                        console.log('Dados recebidos:', data);
             
                         // Verificar se há erro
                         if (data.error) {
@@ -52,6 +54,9 @@
                         // Extrair labels e dados
                         const labels = data.map(item => item.sector);
                         const costs = data.map(item => item.total_cost);
+
+                        console.log('Labels:', labels);  // Verifique os labels
+                        console.log('Custos:', costs); 
             
                         // Configurar gráfico com dados do banco
                         const chartData = {
