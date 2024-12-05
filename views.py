@@ -304,7 +304,8 @@ def detalhamento(machine_id):
             else:
                 machine['pdf_url'] = None  # Caso não tenha PDF
 
-            return render_template('detalhamento.html', card=machine)
+            # Passa o papel do usuário para o template
+            return render_template('detalhamento.html', card=machine, user_role=getattr(current_user, 'role', 'visitor'))
         else:
             return "Máquina não encontrada", 404
     except Exception as e:
@@ -312,7 +313,6 @@ def detalhamento(machine_id):
         return "Erro ao carregar os detalhes.", 500
     finally:
         cursor.close()
-
 
 
 # _______________________________________________________________________________________

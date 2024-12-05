@@ -45,7 +45,7 @@
               <li class="header-itens"><a href="/home">Home</a></li>
               <li class="header-itens"><a href="/sobre">Sobre Nós</a></li>
   
-              <a href="../../templates/login.html">
+              <a href="/">
                 <img src="../../static/assets/perfil-icon.png" alt="logo" width="50px" class="perfil-icon-header"/>
               </a>
             </ul>
@@ -132,21 +132,25 @@
     </div>
 
     <div class="button">
-        <ul>
-            <li class="botao">
-              <!-- Vão gerar um pdf -->
+      <ul>
+          <li class="botao">
+              <!-- Botão para baixar o PDF -->
               <button class="pdf">
-                <a href="{{  card['pdf_path'] }}" target="_blank">Baixar PDF de Detalhamento</a>
-            </button>            
-            </li>
-
-            <li class="botao">
-              <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
-                Página de Detalhes da Máquina
+                  <a href="{{ card['pdf_path'] }}" target="_blank">Baixar PDF de Detalhamento</a>
               </button>
-            </li>
-        </ul>
-    </div>
+          </li>
+  
+          <!-- Botão para a página de detalhes, visível apenas para usuários não visitantes -->
+          {% if user_role != 'visitor' %}
+          <li class="botao">
+              <button onclick="window.location.href=`{{ url_for('bento', card_id=card['id']) }}`;" class="pdf">
+                  Página de Detalhes da Máquina
+              </button>
+          </li>
+          {% endif %}
+      </ul>
+  </div>
+  
 
     <footer>
       <div class="container-footer">
