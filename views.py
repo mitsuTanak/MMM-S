@@ -378,60 +378,56 @@ def download_cuidados(card_id):
         # Criar o PDF
         pdf_path = f"static/uploads/cuidados_{card_id}.pdf"
         c = canvas.Canvas(pdf_path, pagesize=letter)
-        c.setFont("Helvetica-Bold", 14)
+        c.setFont("Helvetica", 12)
 
         # Título
+        c.setFont("Helvetica-Bold", 16)
         c.drawString(200, 770, "FICHA DE MÁQUINAS E EQUIPAMENTOS")
 
-        # Cabeçalho da ficha
-        c.setFont("Helvetica", 15)
-        c.drawString(50, 740, f"Denominação: {card['name']}")
-        c.drawString(300, 740, f"Marca/Modelo: {card['model']}")
-        c.drawString(50, 720, f"Nº de Série: {card.get('serial_number', 'N/A')}")
-        c.drawString(300, 720, f"Ano de Fabricação: {card['year']}")
-        c.drawString(50, 700, f"Seção: {card['sector']}")
-        c.drawString(300, 700, f"Categoria: {card['category']}")
+        # Desenhando a linha
+        c.line(50, 765, 550, 765)
 
-        # Descrição e status
-        c.drawString(50, 680, f"Status: {card['status']}")
-        c.drawString(50, 660, f"Descrição: {card.get('description', 'Sem descrição')}")
-
-        # Tabela de acessórios e implementos (exemplo fictício)
-        c.drawString(50, 630, "Acessórios e Implementos:")
-        accessories = [
-            ["Denominação", "Aplicação", "Características"],
-            ["Placa Universal", "Fixação de Peça", "8''"],
-            ["Luneta Fixa", "Usinagem de Peça", "10''"],
-            ["Jogo de Engrenagens", "Abertura de Rosca", "40-128 Dentes"]
+        # Tabela com informações da máquina/equipamento
+        data = [
+            ["Máquina ou Equipamento", f"{card['name']} | {card['model']}"],
+            ["NI", f"{card['year']}", "Ano de Fabricação", f"{card['year']}"],
+            ["Setor", f"{card['sector']}"]
         ]
-
-        table = Table(accessories, colWidths=[150, 200, 100])
+        
+        table = Table(data, colWidths=[200, 200, 150, 150])
         table.setStyle(TableStyle([
             ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
             ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
         ]))
-        table.wrapOn(c, 50, 550)
-        table.drawOn(c, 50, 550)
+        table.wrapOn(c, 50, 700)
+        table.drawOn(c, 50, 700)
 
-        # Histórico de manutenção
-        c.drawString(50, 500, "Histórico de Manutenção Corretiva:")
+        # Adicionando título para o histórico de manutenção
+        c.setFont("Helvetica-Bold", 14)
+        c.drawString(50, 620, "Histórico de Manutenção")
+        
+        # Linha do título do histórico
+        c.line(50, 615, 550, 615)
+
+        # Tabela de histórico de manutenção
         historico = [
-            ["Data", "Ocorrência/Descrição", "Nº OS", "Visto"],
-            ["05/10/2018", "Troca de correia do avanço do torno", "1023", "OK"],
-            ["20/02/2023", "Lubrificação preventiva", "2025", "OK"]
+            ["Data", "Ocorrência/Descrição", "Ordem", "Visto"],
+            ["06/12/2024", "Atualização do sistema operacional, verificação de segurança e otimização do desempenho", "N/A", "OK"],
+            ["17/11/2024", "Substituição do equipamento defeituoso e reconfiguração da rede", "N/A", "OK"],
+            ["25/10/2024", "Revisão do código-fonte, aplicação de patches e testes para corrigir falhas", "N/A", "OK"]
         ]
-
-        history_table = Table(historico, colWidths=[80, 300, 80, 50])
+        
+        history_table = Table(historico, colWidths=[100, 300, 80, 50])
         history_table.setStyle(TableStyle([
             ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
             ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
         ]))
-        history_table.wrapOn(c, 50, 350)
-        history_table.drawOn(c, 50, 350)
+        history_table.wrapOn(c, 50, 400)
+        history_table.drawOn(c, 50, 400)
 
         # Finalizar o PDF
         c.save()
@@ -439,6 +435,8 @@ def download_cuidados(card_id):
     
     except FileNotFoundError:
         return "Arquivo cards.json não encontrado", 404
+
+
 
 # Gráfico
 # Importa os dados do custo de manutenção
