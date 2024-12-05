@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    
+}
 body {
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
-    background-color: #141515; /* Fundo da página */
-    color: white; /* Cor padrão do texto */
+    font-family: "Quicksand", sans-serif;
+    background-color: #171717;
+    color: white;
 }
 
 /* Animação de entrada */
@@ -20,6 +29,43 @@ body {
     transform: translateY(0); /* O elemento vai voltar para a posição original */
 }
 
+/* Definindo animação para a entrada da direita */
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%); /* Começa fora da tela, à direita */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0); /* Move para a posição normal */
+        opacity: 1;
+    }
+}
+
+/* Definindo animação para a entrada da esquerda */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%); /* Começa fora da tela, à esquerda */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0); /* Move para a posição normal */
+        opacity: 1;
+    }
+}
+
+/* Aplicando animação de entrada à seção "Sobre o Senai" (entra pela esquerda) */
+.sobre-senai.visible {
+    animation: slideInLeft 1s ease-out; /* Animação entra da esquerda */
+    opacity: 0;
+    animation-fill-mode: forwards; /* Mantém o estado final após a animação */
+}
+
+/* Aplicando animação de entrada às outras seções (entra pela direita) */
+.section.visible {
+    animation: slideInRight 1s ease-out; /* Animação entra da direita */
+    opacity: 0;
+    animation-fill-mode: forwards; /* Mantém o estado final após a animação */
+}
 
 
 /* Cabeçalho */
@@ -29,7 +75,7 @@ header {
     align-items: center;
     padding: 10px 20px;
     background-color: black; /* Fundo preto do cabeçalho */
-    height: 70px;
+    height: 85px;
     overflow: hidden;
 
 
@@ -167,26 +213,68 @@ main {
 
 .main-content {
     padding: 20px;
-    margin-left: 0;
-    margin-right: 0; /* Centraliza o conteúdo na tela */
+    margin: 1%;
+    font-family: "Quicksand", sans-serif;
+    background-color: #1e1e1e; /* Fundo escuro para o conteúdo */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff; /* Cor do texto */
 }
 
-
-.main-content h1 {
+/* Títulos principais */
+h1 {
     text-align: center;
-    font-size: 28px;
+    font-size: 2.5rem;
     margin-bottom: 20px;
+    color: #fff; /* Cor dourada para o título */
+    text-transform: uppercase;
 }
 
-
+/* Barra de separação */
 .fitinha {
-    background-color: white;
-    height: 2px;
-    width: 12%;
+    background-color: #fff; /* Cor dourada */
+    height: 3px;
+    width: 20%;
     margin: 0 auto;
-    margin-top: -20px;
+    margin-top: 10px;
+}
+.fatinha{
+    background-color: #fff; /* Cor dourada */
+    height: 3px;
+    width: 20%;
+    margin: 0 auto;
+    margin-top: -15px;
+}
+/* Estilizando as seções */
+.section, .sobre-senai {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #2e2e2e; /* Fundo escuro para seções */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Títulos das seções */
+.main-content h2 {
+    font-size: 1.8rem;
+    color: #fff; /* Títulos em dourado */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Parágrafos */
+.main-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e3e3e3; /* Cor do texto em um tom suave */
+}
+
+/* Adicionando animação fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
 
 /* Estilo das seções principais */
 .section {
@@ -196,12 +284,13 @@ main {
 
 /* Fundo azul para a seção "Sobre o Senai" */
 .sobre-senai {
-    background-color: #798EAF; /* Cor de fundo azul */
+    background-color: #526d97; /* Cor de fundo azul */
     padding: 20px; /* Espaçamento interno */
     color: white; /* Cor do texto */
     width: 100%; /* Garante que cubra toda a largura */
     margin: 0; /* Remove qualquer margem externa */
     box-sizing: border-box; /* Inclui padding no tamanho */
+    margin-bottom: 40px
 }
 
 
@@ -246,56 +335,52 @@ main {
 .team-left, .team-right {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Reduz o espaço entre os cartões na mesma coluna */
+    gap: 25px; /* Reduz o espaço entre os cartões na mesma coluna */
     width: 48%; /* Adicionei uma largura para evitar o afastamento excessivo */
 }
 
-
-/* Cartão de cada membro */
+/* Estilo base para o cartão */
 .member-card {
-    flex-wrap: wrap;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #1e1e1e;
+    background: linear-gradient(to right, #02317A, #798EAF); /* Gradiente azul */
+    border-radius: 10px;
     padding: 20px;
+    transition: all 0.5s ease; /* Transições suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    overflow: hidden;
+}
+
+/* Criação da barra de carregamento com o pseudo-elemento before */
+.member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
-    height: 100px;
-    background: linear-gradient(to right, #02317A, #798EAF);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
-    margin: 10px auto;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+    height: 100%;
+    background: linear-gradient(to right, red, rgb(250, 34, 34)); /* Gradiente vermelho */
+    transition: all 0.5s ease; /* Transição suave para o movimento da barra */
+    z-index: 0; /* A barra vai ficar abaixo do conteúdo */
 }
 
-/* Efeito de hover: muda a cor para vermelho e eleva o card */
+/* Efeito de hover - animação da barra de carregamento */
+.member-card:hover::before {
+    left: 0; /* A barra de carregamento vai se mover da esquerda para a direita */
+}
+
+/* Efeito de hover - elevação e mudança na cor */
 .member-card:hover {
-    background: linear-gradient(to right, #800101, #9a0707); /* Cor vermelha */
-    transform: translateY(-10px); /* Eleva o card */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transform: translateX(5px); /* Leve movimento de translação */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Aumento da sombra para simular elevação */
 }
 
-/* Estilo da informação do membro dentro do card */
-.member-info h3 {
-    color: white;  /* Cor do texto para contraste */
-    font-size: 18px;
-    margin-top: 10px;
-}
 
-/* Ícone do LinkedIn */
-.linkedin-icon {
-    color: white; /* Cor do ícone */
-    font-size: 20px;
-    text-decoration: none;
-    margin-top: 10px;
+/* Transição da cor do texto */
+.member-card .member-info h3,
+.member-card .linkedin-icon {
+    color: #ffffff; /* Cor padrão do texto */
+    transition: color 0.3s ease;
 }
-
-/* Ícone do LinkedIn ao passar o mouse: muda a cor */
-.member-card:hover .linkedin-icon {
-    color: #f39c12; /* Cor amarela ao passar o mouse */
-}
-
 
 .foto-gabi, .foto-isinha, .foto-livia, .foto-pedro, .foto-raphael, .foto-samuel, .foto-shopia, .foto-vitor {
     width: 150px;
@@ -308,9 +393,6 @@ main {
     transform: translateY(-50%);
     z-index: 10;
 }
-
-
-
 
 .member-info {
     display: flex;
@@ -347,10 +429,6 @@ main {
 }
 
 
-.linkedin-icon:hover {
-    color: #ffffff;
-    border-color: #ffffff;
-}
 
 
 .content-wrapper {
@@ -361,14 +439,6 @@ main {
 }
 
 
-/* Reseta margens e espaçamentos */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden; /* Impede rolagem horizontal */
-    box-sizing: border-box;
-}
 
 
 /* Rodapé */
@@ -401,136 +471,119 @@ html, body {
     height: auto;
     margin-bottom: 2px;
 }
+footer{
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  background-color: #000000;
+  padding: 50px 0;
+  margin-top: 50px;
+}
+.container-footer{
+  max-width: 1400px;
+  padding: 0 4%;
+  margin: auto;
+}
+.row-footer{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container { 
+  width: 33%;
+  padding: 0 15px; 
+ }
 
-
-/* Logo SENAI */
-.senai-logo {
-    width: 180px;
-    height: auto;
-    margin-bottom: 5px;
+.container img{
+  position: relative;
+  
+  width: 50%;
 }
 
+.footer-col{
+  
+  width: 33%;
+  padding: 0 15px; 
 
-/* Logo MMMS */
-.mms-logo {
-    width: 130px;
-    height: auto;
+}
+.footer-col h4{
+  font-size: 22px;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col ul{
+  list-style: none;
+}
+.footer-col ul li{
+  margin: 10px 0;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: #4198e4;
+  padding-left: 10px;
+}
+.footer-col .medias-socias{
+  margin-top: 30px;
+}
+.footer-col .medias-socias a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid white;
+  transition: all 0.5s ease;
+}
+.footer-col .medias-socias a i{
+  font-size: 20px;
 }
 
-
-.footer-info {
-    padding: 0 5px;
-    margin: 0;
+.footer-col .medias-socias a:hover{
+  color: #005CAA;
+  background-color: white;
+}
+.footer-col .form-sub input{
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  border: 1px solid white;
+  color: white;
+  background-color: #000000;
+}
+.footer-col .form-sub input::placeholder{
+  color: white;
+}
+.footer-col .form-sub button{
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px; 
+  font-size: 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  background-color: #005CAA;        
 }
 
-
-/* Informações */
-.footer-info h3 {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-
-.footer-info ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-
-.footer-info ul li {
-    margin-bottom: 8px;
-    margin-left: 0;
-}
-
-
-.footer-info ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-
-.footer-info ul li a:hover {
-    text-decoration: underline;
-}
-
-
-/* Formulário de contato */
-.footer-contact h3 {
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-
-/* Botão "Digite meu e-mail" */
-.contact-input {
-    width: 300px;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 2px solid white;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: transparent;
-    color: white;
-}
-
-
-/* Botão "Enviar" */
-.contact-button {
-    width: 100%;
-    background-color: #007bff;
-    color: white;
-    border: 2px solid #007bff;
-    padding: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-
-/* Efeito de hover no botão "Enviar" */
-.contact-button:hover {
-    background-color: #0056b3;
-}
-
-
-/* Redes sociais */
-.social-icons {
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-
-.icon {
-    margin-right: 5px;
-    color: white;
-    font-size: 14px;
-    text-decoration: none;
-    border: 2px solid white;
-    padding: 6px;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: color 0.3s, border-color 0.3s;
-}
-
-
-/* Cor dos ícones ao passar o mouse */
-.icon:hover {
-    color: #007bff;
-    border-color: #007bff;
-}
+.footer-col .form-sub button:hover{
+  background-color: #00427b; 
+  transition: 0.3s;
+  
+   
+} 

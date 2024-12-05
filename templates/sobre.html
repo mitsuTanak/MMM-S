@@ -45,8 +45,8 @@
 
 
     <!-- Conteúdo principal -->
-    <div class="main-content">
-        <div class="container-section fade-in">
+    <div class="main-content fade-in">
+        
         <h1>Sobre Nós</h1>
         <div class="fitinha"></div>
 
@@ -57,7 +57,7 @@
         </div>
 
 
-        <div class="section sobre-senai fade-in">
+        <div class="sobre-senai fade-in">
             <h2>Sobre o Senai</h2>
             <p>O Senai (Serviço Nacional de Aprendizagem Industrial) é uma instituição de ensino que oferece formação profissional voltada para a indústria, com cursos técnicos e qualificação.</p>
         </div>
@@ -68,8 +68,13 @@
             <p>O projeto final do grupo foi desenvolvido como Trabalho de Conclusão de Curso (TCC), no último semestre do curso. O objetivo foi a criação de um site para garantir a segurança, eficiência e durabilidade dos equipamentos de usinagem do SENAI A. Jacob Lafer. O grupo acredita que o sistema criado contribuirá para um ambiente de aprendizado mais seguro e produtivo, aliando tecnologia e inovação à educação técnica de qualidade.</p>
         </div>
     </div>
+
+
     <!-- Equipe -->
+    <h1>Nossa Equipe</h1>
+    <div class="fatinha"></div>
     <div class="team-members">
+      
         <!-- Equipe à esquerda -->
         <div class="team-left">
             <!-- Membro Gabriela -->
@@ -161,58 +166,45 @@
     </div>
 
 
-    <!-- Rodapé -->
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Logos -->
-        <div class="footer-logo">
-            <img src="../static/assets/logo_mundo_senai-removebg-preview.png" alt="SENAI" class="logo senai-logo">
-            <img src="../static/assets/logo.png" alt="MMMS" class="logo mms-logo">
-        </div>
-        <!-- Informações e Contato -->
-        <div class="footer-info">
-            <h3>Informações</h3>
-            <ul>
-                <li><a href="/sobre">Contatos</a></li>
-                <li><a href="termos">Termos de serviço</a></li>
-                <li><a href="/politica">Política de Privacidade</a></li>
-            </ul>
-        </div>
-        <!-- Formulário e Redes Sociais -->
-        <div class="footer-contact">
-            <h3>Entre em Contato</h3>
-            <form action="#" class="contact-form">
-                <input type="email" class="contact-input" placeholder="Digite seu e-mail" required>
-                <button type="submit" class="contact-button">Enviar</button>
-            </form>
-            <!-- Redes Sociais -->
-            <div class="social-icons">
-                <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a>
+  <!-- ____________________________________________________________________________ -->
+    <!-- Footer -->
+    <footer>
+        <div class="container-footer">
+          <div class="row-footer">
+            <div class="container">
+              <img src="../../static/assets/logo_mundo_senai-removebg-preview.png" alt="">
+              <img src="../static/assets/logo.png" alt="">
             </div>
+  
+            <div class="footer-col">
+              <h4>Informações</h4>
+              <ul>
+                <li><a href="/sobre">Contatos</a></li>
+                <li><a href="/termos">Termos de Serviço</a></li>
+                <li><a href="/politica">Política de Privacidade</a></li>
+              </ul>
+            </div>
+  
+            <div class="footer-col">
+              <h4>Entre em contato</h4>
+              <div class="form-sub">
+                <form>
+                  <input type="email" placeholder="Digite o seu e-mail" required>
+                  <button>Enviar</button>
+                </form>
+              </div>
+  
+              <div class="medias-socias">
+                <a href="https://www.facebook.com/senaisaopaulo/?locale=pt_BR" target="_blank"> <i class="fa fa-facebook"></i> </a>
+                <a href="https://www.instagram.com/senai.sp/" target="_blank"> <i class="fa fa-instagram"></i> </a>
+                <a href="https://twitter.com/senaisaopaulo" target="_blank"> <i class="fa-brands fa-x-twitter"></i> </a>
+                <a href="https://br.linkedin.com/school/senaisp/" target="_blank"> <i class="fa fa-linkedin"></i> </a>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</footer>
-<script>
-    // Função para verificar a visibilidade dos elementos
-function checkVisibility() {
-    const elements = document.querySelectorAll('.fade-in');
-    elements.forEach(function(el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-            el.classList.add('visible'); // Adiciona a classe quando o elemento entrar na tela
-        }
-    });
-}
-
-// Verifica a visibilidade ao rolar a página
-window.addEventListener('scroll', checkVisibility);
-
-// Chama a função na carga da página para animar os elementos que já estão visíveis
-document.addEventListener('DOMContentLoaded', checkVisibility);
-
-</script>
+      </footer> 
+<script src="../static/JS/sobre.js"></script>
 
 </body>
 </html>
