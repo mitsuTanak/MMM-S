@@ -414,7 +414,7 @@ def download_cuidados(card_id):
         # Tabela de histórico de manutenção
         historico = [
             ["Data", "Ocorrência/Descrição", "Ordem", "Visto"],
-            ["06/12/2024", "Atualização do sistema operacional, verificação de segurança e otimização do desempenho", "N/A", "OK"],
+            ["06/12/2024", "Verificação de segurança e otimização do desempenho", "N/A", "OK"],
             ["17/11/2024", "Substituição do equipamento defeituoso e reconfiguração da rede", "N/A", "OK"],
             ["25/10/2024", "Revisão do código-fonte, aplicação de patches e testes para corrigir falhas", "N/A", "OK"]
         ]

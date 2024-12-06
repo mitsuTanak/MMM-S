@@ -189,6 +189,7 @@ body, html {
     transition: background-color 0.2s;
     margin-bottom: 25px;
     align-items: center;
+    margin-top: 200px;
 }
 .btn-pdf:hover {
     background-color: #173d79;

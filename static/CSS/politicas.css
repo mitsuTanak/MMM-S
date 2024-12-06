@@ -103,6 +103,7 @@ h1 {
 p {
     max-width: 800px; /* Limita a largura do texto para melhorar a legibilidade */
     line-height: 1.6; /* Espaçamento entre linhas para uma leitura confortável */
+    text-align: justify;
 }
 
 /* Footer */

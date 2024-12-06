@@ -38,68 +38,42 @@
             <h2>Custo Realizado por Setor</h2>
             <canvas id="sectorChart" width="200" height="200"></canvas>
             <script>
-                async function fetchChartData() {
-                    try {
-                        const response = await fetch('/api/maintenance-costs');
-                        const data = await response.json();
+                // Dados fictícios para o gráfico de pizza (substitua conforme necessário)
+                const data = {
+                    labels: ['Automativo', 'Moldes', 'Ferramentas', 'Construção'],
+                    datasets: [{
+                        label: 'Custo por Setor',
+                        data: [300, 150, 200, 100],  // Exemplo de valores
+                        backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'],
+                        hoverOffset: 4
+                    }]
+                };
 
-                        console.log('Dados recebidos:', data);
-            
-                        // Verificar se há erro
-                        if (data.error) {
-                            console.error('Erro ao buscar dados:', data.error);
-                            return;
-                        }
-            
-                        // Extrair labels e dados
-                        const labels = data.map(item => item.sector);
-                        const costs = data.map(item => item.total_cost);
-
-                        console.log('Labels:', labels);  // Verifique os labels
-                        console.log('Custos:', costs); 
-            
-                        // Configurar gráfico com dados do banco
-                        const chartData = {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Custo por Setor',
-                                data: costs,
-                                backgroundColor: ['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'],
-                                hoverOffset: 4
-                            }]
-                        };
-            
-                        const config = {
-                            type: 'bar',
-                            data: chartData,
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        position: 'top',
-                                    },
-                                    tooltip: {
-                                        callbacks: {
-                                            label: function(tooltipItem) {
-                                                return tooltipItem.label + ': R$ ' + tooltipItem.raw.toFixed(2);
-                                            }
-                                        }
+                const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': R$ ' + tooltipItem.raw;
                                     }
                                 }
-                            },
-                        };
-            
-                        // Criação do gráfico
-                        new Chart(document.getElementById('sectorChart'), config);
-                    } catch (error) {
-                        console.error('Erro ao carregar o gráfico:', error);
-                    }
-                }
-            
-                // Carregar dados ao carregar a página
-                window.onload = fetchChartData;
+                            }
+                        }
+                    },
+                };
+
+                // Criação do gráfico
+                const sectorChart = new Chart(
+                    document.getElementById('sectorChart'),
+                    config
+                );
             </script>
-            
         </div>
         <div class="grid-item pork">
             <h2>Status</h2>
